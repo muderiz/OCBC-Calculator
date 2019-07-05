@@ -7,8 +7,8 @@ package com.ocbc.calculator.services;
 
 import com.google.gson.Gson;
 import com.ocbc.calculator.model.AppProperties;
-import com.ocbc.calculator.model.FeatureValueRequest;
-import com.ocbc.calculator.model.FeatureValueResponse;
+import com.ocbc.calculator.model.FutureValueRequest;
+import com.ocbc.calculator.model.FutureValueResponse;
 import com.ocbc.calculator.model.ListProductRequest;
 import com.ocbc.calculator.model.ListProductResponse;
 import com.ocbc.calculator.model.Product;
@@ -38,9 +38,9 @@ public class CalculatorServices {
     private final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private OkHttpClient client = new OkHttpClient();
 
-    public FeatureValueResponse calculateGrowth(String refID, String amount, String type, String tenor, String product_type) throws IOException {
+    public FutureValueResponse calculateGrowth(String refID, String amount, String type, String tenor, String product_type) throws IOException {
 
-        FeatureValueRequest reqInvestasi = new FeatureValueRequest();
+        FutureValueRequest reqInvestasi = new FutureValueRequest();
         reqInvestasi.Channel_ID = appProp.Channel_ID;
         reqInvestasi.Ext_Reff_ID = refID;
         reqInvestasi.Due_Date = "0";
@@ -61,17 +61,17 @@ public class CalculatorServices {
         Gson gson = new Gson();
         String jsonInvestasi = gson.toJson(reqInvestasi);
 
-        //get result from ocbc api : /Calculator/FeatureValue
+        //get result from ocbc api : /Calculator/FutureValue
         RequestBody body = RequestBody.create(jsonInvestasi, JSON);
 
         Request request = new Request.Builder()
-                .url(appProp.BASE_URL + appProp.POST_FEATUREVALUE)
+                .url(appProp.BASE_URL + appProp.POST_FUTUREVALUE)
                 .post(body)
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();
 
-        FeatureValueResponse respGrowth = gson.fromJson(response.body().string(), FeatureValueResponse.class);
+        FutureValueResponse respGrowth = gson.fromJson(response.body().string(), FutureValueResponse.class);
 
         return respGrowth;
     }

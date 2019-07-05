@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * @author cokkyturnip
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class FeatureValueRequest {
+public class FutureValueRequest {
 
     public String Channel_ID;
     public String Ext_Reff_ID;

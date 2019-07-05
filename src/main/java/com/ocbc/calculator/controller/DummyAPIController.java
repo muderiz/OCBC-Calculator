@@ -7,8 +7,8 @@ package com.ocbc.calculator.controller;
 
 //import org.springframework.stereotype.Controller;
 import com.ocbc.calculator.model.AppProperties;
-import com.ocbc.calculator.model.FeatureValueRequest;
-import com.ocbc.calculator.model.FeatureValueResponse;
+import com.ocbc.calculator.model.FutureValueRequest;
+import com.ocbc.calculator.model.FutureValueResponse;
 import com.ocbc.calculator.model.ListProductRequest;
 import com.ocbc.calculator.model.ListProductResponse;
 import com.ocbc.calculator.model.Product;
@@ -38,13 +38,13 @@ public class DummyAPIController {
                 "2.0","1000000","0","123123123");
     }
 
-    @PostMapping("/FeatureValue")
-    public FeatureValueResponse getFeatureValue(@RequestBody FeatureValueRequest request) {
-        return new FeatureValueResponse("1","testid","0","Success","2.0","1200000");
+    @PostMapping("/FutureValue")
+    public FutureValueResponse getFutureValue(@RequestBody FutureValueRequest request) {
+        return new FutureValueResponse("1","testid","0","Success","2.0","1200000");
     }
 
     @PostMapping("/ListProduct")
-    public ListProductResponse getFeatureValue(@RequestBody ListProductRequest request) {
+    public ListProductResponse getListProduct(@RequestBody ListProductRequest request) {
 
         ListProductResponse response = new ListProductResponse();
         response.Channel_ID = appProperties.Channel_ID;

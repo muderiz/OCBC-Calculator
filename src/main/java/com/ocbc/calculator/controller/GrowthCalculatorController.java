@@ -5,7 +5,7 @@
  */
 package com.ocbc.calculator.controller;
 
-import com.ocbc.calculator.model.FeatureValueResponse;
+import com.ocbc.calculator.model.FutureValueResponse;
 import com.ocbc.calculator.services.CalculatorServices;
 import java.io.IOException;
 
@@ -44,8 +44,8 @@ public class GrowthCalculatorController {
             typeDesc = "per lumpsum";
         }
 
-        FeatureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, "investasi");
-        FeatureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, "tabungan");
+        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, "investasi");
+        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, "tabungan");
 
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("tabungan", respTabungan);
