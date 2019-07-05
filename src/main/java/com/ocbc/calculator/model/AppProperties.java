@@ -1,0 +1,29 @@
+package com.ocbc.calculator.model;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+/**
+ *
+ * @author cokkyturnip
+ *
+ */
+@Component
+public class AppProperties {
+
+    @Value("${ocbc.nisp.api.base.url}")
+    public String BASE_URL;
+
+    @Value("${ocbc.nisp.api.post.featurevalue}")
+    public String POST_FEATUREVALUE;
+
+    @Value("${ocbc.nisp.api.post.targetvalue}")
+    public String POST_TARGETVALUE;
+    
+    @Value("${ocbc.nisp.api.post.listproduct}")
+    public String POST_LISTPRODUCT;
+
+    @Value("${model.request.all.Channel_ID}")
+    public String Channel_ID;
+
+}
