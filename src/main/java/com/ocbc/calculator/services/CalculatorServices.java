@@ -77,6 +77,8 @@ public class CalculatorServices {
     }
 
     public TargetValueResponse calculateEducation(String refID, String age, String country, String value, String product_type) throws IOException {
+        int intAge = Integer.valueOf(age);
+        int intTenor = 18 - intAge <= 1 ? 1 : 18 - intAge;
         TargetValueRequest targetValueRequest = new TargetValueRequest();
         targetValueRequest.Channel_ID = appProp.Channel_ID;
         targetValueRequest.Children_Age = age;
@@ -87,7 +89,7 @@ public class CalculatorServices {
         targetValueRequest.Present_Value = value;
         targetValueRequest.Product_ID = "0";
         targetValueRequest.Risk_Profile_ID = "0";
-        targetValueRequest.Tenor = age;
+        targetValueRequest.Tenor = String.valueOf(intTenor);
         targetValueRequest.Future_Value_Code = "A";
 
         if (product_type.equalsIgnoreCase("investasi")) {
