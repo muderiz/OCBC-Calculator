@@ -33,17 +33,24 @@ public class EtcCalculatorController {
     private ParamJSONServices paramJSONServices;
 
     // >> /etc/refid/Beli%20Mobil%20Mewah/Bambang/23,210,000/20,231,230,000/12
-    @GetMapping("/{refID}/{goals}/{name}/{present_value}/{future_value}/{tenor}")
+    @GetMapping("/{refID}/{goals}/{name}/{present_value}/{future_value}/{tenor}/{risk_profile_id}")
     public String etc(Model model,
             @PathVariable String refID,
             @PathVariable String goals,
             @PathVariable String name,
             @PathVariable String present_value,
             @PathVariable String future_value,
-            @PathVariable String tenor) throws IOException {
+            @PathVariable String tenor,
+            @PathVariable int risk_profile_id) throws IOException {
 
-        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, present_value, future_value, tenor, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, present_value, future_value, tenor, "tabungan");
+        String note;
+        if (risk_profile_id == 0) {
+            note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
+        } else {
+            note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
+        }
+        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "tabungan");
 
         List<Country> listCountry = paramJSONServices.getListCountryfromFileJson("country.json");
 
@@ -55,6 +62,7 @@ public class EtcCalculatorController {
         model.addAttribute("jangka_waktu", tenor);
         model.addAttribute("goals", goals);
         model.addAttribute("customer_name", name);
+        model.addAttribute("note", note);
 
         return "etc";
     }

@@ -37,7 +37,7 @@
                         </div>
                         <div class="errorMsg">Pastikan data yang kamu isi sudah benar</div>
                         <div class="formRow">
-                            <input id="tenor" type="text" class="inputnum i2" th:value="${tenor}" inputmode="numeric" maxlength="2" pattern="[0-9]*" required/>
+                            <input id="tenor" type="text" class="inputnumtenor i2" th:value="${tenor}" inputmode="numeric" maxlength="2" min="0" max="50" pattern="[0-9]*" required/>
                             <div class="left">Selama</div>
                             <div class="right">tahun</div>
                         </div>
@@ -52,7 +52,7 @@
                         <div class="text-center">
                             <p th:inline="text">Dengan <b>[[${amount}]]</b> [[${typeDesc}]]
                                 <br>
-                                    selama [[${tenor}]] tahun :
+                                    selama <b>[[${tenor}]]</b> tahun :
                             </p>
                         </div>
 
@@ -78,10 +78,10 @@
                         </div>
 
                         <div class="text-center">
-                            *Estimasi laba telah disesuaikan dengan profil risiko Dewi: <b>Balance</b>.
+                            <i><span th:text="${note}">.</i>
                             <br/> <br/>
 
-                            <button class="onBtn grey bordered">Ganti Life Goal</button>
+                            <button id="btnSubmitOthers" class="onBtn grey bordered">Ganti Life Goal</button>
                             <button id="btnSubmit" class="onBtn" >Goal Sudah Sesuai</button>
                         </div>
                     </div>

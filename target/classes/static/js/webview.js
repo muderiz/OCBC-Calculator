@@ -47,6 +47,7 @@ function submit(_lifegoal) {
             var amount = $("#amount").val();
             var tenor = $("#tenor").val();
             message_in = amount + "&" + tenor + "&" + tabunganResult + "&" + investasiResult;
+
             break;
         case "education":
             var age = $("#age").val();
@@ -67,6 +68,14 @@ function submit(_lifegoal) {
     talk(refID, message_in, "Goal Sudah Sesuai");
 }
 
+function othersgoal() {
+    var message_in;
+    var refID = $("#refID").val();
+    message_in = "";
+
+    talk(refID, message_in, "Ganti Life Goal");
+}
+
 $(function () {
     var lifegoal = $("#lifegoal").val();
 
@@ -83,13 +92,11 @@ $(function () {
         submit(lifegoal);
     });
 
-
-
-
-
+    $('#btnSubmitOthers').on('click', function () {
+        othersgoal();
+    });
 
     $('input.inputnum').on('keyup input', function (event) {
-
         $(this).val(function (index, value) {
             return value
                     .replace(/^0+/, '')
@@ -97,6 +104,40 @@ $(function () {
                     .replace(/^0+/, '');
         });
     });
+    $('input.inputnumtenor').on('keyup input', function (event) {
+        $(this).val(function (index, value) {
+            return value
+                    .replace(/^0+/, '')
+                    .replace(/\D/g, "")
+                    .replace(/^0+/, '');
+        });
+
+        if (parseInt($(this).val()) <= 50 && parseInt($(this).val()) >= 0)
+            ;
+        else if (parseInt($(this).val()) > 50)
+//            $(this).val($(this).data("old"));
+            $(this).val(50);
+        else if (($(this).val()) <= 0)
+            $(this).val(1);
+    });
+
+    $('input.inputnumage').on('keyup input', function (event) {
+        $(this).val(function (index, value) {
+            return value
+                    .replace(/^0+/, '')
+                    .replace(/\D/g, "")
+                    .replace(/^0+/, '');
+        });
+
+        if (parseInt($(this).val()) <= 18 && parseInt($(this).val()) >= 0)
+            ;
+        else if (parseInt($(this).val()) > 18)
+//            $(this).val($(this).data("old"));
+            $(this).val(18);
+        else if (($(this).val()) <= 0)
+            $(this).val(1);
+    });
+
     $('input.currency').on('keyup input', function (event) {
         if (event.which >= 37 && event.which <= 40)
             return;

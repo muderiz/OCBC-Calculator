@@ -33,26 +33,35 @@ public class EducationCalculatorController {
     private ParamJSONServices paramJSONServices;
 
     // >> /education/refID/1/Indonesia/10,020,000,013/Dewi
-    @GetMapping("/{refID}/{age}/{country}/{value}/{name}")
+    @GetMapping("/{refID}/{age}/{country}/{value}/{name}/{risk_profile_id}")
     public String education(Model model,
             @PathVariable String refID,
             @PathVariable String age,
             @PathVariable String country,
             @PathVariable String value,
-            @PathVariable String name) throws IOException {
+            @PathVariable String name,
+            @PathVariable int risk_profile_id) throws IOException {
 
-        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, "tabungan");
+        String note;
+        if (risk_profile_id == 0) {
+            note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
+        } else {
+            note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
+        }
+
+        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "tabungan");
 
         List<Country> listCountry = paramJSONServices.getListCountryfromFileJson("country.json");
-        
+
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("tabungan", respTabungan);
         model.addAttribute("age", age);
         model.addAttribute("country", country);
         model.addAttribute("value", value);
         model.addAttribute("name", name);
-        model.addAttribute("listCountry",listCountry);
+        model.addAttribute("listCountry", listCountry);
+        model.addAttribute("note", note);
 
         return "pendidikan";
     }

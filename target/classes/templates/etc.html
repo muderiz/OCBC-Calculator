@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="formRow">
-                            <input id="jangka_waktu" type="text" class="inputnum i2" th:value="${jangka_waktu}" inputmode="numeric" maxlength="2" pattern="[0-9]*" required/>
+                            <input id="jangka_waktu" type="text" class="inputnumtenor i2" th:value="${jangka_waktu}" inputmode="numeric" maxlength="2" pattern="[0-9]*" required/>
                             <div class="left">Jangka Waktu</div>
                             <div class="right">tahun</div>
                         </div>
@@ -80,11 +80,10 @@
                         </div>
 
                         <div class="text-center">
-                            *Angka hanya estimasi. Untuk angka sesuai dengan profil <span th:text="${customer_name}"></span>, silahkan melengkapi
-                            profil risiko <span th:text="${customer_name}"></span> selanjutnya.
+                            <i><span th:text="${note}">.</i>
                             <br/> <br/>
 
-                            <button class="onBtn grey bordered">Ganti Life Goal</button>
+                            <button id="btnSubmitOthers" class="onBtn grey bordered">Ganti Life Goal</button>
                             <button id="btnSubmit" class="onBtn">Goal Sudah Sesuai</button>
 
                         </div>

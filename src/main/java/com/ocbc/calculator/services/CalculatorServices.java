@@ -38,7 +38,7 @@ public class CalculatorServices {
     private final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private OkHttpClient client = new OkHttpClient();
 
-    public FeatureValueResponse calculateGrowth(String refID, String amount, String type, String tenor, String product_type) throws IOException {
+    public FeatureValueResponse calculateGrowth(String refID, String amount, String type, String tenor, int risk_profile_id, String product_type) throws IOException {
 
         FeatureValueRequest reqInvestasi = new FeatureValueRequest();
         reqInvestasi.Channel_ID = appProp.Channel_ID;
@@ -47,15 +47,25 @@ public class CalculatorServices {
         reqInvestasi.Investment_Amount = amount;
         reqInvestasi.Investment_Type = type;
         reqInvestasi.Product_ID = "0";
-        reqInvestasi.Risk_Profile_ID = "0";
+        reqInvestasi.Risk_Profile_ID = risk_profile_id + "";
         reqInvestasi.Tenor = tenor;
 
-        if (product_type.equalsIgnoreCase("investasi")) {
-            reqInvestasi.Future_Value_Type = "AG";
-            reqInvestasi.Yearly_Return_Code = "A";
+        if (risk_profile_id == 0) {
+            if (product_type.equalsIgnoreCase("investasi")) {
+                reqInvestasi.Future_Value_Type = "AG";
+                reqInvestasi.Yearly_Return_Code = "A";
+            } else {
+                reqInvestasi.Future_Value_Type = "SV";
+                reqInvestasi.Yearly_Return_Code = "C";
+            }
         } else {
-            reqInvestasi.Future_Value_Type = "SV";
-            reqInvestasi.Yearly_Return_Code = "C";
+            if (product_type.equalsIgnoreCase("investasi")) {
+                reqInvestasi.Future_Value_Type = "AG";
+                reqInvestasi.Yearly_Return_Code = "B";
+            } else {
+                reqInvestasi.Future_Value_Type = "SV";
+                reqInvestasi.Yearly_Return_Code = "C";
+            }
         }
 
         Gson gson = new Gson();
@@ -76,7 +86,7 @@ public class CalculatorServices {
         return respGrowth;
     }
 
-    public TargetValueResponse calculateEducation(String refID, String age, String country, String value, String product_type) throws IOException {
+    public TargetValueResponse calculateEducation(String refID, String age, String country, String value, int risk_profile_id, String product_type) throws IOException {
         TargetValueRequest targetValueRequest = new TargetValueRequest();
         targetValueRequest.Channel_ID = appProp.Channel_ID;
         targetValueRequest.Children_Age = age;
@@ -86,17 +96,27 @@ public class CalculatorServices {
         targetValueRequest.Pre_Calculated_Future_Value = "0";
         targetValueRequest.Present_Value = value;
         targetValueRequest.Product_ID = "0";
-        targetValueRequest.Risk_Profile_ID = "0";
+        targetValueRequest.Risk_Profile_ID = risk_profile_id + "";
         targetValueRequest.Tenor = age;
         targetValueRequest.Future_Value_Code = "A";
 
-        if (product_type.equalsIgnoreCase("investasi")) {
-            targetValueRequest.Yearly_Return_Code = "A";
-            targetValueRequest.Payment_Type = "CE";
-
+        if (risk_profile_id == 0) {
+            if (product_type.equalsIgnoreCase("investasi")) {
+                targetValueRequest.Yearly_Return_Code = "A";
+                targetValueRequest.Payment_Type = "CE";
+            } else {
+                targetValueRequest.Payment_Type = "SV";
+                targetValueRequest.Yearly_Return_Code = "C";
+            }
         } else {
-            targetValueRequest.Payment_Type = "SV";
-            targetValueRequest.Yearly_Return_Code = "E";
+            if (product_type.equalsIgnoreCase("investasi")) {
+                targetValueRequest.Yearly_Return_Code = "B";
+                targetValueRequest.Payment_Type = "CE";
+
+            } else {
+                targetValueRequest.Payment_Type = "SV";
+                targetValueRequest.Yearly_Return_Code = "C";
+            }
         }
 
         Gson gson = new Gson();
@@ -116,7 +136,7 @@ public class CalculatorServices {
         return targetValueResponse;
     }
 
-    public TargetValueResponse calculateEtc(String refID, String present_value, String future_value, String tenor, String product_type) throws IOException {
+    public TargetValueResponse calculateEtc(String refID, String present_value, String future_value, String tenor, int risk_profile_id, String product_type) throws IOException {
         TargetValueRequest targetValueRequest = new TargetValueRequest();
         targetValueRequest.Channel_ID = appProp.Channel_ID;
         targetValueRequest.Children_Age = "0";
@@ -126,21 +146,32 @@ public class CalculatorServices {
         targetValueRequest.Pre_Calculated_Future_Value = future_value;
         targetValueRequest.Present_Value = present_value;
         targetValueRequest.Product_ID = "0";
-        targetValueRequest.Risk_Profile_ID = "0";
+        targetValueRequest.Risk_Profile_ID = risk_profile_id + "";
         targetValueRequest.Tenor = tenor;
 
-        if (product_type.equalsIgnoreCase("investasi")) {
-            targetValueRequest.Yearly_Return_Code = "C";
-            targetValueRequest.Payment_Type = "OG";
-            targetValueRequest.Future_Value_Code = "B";
-
+        if (risk_profile_id == 0) {
+            if (product_type.equalsIgnoreCase("investasi")) {
+                targetValueRequest.Yearly_Return_Code = "C";
+                targetValueRequest.Payment_Type = "OG";
+                targetValueRequest.Future_Value_Code = "B";
+            } else {
+                targetValueRequest.Payment_Type = "SV";
+                targetValueRequest.Yearly_Return_Code = "E";
+                targetValueRequest.Future_Value_Code = "C";
+            }
         } else {
-            targetValueRequest.Payment_Type = "OG";
-            targetValueRequest.Yearly_Return_Code = "E";
-            targetValueRequest.Future_Value_Code = "C";
-
+            if (product_type.equalsIgnoreCase("investasi")) {
+                targetValueRequest.Yearly_Return_Code = "D";
+                targetValueRequest.Payment_Type = "OG";
+                targetValueRequest.Future_Value_Code = "B";
+            } else {
+                targetValueRequest.Payment_Type = "SV";
+                targetValueRequest.Yearly_Return_Code = "E";
+                targetValueRequest.Future_Value_Code = "C";
+            }
         }
-
+        
+        
         Gson gson = new Gson();
         String jsonTargetValue = gson.toJson(targetValueRequest);
 

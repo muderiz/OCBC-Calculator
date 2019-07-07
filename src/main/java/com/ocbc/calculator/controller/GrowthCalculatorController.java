@@ -26,30 +26,39 @@ public class GrowthCalculatorController {
 
     @Autowired
     private CalculatorServices calculatorServices;
-    
+
     // >> /growth/refID/100,100,022/0/15
     // >> /growth/refID/100,100,022/1/15
-    @GetMapping("/{refID}/{amount}/{type}/{tenor}")
+    @GetMapping("/{refID}/{amount}/{type}/{tenor}/{name}/{risk_profile_id}")
     public String growth(Model model,
             @PathVariable String refID,
             @PathVariable String amount,
             @PathVariable String type,
-            @PathVariable String tenor) throws IOException {
+            @PathVariable String tenor,
+            @PathVariable String name,
+            @PathVariable int risk_profile_id) throws IOException {
 
         String typeDesc;
-
+        String note;
         if (type.equalsIgnoreCase("0")) {
             typeDesc = "per bulan";
         } else {
             typeDesc = "per lumpsum";
         }
 
-        FeatureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, "investasi");
-        FeatureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, "tabungan");
+        if (risk_profile_id == 0) {
+            note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
+        } else {
+            note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
+        }
+
+        FeatureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "investasi");
+        FeatureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "tabungan");
 
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("tabungan", respTabungan);
         model.addAttribute("typeDesc", typeDesc);
+        model.addAttribute("note", note);
 
         return "growth";
     }
