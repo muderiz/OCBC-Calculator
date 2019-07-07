@@ -54,7 +54,7 @@ function submit(_lifegoal) {
             var age = $("#age").val();
             var country = $("#countryValue").val();
             var value = $("#dana").val();
-            message_in = age + "&" + country + "&" + value + "&" + tabunganResult + "&" + investasiResult;
+            message_in = age + "&" + country + "&" + value + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate ;
 
             break;
         case "etc":

@@ -56,4 +56,28 @@ public class EducationCalculatorController {
 
         return "pendidikan";
     }
+    
+    @GetMapping("/summary/{refID}/{age}/{country}/{value}/{name}")
+    public String educationSummary(Model model,
+            @PathVariable String refID,
+            @PathVariable String age,
+            @PathVariable String country,
+            @PathVariable String value,
+            @PathVariable String name) throws IOException {
+
+        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, "tabungan");
+
+        List<Country> listCountry = paramJSONServices.getListCountryfromFileJson("country.json");
+        
+        model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("tabungan", respTabungan);
+        model.addAttribute("age", age);
+        model.addAttribute("country", country);
+        model.addAttribute("value", value);
+        model.addAttribute("name", name);
+        model.addAttribute("listCountry",listCountry);
+
+        return "pendidikanSummary";
+    }
 }
