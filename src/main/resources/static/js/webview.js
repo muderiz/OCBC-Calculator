@@ -41,12 +41,14 @@ function submit(_lifegoal) {
     var refID = $("#refID").val();
     var tabunganResult = $("#tabunganResult").text();
     var investasiResult = $("#investasiResult").text();
+    var tabunganRate = $("#tabunganRate").text();
+    var investasiRate = $("#investasiRate").text();
 
     switch (_lifegoal) {
         case "growth":
             var amount = $("#amount").val();
             var tenor = $("#tenor").val();
-            message_in = amount + "&" + tenor + "&" + tabunganResult + "&" + investasiResult;
+            message_in = amount + "&" + tenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate ;
             break;
         case "education":
             var age = $("#age").val();

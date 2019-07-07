@@ -53,4 +53,29 @@ public class GrowthCalculatorController {
 
         return "growth";
     }
+    
+    @GetMapping("/summary/{refID}/{amount}/{type}/{tenor}")
+    public String growthSummary(Model model,
+            @PathVariable String refID,
+            @PathVariable String amount,
+            @PathVariable String type,
+            @PathVariable String tenor) throws IOException {
+
+        String typeDesc;
+
+        if (type.equalsIgnoreCase("0")) {
+            typeDesc = "per bulan";
+        } else {
+            typeDesc = "per lumpsum";
+        }
+
+        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, "investasi");
+        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, "tabungan");
+
+        model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("tabungan", respTabungan);
+        model.addAttribute("typeDesc", typeDesc);
+
+        return "growthSummary";
+    }
 }
