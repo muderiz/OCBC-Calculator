@@ -77,14 +77,14 @@
                                 <div class="row title"><span>Tabungan</span></div>
                                 <div class="row desc">Menyisihkan hingga</div>
                                 <div class="row value"><span id="tabunganResult" th:text="${tabungan.Result}"/></div>
-                                <div class="row note">(<span th:text="${tabungan.Rate}"/> laba per tahun)</div>
+                                <div class="row note">(<span id="tabunganRate" th:text="${tabungan.Rate}"/> laba per tahun)</div>
                             </div>
 
                             <div class="infoCol right">
                                 <div class="row title"><span>Investasi</span></div>
                                 <div class="row desc">Menyisihkan hingga</div>
                                 <div class="row value"><span id="investasiResult" th:text="${investasi.Result}"/></div>
-                                <div class="row note">(<span th:text="${investasi.Rate}"/> laba per tahun)</div>
+                                <div class="row note">(<span id="investasiRate" th:text="${investasi.Rate}"/> laba per tahun)</div>
                             </div>
 
                             <img class="graphBG" th:src="@{~/images/graph2.png}" />
