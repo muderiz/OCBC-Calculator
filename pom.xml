@@ -11,7 +11,7 @@
     <groupId>com.ocbc</groupId>
     <artifactId>calculator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>WebView Calculator</name>
+    <name>WebViewOCBC</name>
     <description>WebView for Chatbot</description>
 
     <properties>
