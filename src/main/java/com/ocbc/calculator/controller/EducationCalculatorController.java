@@ -5,6 +5,7 @@
  */
 package com.ocbc.calculator.controller;
 
+import com.ocbc.calculator.model.AppProperties;
 import com.ocbc.calculator.model.Country;
 import com.ocbc.calculator.model.TargetValueResponse;
 import com.ocbc.calculator.services.CalculatorServices;
@@ -32,6 +33,9 @@ public class EducationCalculatorController {
 
     @Autowired
     private ParamJSONServices paramJSONServices;
+
+    @Autowired
+    private AppProperties appProp;
 
     // >> /education/refID/1/Indonesia/10,020,000,013/Dewi
     @GetMapping("/{refID}/{age}/{country}/{value}/{name}/{risk_profile_id}")
@@ -67,6 +71,7 @@ public class EducationCalculatorController {
         model.addAttribute("name", name);
         model.addAttribute("listCountry", listCountry);
         model.addAttribute("note", note);
+        model.addAttribute("idchannel", appProp.IdLiveChat);
 
         return "pendidikan";
     }
@@ -95,6 +100,7 @@ public class EducationCalculatorController {
         model.addAttribute("value", value);
         model.addAttribute("name", name);
         model.addAttribute("listCountry", listCountry);
+        model.addAttribute("idchannel", appProp.IdLiveChat);
 
         return "pendidikanSummary";
     }

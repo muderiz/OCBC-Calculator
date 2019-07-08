@@ -42,6 +42,7 @@ function hitungUlang(_lifegoal) {
 function submit(_lifegoal) {
     var message_in;
     var refID = $("#refID").val();
+    var IdChannel = $("#idchannel").val();
     var tabunganResult = $("#tabunganResult").text();
     var investasiResult = $("#investasiResult").text();
     var tabunganRate = $("#tabunganRate").text();
@@ -69,15 +70,16 @@ function submit(_lifegoal) {
 
             break;
     }
-    talk(refID, message_in, "Goal Sudah Sesuai");
+    talk(IdChannel, message_in, "Goal Sudah Sesuai");
 }
 
 function othersgoal() {
     var message_in;
     var refID = $("#refID").val();
+    var IdChannel = $("#idchannel").val();
     message_in = "";
 
-    talk(refID, message_in, "Ganti Life Goal");
+    talk(IdChannel, message_in, "Ganti Life Goal");
 }
 
 $(function () {
@@ -174,17 +176,17 @@ $(function () {
 
     $('.ocbc_webview #showAllCat').on('click', function () {
 //        $('.ocbc_webview .product_category').removeClass('hidden');
-        $('.ocbc_webview .product_category').css('display', 'block')
+        $('.ocbc_webview .product_category').css('display', 'block');
         $('#riskNotif').hide();
     });
 
     $('.ocbc_webview .higherRisk_selection').on('click', function () {
         if ($(this).hasClass('btnBalance'))
-            $('.ocbc_webview #pilihanUser').text('(BALANCE)')
+            $('.ocbc_webview #pilihanUser').text('(BALANCE)');
         else if (($(this).hasClass('btnGrowth')))
-            $('.ocbc_webview #pilihanUser').text('(GROWTH)')
+            $('.ocbc_webview #pilihanUser').text('(GROWTH)');
         else if (($(this).hasClass('btnAggresive')))
-            $('.ocbc_webview #pilihanUser').text('(AGGRESIVE)')
+            $('.ocbc_webview #pilihanUser').text('(AGGRESIVE)');
 
         $('.ocbc_webview .highRiskConfirm').show();
     });

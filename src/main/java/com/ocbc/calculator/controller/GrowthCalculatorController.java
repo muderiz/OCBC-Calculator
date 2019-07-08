@@ -1,10 +1,11 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.ocbc.calculator.controller;
 
+import com.ocbc.calculator.model.AppProperties;
 import com.ocbc.calculator.model.FutureValueResponse;
 import com.ocbc.calculator.services.CalculatorServices;
 import java.io.IOException;
@@ -27,6 +28,9 @@ public class GrowthCalculatorController {
 
     @Autowired
     private CalculatorServices calculatorServices;
+
+    @Autowired
+    private AppProperties appProp;
 
     // >> /growth/refID/100,100,022/0/15
     // >> /growth/refID/100,100,022/1/15
@@ -66,6 +70,7 @@ public class GrowthCalculatorController {
         model.addAttribute("typeDesc", typeDesc);
         model.addAttribute("note", note);
         model.addAttribute("newamount", newamount);
+        model.addAttribute("idchannel", appProp.IdLiveChat);
 
         return "growth";
     }
@@ -95,6 +100,7 @@ public class GrowthCalculatorController {
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("tabungan", respTabungan);
         model.addAttribute("typeDesc", typeDesc);
+        model.addAttribute("idchannel", appProp.IdLiveChat);
 
         return "growthSummary";
     }

@@ -5,6 +5,7 @@
  */
 package com.ocbc.calculator.controller;
 
+import com.ocbc.calculator.model.AppProperties;
 import com.ocbc.calculator.model.Country;
 import com.ocbc.calculator.model.TargetValueResponse;
 import com.ocbc.calculator.services.CalculatorServices;
@@ -32,6 +33,9 @@ public class EtcCalculatorController {
 
     @Autowired
     private ParamJSONServices paramJSONServices;
+
+    @Autowired
+    private AppProperties appProp;
 
     // >> /etc/refid/Beli%20Mobil%20Mewah/Bambang/23,210,000/20,231,230,000/12
     @GetMapping("/{refID}/{goals}/{name}/{present_value}/{future_value}/{tenor}/{risk_profile_id}")
@@ -69,6 +73,7 @@ public class EtcCalculatorController {
         model.addAttribute("goals", goals);
         model.addAttribute("name", name);
         model.addAttribute("note", note);
+        model.addAttribute("idchannel", appProp.IdLiveChat);
 
         return "etc";
     }
@@ -101,6 +106,7 @@ public class EtcCalculatorController {
         model.addAttribute("jangka_waktu", tenor);
         model.addAttribute("goals", goals);
         model.addAttribute("name", name);
+        model.addAttribute("idchannel", appProp.IdLiveChat);
 
         return "etcSummary";
     }

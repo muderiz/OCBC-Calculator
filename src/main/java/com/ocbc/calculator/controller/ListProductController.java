@@ -5,6 +5,7 @@
  */
 package com.ocbc.calculator.controller;
 
+import com.ocbc.calculator.model.AppProperties;
 import com.ocbc.calculator.model.ListProductResponse;
 import com.ocbc.calculator.model.Product;
 import com.ocbc.calculator.services.CalculatorServices;
@@ -28,6 +29,9 @@ public class ListProductController {
 
     @Autowired
     private CalculatorServices calculatorServices;
+
+    @Autowired
+    private AppProperties appProp;
 
     // >> /product/refID/123123123/1/2
     // >> /product/refID/123123123/2/2
@@ -83,6 +87,8 @@ public class ListProductController {
         model.addAttribute("listAggresive", listAggresive);
         model.addAttribute("risk_profile_id", risk_profile_id);
         model.addAttribute("risk_profile_desc", risk_profile_desc);
+        model.addAttribute("idchannel", appProp.IdLiveChat);
+
         return "product";
     }
 }

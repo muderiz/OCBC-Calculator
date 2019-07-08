@@ -25,5 +25,8 @@ public class AppProperties {
 
     @Value("${model.request.all.Channel_ID}")
     public String Channel_ID;
+    
+     @Value("${ocbc.nisp.id.livechat}")
+    public String IdLiveChat;
 
 }
