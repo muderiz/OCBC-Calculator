@@ -1,15 +1,32 @@
 [
+
     {
-        "text": "Singapura",
+        "text": "(1) Indonesia",
+        "value": "Indonesia"
+    },
+    {
+        "text": "(2) Singapura",
         "value": "Singapura"
     },
     {
-        "text": "Malaysia",
-        "value": "Malaysia"
+        "text": "(3) Britania Raya / Inggris",
+        "value": "Britania Raya / Inggris"
     }
     ,
     {
-        "text": "Indonesia",
-        "value": "Indonesia"
+        "text": "(4) Amerika Serikat (Universitas Negeri)",
+        "value": "Amerika Serikat (Universitas Negeri)"
     }
+    ,
+    {
+        "text": "(5) Amerika Serikat (Universitas Swasta)",
+        "value": "Amerika Serikat (Universitas Swasta)"
+    }
+    ,
+    {
+        "text": "(6) Australia",
+        "value": "Australia"
+    }
+
 ]
+

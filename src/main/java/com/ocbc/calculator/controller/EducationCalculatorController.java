@@ -49,7 +49,7 @@ public class EducationCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-        
+
         value = value.replace(",", "");
         DecimalFormat decimalFormat = new DecimalFormat("");
         String newvalue = decimalFormat.format(Double.parseDouble(value));
@@ -69,5 +69,33 @@ public class EducationCalculatorController {
         model.addAttribute("note", note);
 
         return "pendidikan";
+    }
+
+    @GetMapping("/summary/{refID}/{age}/{country}/{value}/{name}/{risk_profile_id}")
+    public String educationSummary(Model model,
+            @PathVariable String refID,
+            @PathVariable String age,
+            @PathVariable String country,
+            @PathVariable String value,
+            @PathVariable String name,
+            @PathVariable int risk_profile_id) throws IOException {
+
+        value = value.replace(",", "");
+        DecimalFormat decimalFormat = new DecimalFormat("");
+        String newvalue = decimalFormat.format(Double.parseDouble(value));
+        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "tabungan");
+
+        List<Country> listCountry = paramJSONServices.getListCountryfromFileJson("country.json");
+
+        model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("tabungan", respTabungan);
+        model.addAttribute("age", age);
+        model.addAttribute("country", country);
+        model.addAttribute("value", value);
+        model.addAttribute("name", name);
+        model.addAttribute("listCountry", listCountry);
+
+        return "pendidikanSummary";
     }
 }

@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+
+        <title>Hello</title>
+        <link rel="stylesheet" th:href="@{~/css/red.css?v=7}"/>
+        <link rel="stylesheet" th:href="@{~/css/ocbcnisp.css}"/>
+        <script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+        <script th:src="@{/js/talk.js}" type="text/javascript"></script>
+
+        <script th:src="@{/js/webview.js}" type="text/javascript"></script>
+    </head>
+
+    <body>
+        <!-- INSERT CONTENT START -->
+
+        <div class="ocbc_webview">
+
+            <div class="ocbc_webview_overlay"></div>
+
+            <div class="ocbc_webview_content">
+
+                <div class="lifegoalCalculator">
+
+                    <div class="titleBar">
+                        Pertumbuhan Aset
+                    </div>
+
+                    <div class="calcInput">
+                        <input id="type" type="hidden" th:value="${type}"/>
+                        <input id="lifegoal" type="hidden" value="growth"/>
+                        <input id="refID" type="hidden" th:value="${refID}"/>
+                        <div class="formRow error">
+                            <input id="amount" type="text" class="inputnum currency i1" th:value="${amount}" inputmode="numeric" pattern="[0-9]*" required>
+                                <div class="left">Rp</div>
+                                <div class="right"><span th:text="${typeDesc}"></div>
+                        </div>
+                        <div class="errorMsg">Pastikan data yang kamu isi sudah benar</div>
+                        <div class="formRow">
+                            <input id="tenor" type="text" class="inputnum i2" th:value="${tenor}" inputmode="numeric" maxlength="2" pattern="[0-9]*" required/>
+                            <div class="left">Selama</div>
+                            <div class="right">tahun</div>
+                        </div>
+
+                        <div class="text-center">
+                            <button id="hitungUlang" class="onBtn">Hitung Ulang</button>
+                        </div>
+
+                    </div>
+
+                    <div class="calcResult">
+                        <div class="text-center">
+                            <p th:inline="text">Dengan <b>[[${amount}]]</b> [[${typeDesc}]]
+                                <br>
+                                    selama [[${tenor}]] tahun :
+                            </p>
+                        </div>
+
+                        <div class="resultGraph ">
+                            <div class="infoCol left">
+                                <div class="row title"><span>Tabungan</span></div>
+                                <div class="row desc">Pertumbuhan Hingga</div>
+                                <div class="row value"><span id="tabunganResult" th:text="${tabungan.Result}"/></div>
+                                <div class="row value"></div>
+                                <div class="row note">(<span id="tabunganRate" th:text="${tabungan.Rate}"/> laba per tahun)</div>
+                            </div>
+
+                            <div class="infoCol right">
+                                <div class="row title"><span>Investasi</span></div>
+                                <div class="row desc">Pertumbuhan Hingga</div>
+                                <div class="row value"><span id="investasiResult" th:text="${investasi.Result}"/></div>
+                                <div class="row value"></div>
+                                <div class="row note">(<span id="investasiRate" th:text="${investasi.Rate}"/> laba per tahun)</div>
+                            </div>
+
+                            <img class="graphBG" th:src="@{/images/graph1.png}" />
+
+                        </div>
+
+                        <div class="text-center">
+                            *Estimasi laba telah disesuaikan dengan profil risiko Dewi: <b>Balance</b>.
+                            <br/> <br/>
+
+                            <button class="onBtn grey bordered">Ganti Life Goal</button>
+                            <button id="btnLanjut" class="onBtn" >Goal Sudah Sesuai</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

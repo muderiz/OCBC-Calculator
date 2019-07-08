@@ -14,8 +14,8 @@ public class AppProperties {
     @Value("${ocbc.nisp.api.base.url}")
     public String BASE_URL;
 
-    @Value("${ocbc.nisp.api.post.featurevalue}")
-    public String POST_FEATUREVALUE;
+    @Value("${ocbc.nisp.api.post.futurevalue}")
+    public String POST_FUTUREVALUE;
 
     @Value("${ocbc.nisp.api.post.targetvalue}")
     public String POST_TARGETVALUE;

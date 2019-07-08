@@ -5,12 +5,10 @@
  */
 package com.ocbc.calculator.controller;
 
-import com.ocbc.calculator.model.FeatureValueResponse;
+import com.ocbc.calculator.model.FutureValueResponse;
 import com.ocbc.calculator.services.CalculatorServices;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,13 +53,13 @@ public class GrowthCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-        
+
         amount = amount.replace(",", "");
         DecimalFormat decimalFormat = new DecimalFormat("");
         String newamount = decimalFormat.format(Double.parseDouble(amount));
 
-        FeatureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "investasi");
-        FeatureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "tabungan");
+        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "investasi");
+        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "tabungan");
 
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("tabungan", respTabungan);
@@ -70,5 +68,34 @@ public class GrowthCalculatorController {
         model.addAttribute("newamount", newamount);
 
         return "growth";
+    }
+
+    @GetMapping("/summary/{refID}/{amount}/{type}/{tenor}/{name}/{risk_profile_id}")
+    public String growthSummary(Model model,
+            @PathVariable String refID,
+            @PathVariable String amount,
+            @PathVariable String type,
+            @PathVariable String tenor,
+            @PathVariable String name,
+            @PathVariable int risk_profile_id) throws IOException {
+
+        String typeDesc;
+
+        if (type.equalsIgnoreCase("0")) {
+            typeDesc = "per bulan";
+        } else {
+            typeDesc = "per lumpsum";
+        }
+        amount = amount.replace(",", "");
+        DecimalFormat decimalFormat = new DecimalFormat("");
+        String newamount = decimalFormat.format(Double.parseDouble(amount));
+        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "investasi");
+        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "investasi");
+
+        model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("tabungan", respTabungan);
+        model.addAttribute("typeDesc", typeDesc);
+
+        return "growthSummary";
     }
 }

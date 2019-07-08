@@ -60,8 +60,6 @@ public class EtcCalculatorController {
         TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "investasi");
         TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "tabungan");
 
-        List<Country> listCountry = paramJSONServices.getListCountryfromFileJson("country.json");
-
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("refID", refID);
         model.addAttribute("tabungan", respTabungan);
@@ -73,5 +71,37 @@ public class EtcCalculatorController {
         model.addAttribute("note", note);
 
         return "etc";
+    }
+
+    // >> /etc/summary/refid/Beli%20Mobil%20Mewah/Bambang/23,210,000/20,231,230,000/12
+    @GetMapping("/summary/{refID}/{goals}/{name}/{present_value}/{future_value}/{tenor}/{risk_profile_id}")
+    public String etcSummary(Model model,
+            @PathVariable String refID,
+            @PathVariable String goals,
+            @PathVariable String name,
+            @PathVariable String present_value,
+            @PathVariable String future_value,
+            @PathVariable String tenor,
+            @PathVariable int risk_profile_id) throws IOException {
+        
+        present_value = present_value.replace(",", "");
+        future_value = future_value.replace(",", "");
+        DecimalFormat decimalFormat = new DecimalFormat("");
+        String newpresentvalue = decimalFormat.format(Double.parseDouble(present_value));
+        String newfuturevalue = decimalFormat.format(Double.parseDouble(future_value));
+        
+        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "tabungan");
+
+        model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("refID", refID);
+        model.addAttribute("tabungan", respTabungan);
+        model.addAttribute("target_dana", future_value);
+        model.addAttribute("dana_sekarang", present_value);
+        model.addAttribute("jangka_waktu", tenor);
+        model.addAttribute("goals", goals);
+        model.addAttribute("name", name);
+
+        return "etcSummary";
     }
 }

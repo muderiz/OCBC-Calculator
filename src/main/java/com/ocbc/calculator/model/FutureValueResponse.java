@@ -13,9 +13,9 @@ import java.io.Serializable;
  * @author cokkyturnip
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class FeatureValueResponse{
+public class FutureValueResponse{
 
-    public FeatureValueResponse(String Channel_ID,String Ext_Reff_ID, String RC,  String rc_description, String Rate, String Result) {
+    public FutureValueResponse(String Channel_ID,String Ext_Reff_ID, String RC,  String rc_description, String Rate, String Result) {
         this.Ext_Reff_ID = Ext_Reff_ID;
         this.RC = RC;
         this.Rate = Rate;
