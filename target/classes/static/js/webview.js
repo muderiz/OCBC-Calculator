@@ -13,15 +13,18 @@ function hitungUlang(_lifegoal) {
             var amount = $("#amount").val();
             var type = $("#type").val();
             var tenor = $("#tenor").val();
-            window.location.href = "/growth/" + refID + "/" + amount + "/" + type + "/" + tenor;
+            var name = $("#name").val();
+            var risk_profile_id = $("#risk_profile_id").val();
+            window.location.href = "/growth/" + refID + "/" + amount + "/" + type + "/" + tenor + "/" + name + "/" + risk_profile_id;
             break;
         case "education":
             var age = $("#age").val();
             var country = $("#countryValue").val();
             var value = $("#dana").val();
             var name = $("#name").val();
+            var risk_profile_id = $("#risk_profile_id").val();
 
-            window.location.href = "/education/" + refID + "/" + age + "/" + country + "/" + value + "/" + name;
+            window.location.href = "/education/" + refID + "/" + age + "/" + country + "/" + value + "/" + name + "/" + risk_profile_id;
             break;
         case "etc":
             var goals = $("#goals").text();
@@ -29,8 +32,8 @@ function hitungUlang(_lifegoal) {
             var dana_sekarang = $("#dana_sekarang").val();
             var target_dana = $("#target_dana").val();
             var tenor = $("#jangka_waktu").val();
-
-            window.location.href = "/etc/" + refID + "/" + goals + "/" + name + "/" + dana_sekarang + "/" + target_dana + "/" + tenor;
+            var risk_profile_id = $("#risk_profile_id").val();
+            window.location.href = "/etc/" + refID + "/" + goals + "/" + name + "/" + dana_sekarang + "/" + target_dana + "/" + tenor + "/" + risk_profile_id;
             break;
 
     }
@@ -78,6 +81,8 @@ function othersgoal() {
 
 $(function () {
     var lifegoal = $("#lifegoal").val();
+    var firstamount = $("#firstamount").val();
+    var secondamount = $("#secondamount").val();
 
     $('#countrySelect').on('change', function () {
         var cvalue = $('option:selected').val();
@@ -145,6 +150,20 @@ $(function () {
         $(this).val(function (index, value) {
             return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         });
+        if (($(this).val()) <= 0)
+            $(this).val(firstamount);
+
+    });
+    $('input.currency2').on('keyup input', function (event) {
+        if (event.which >= 37 && event.which <= 40)
+            return;
+
+        $(this).val(function (index, value) {
+            return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        });
+        if (($(this).val()) <= 0)
+            $(this).val(secondamount);
+
     });
 
     $('.ocbc_webview .openTrigger').on('click', function () {

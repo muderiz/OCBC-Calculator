@@ -33,7 +33,9 @@
                     <div class="calcInput">
                         <input id="lifegoal" type="hidden" value="education"/>
                         <input id="name" type="hidden" th:value="${name}"/>
+                        <input id="risk_profile_id" type="hidden" th:value="${risk_profile_id}"/>
                         <input id="refID" type="hidden" th:value="${refID}"/>
+                        <input id="firstamount" type="hidden" th:value="${value}"/>
                         <div class="formRow error">
                             <input id="age" type="text" class="inputnumage i4" th:value="${age}" maxlength="2" inputmode="numeric" pattern="[0-9]*" required/>
                             <div class="left">Usia Anak</div>
@@ -65,7 +67,7 @@
 
                     <div class="calcResult">
                         <div class="text-center">
-                            <span th:text="${name}"/> membutuhkan dana hingga
+                            <span th:text="${name}"/> membutuhkan dana hingga Rp.
                             <b th:text="${investasi.Final_Future_Value}"/> wujudkan dengan :
 
                         </div>
@@ -90,7 +92,7 @@
                         </div>
 
                         <div class="text-center">
-                           <i><span th:text="${note}">.</i>
+                            <i><span th:text="${note}">.</i>
                             <br/> <br/>
 
                             <button id="btnSubmitOthers" class="onBtn grey bordered">Ganti Life Goal</button>

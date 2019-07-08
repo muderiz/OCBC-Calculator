@@ -30,6 +30,9 @@
                     <div class="calcInput">
                         <input id="lifegoal" type="hidden" value="etc"/>
                         <input id="refID" type="hidden" th:value="${refID}"/>
+                        <input id="risk_profile_id" type="hidden" th:value="${risk_profile_id}"/>
+                        <input id="firstamount" type="hidden" th:value="${target_dana}"/>
+                        <input id="secondamount" type="hidden" th:value="${dana_sekarang}"/>
                         <div class="formRow error">
                             <input id="target_dana" type="text" class="inputnum currency i6" th:value="${target_dana}" inputmode="numeric" pattern="[0-9]*" required/>
                             <div class="left">Target Dana <b>Rp</b></div>
@@ -37,7 +40,7 @@
                         <div class="errorMsg">Pastikan data yang kamu isi sudah benar</div>
 
                         <div class="formRow">
-                            <input id="dana_sekarang" type="text" class="inputnum currency i6" th:value="${dana_sekarang}" inputmode="numeric" pattern="[0-9]*" required/>
+                            <input id="dana_sekarang" type="text" class="inputnum currency2 i6" th:value="${dana_sekarang}" inputmode="numeric" pattern="[0-9]*" required/>
                             <div class="left">Dana tersedia <b>Rp</b></div>
                         </div>
 
@@ -55,8 +58,8 @@
 
                     <div class="calcResult">
                         <div class="text-center">
-                            <span id="name" th:text="${customer_name}"/> membutuhkan dana hingga
-                            <b><span th:text="${future_value}"></span></b> wujudkan dengan :
+                            <span id="name" th:text="${name}"/> membutuhkan dana hingga Rp. 
+                            <b><span th:text="${target_dana}"></span></b> wujudkan dengan :
 
                         </div>
 

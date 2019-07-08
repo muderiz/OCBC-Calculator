@@ -10,6 +10,7 @@ import com.ocbc.calculator.model.TargetValueResponse;
 import com.ocbc.calculator.services.CalculatorServices;
 import com.ocbc.calculator.services.ParamJSONServices;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,9 +49,13 @@ public class EducationCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
+        
+        value = value.replace(",", "");
+        DecimalFormat decimalFormat = new DecimalFormat("");
+        String newvalue = decimalFormat.format(Double.parseDouble(value));
 
-        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "tabungan");
+        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "tabungan");
 
         List<Country> listCountry = paramJSONServices.getListCountryfromFileJson("country.json");
 
@@ -58,7 +63,7 @@ public class EducationCalculatorController {
         model.addAttribute("tabungan", respTabungan);
         model.addAttribute("age", age);
         model.addAttribute("country", country);
-        model.addAttribute("value", value);
+        model.addAttribute("value", newvalue);
         model.addAttribute("name", name);
         model.addAttribute("listCountry", listCountry);
         model.addAttribute("note", note);

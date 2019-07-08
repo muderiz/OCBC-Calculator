@@ -10,6 +10,7 @@ import com.ocbc.calculator.model.TargetValueResponse;
 import com.ocbc.calculator.services.CalculatorServices;
 import com.ocbc.calculator.services.ParamJSONServices;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,19 +50,26 @@ public class EtcCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "tabungan");
+
+        present_value = present_value.replace(",", "");
+        future_value = future_value.replace(",", "");
+        DecimalFormat decimalFormat = new DecimalFormat("");
+        String newpresentvalue = decimalFormat.format(Double.parseDouble(present_value));
+        String newfuturevalue = decimalFormat.format(Double.parseDouble(future_value));
+
+        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "tabungan");
 
         List<Country> listCountry = paramJSONServices.getListCountryfromFileJson("country.json");
 
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("refID", refID);
         model.addAttribute("tabungan", respTabungan);
-        model.addAttribute("target_dana", future_value);
-        model.addAttribute("dana_sekarang", present_value);
+        model.addAttribute("target_dana", newfuturevalue);
+        model.addAttribute("dana_sekarang", newpresentvalue);
         model.addAttribute("jangka_waktu", tenor);
         model.addAttribute("goals", goals);
-        model.addAttribute("customer_name", name);
+        model.addAttribute("name", name);
         model.addAttribute("note", note);
 
         return "etc";

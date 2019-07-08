@@ -28,8 +28,11 @@
 
                     <div class="calcInput">
                         <input id="type" type="hidden" th:value="${type}"/>
+                        <input id="name" type="hidden" th:value="${name}"/>
+                        <input id="risk_profile_id" type="hidden" th:value="${risk_profile_id}"/>
                         <input id="lifegoal" type="hidden" value="growth"/>
                         <input id="refID" type="hidden" th:value="${refID}"/>
+                        <input id="firstamount" type="hidden" th:value="${amount}"/>
                         <div class="formRow error">
                             <input id="amount" type="text" class="inputnum currency i1" th:value="${amount}" inputmode="numeric" pattern="[0-9]*" required>
                                 <div class="left">Rp</div>
@@ -50,7 +53,7 @@
 
                     <div class="calcResult">
                         <div class="text-center">
-                            <p th:inline="text">Dengan <b>[[${amount}]]</b> [[${typeDesc}]]
+                            <p th:inline="text">Dengan Rp. <b>[[${newamount}]]</b> [[${typeDesc}]]
                                 <br>
                                     selama <b>[[${tenor}]]</b> tahun :
                             </p>
