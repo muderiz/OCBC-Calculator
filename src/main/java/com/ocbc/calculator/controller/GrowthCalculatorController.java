@@ -98,4 +98,5 @@ public class GrowthCalculatorController {
 
         return "growthSummary";
     }
+
 }
