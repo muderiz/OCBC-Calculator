@@ -41,7 +41,6 @@ function hitungUlang(_lifegoal) {
 
 function submit(_lifegoal) {
     var message_in;
-    var payload;
     var refID = $("#refID").val();
     var IdChannel = $("#idchannel").val();
     var tabunganResult = $("#tabunganResult").text();
@@ -53,13 +52,13 @@ function submit(_lifegoal) {
         case "growth":
             var amount = $("#amount").val();
             var tenor = $("#tenor").val();
-            payload = amount + "&" + tenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
+            message_in = amount + "&" + tenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
             break;
         case "education":
             var age = $("#age").val();
             var country = $("#countryValue").val();
             var value = $("#dana").val();
-            payload = age + "&" + country + "&" + value + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
+            message_in = age + "&" + country + "&" + value + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
 
             break;
         case "etc":
@@ -67,11 +66,11 @@ function submit(_lifegoal) {
             var dana_sekarang = $("#dana_sekarang").val();
 
             var tenor = $("#jangka_waktu").val();
-            payload = target_dana + "&" + dana_sekarang + "&" + tenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
+            message_in = target_dana + "&" + dana_sekarang + "&" + tenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
 
             break;
     }
-    talk(IdChannel, payload, "Goal Sudah Sesuai");
+    talk(IdChannel, message_in, "Goal Sudah Sesuai");
 }
 
 function othersgoal() {
