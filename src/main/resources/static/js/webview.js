@@ -48,13 +48,13 @@ function submit(_lifegoal) {
         case "growth":
             var amount = $("#amount").val();
             var tenor = $("#tenor").val();
-            message_in = amount + "&" + tenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate ;
+            message_in = amount + "&" + tenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
             break;
         case "education":
             var age = $("#age").val();
             var country = $("#countryValue").val();
             var value = $("#dana").val();
-            message_in = age + "&" + country + "&" + value + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate ;
+            message_in = age + "&" + country + "&" + value + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
 
             break;
         case "etc":
@@ -62,7 +62,7 @@ function submit(_lifegoal) {
             var dana_sekarang = $("#dana_sekarang").val();
 
             var tenor = $("#jangka_waktu").val();
-            message_in = target_dana + "&" + dana_sekarang + "&" + tenor + "&" + tabunganResult + "&" + investasiResult;
+            message_in = target_dana + "&" + dana_sekarang + "&" + tenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
 
             break;
     }

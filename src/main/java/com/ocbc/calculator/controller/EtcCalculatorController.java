@@ -45,8 +45,6 @@ public class EtcCalculatorController {
         TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, present_value, future_value, tenor, "investasi");
         TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, present_value, future_value, tenor, "tabungan");
 
-        List<Country> listCountry = paramJSONServices.getListCountryfromFileJson("country.json");
-
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("refID", refID);
         model.addAttribute("tabungan", respTabungan);
@@ -57,5 +55,30 @@ public class EtcCalculatorController {
         model.addAttribute("customer_name", name);
 
         return "etc";
+    }
+    
+    // >> /etc/summary/refid/Beli%20Mobil%20Mewah/Bambang/23,210,000/20,231,230,000/12
+    @GetMapping("/summary/{refID}/{goals}/{name}/{present_value}/{future_value}/{tenor}")
+    public String etcSummary(Model model,
+            @PathVariable String refID,
+            @PathVariable String goals,
+            @PathVariable String name,
+            @PathVariable String present_value,
+            @PathVariable String future_value,
+            @PathVariable String tenor) throws IOException {
+
+        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, present_value, future_value, tenor, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, present_value, future_value, tenor, "tabungan");
+
+        model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("refID", refID);
+        model.addAttribute("tabungan", respTabungan);
+        model.addAttribute("target_dana", future_value);
+        model.addAttribute("dana_sekarang", present_value);
+        model.addAttribute("jangka_waktu", tenor);
+        model.addAttribute("goals", goals);
+        model.addAttribute("customer_name", name);
+
+        return "etcSummary";
     }
 }
