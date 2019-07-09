@@ -42,13 +42,12 @@
                             <div class="left">Selama</div>
                             <div class="right">tahun</div>
                         </div>
-
-                        <div class="text-center">
-                            <button id="hitungUlang" class="onBtn">Hitung Ulang</button>
-                        </div>
-
+                        <div id="errorTenor" class="errorMsgTenor" >Maksimal Tenor 50 Tahun</div>
+                        <br>
+                            <div class="text-center">
+                                <button id="hitungUlang" class="onBtn">Hitung Ulang</button>
+                            </div>
                     </div>
-
                     <div class="calcResult">
                         <div class="text-center">
                             <p th:inline="text">Dengan <b>[[${amount}]]</b> [[${typeDesc}]]

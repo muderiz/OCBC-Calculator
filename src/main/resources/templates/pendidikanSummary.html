@@ -40,8 +40,7 @@
                             <div class="left">Usia Anak</div>
                             <div class="right">tahun</div>
                         </div>
-                        <div class="errorMsg">Pastikan data yang kamu isi sudah benar</div>
-
+                        <div id="errorTenor" class="errorMsgTenor" >Maksimal Usia Anak 18 Tahun</div>
                         <div class="formRow">
                             <input id="countryValue" type="text" class="i5" th:value="${country}" disabled />
                             <select id="countrySelect" class="countrySelect">
@@ -57,10 +56,11 @@
                             <input id="dana" type="text" class="inputnum currency i6" th:value="${value}" />
                             <div class="left">Dana tersedia Rp</div>
                         </div>
-
-                        <div class="text-center">
-                            <button id="hitungUlang" class="onBtn">Hitung Ulang</button>
-                        </div>
+                        <div class="errorMsg" >Pastikan data yang kamu isi sudah benar</div>
+                        <br>
+                            <div class="text-center">
+                                <button id="hitungUlang" class="onBtn">Hitung Ulang</button>
+                            </div>
 
                     </div>
 
