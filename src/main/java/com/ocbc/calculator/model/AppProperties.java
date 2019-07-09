@@ -19,14 +19,14 @@ public class AppProperties {
 
     @Value("${ocbc.nisp.api.post.targetvalue}")
     public String POST_TARGETVALUE;
-    
+
     @Value("${ocbc.nisp.api.post.listproduct}")
     public String POST_LISTPRODUCT;
 
     @Value("${model.request.all.Channel_ID}")
     public String Channel_ID;
-    
-     @Value("${ocbc.nisp.id.livechat}")
+
+    @Value("${ocbc.nisp.id.livechat}")
     public String IdLiveChat;
 
 }

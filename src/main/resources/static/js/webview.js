@@ -123,10 +123,10 @@ $(function () {
         if (parseInt($(this).val()) <= 50 && parseInt($(this).val()) >= 0)
             ;
         else if (parseInt($(this).val()) > 50)
-//            $(this).val($(this).data("old"));
-            $(this).val(50);
+            $(this).val($(this).data("old"));
+//            $(this).val(50);
         else if (($(this).val()) <= 0)
-            $(this).val(1);
+            $(this).val($(this).data("old"));
     });
 
     $('input.inputnumage').on('keyup input', function (event) {
@@ -140,10 +140,11 @@ $(function () {
         if (parseInt($(this).val()) <= 18 && parseInt($(this).val()) >= 0)
             ;
         else if (parseInt($(this).val()) > 18)
-//            $(this).val($(this).data("old"));
-            $(this).val(18);
+            $(this).val($(this).data("old"));
+//            $(this).val(18);
         else if (($(this).val()) <= 0)
-            $(this).val(1);
+//            $(this).val(1);
+            $(this).val($(this).data("old"));
     });
 
     $('input.currency').on('keyup input', function (event) {
@@ -153,8 +154,8 @@ $(function () {
         $(this).val(function (index, value) {
             return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         });
-        if (($(this).val()) <= 0)
-            $(this).val(firstamount);
+//        if (($(this).val()) <= 0)
+//            $(this).val(firstamount);
 
     });
     $('input.currency2').on('keyup input', function (event) {
@@ -164,8 +165,8 @@ $(function () {
         $(this).val(function (index, value) {
             return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         });
-        if (($(this).val()) <= 0)
-            $(this).val(secondamount);
+//        if (($(this).val()) <= 0)
+//            $(this).val(secondamount);
 
     });
 
