@@ -86,6 +86,7 @@ $(function () {
     var lifegoal = $("#lifegoal").val();
     var firstamount = $("#firstamount").val();
     var secondamount = $("#secondamount").val();
+    $('.calcInput .errorMsgTenor').hide();
 
     $('#countrySelect').on('change', function () {
         var cvalue = $('option:selected').val();
@@ -112,6 +113,7 @@ $(function () {
                     .replace(/^0+/, '');
         });
     });
+
     $('input.inputnumtenor').on('keyup input', function (event) {
         $(this).val(function (index, value) {
             return value
@@ -120,13 +122,18 @@ $(function () {
                     .replace(/^0+/, '');
         });
 
-        if (parseInt($(this).val()) <= 50 && parseInt($(this).val()) >= 0)
+        if (parseInt($(this).val()) <= 50 && parseInt($(this).val()) >= 0) {
             ;
-        else if (parseInt($(this).val()) > 50)
+        } else if (parseInt($(this).val()) > 50) {
+//            $(this).val($(this).data("old"));
+            $(this).val(50);
+            $('.calcInput .errorMsgTenor').show();
+
+        } else if (($(this).val()) <= 0) {
             $(this).val($(this).data("old"));
-//            $(this).val(50);
-        else if (($(this).val()) <= 0)
-            $(this).val($(this).data("old"));
+            $('.calcInput .errorMsgTenor').hide();
+        }
+
     });
 
     $('input.inputnumage').on('keyup input', function (event) {
@@ -137,14 +144,17 @@ $(function () {
                     .replace(/^0+/, '');
         });
 
-        if (parseInt($(this).val()) <= 18 && parseInt($(this).val()) >= 0)
+        if (parseInt($(this).val()) <= 18 && parseInt($(this).val()) >= 0) {
             ;
-        else if (parseInt($(this).val()) > 18)
-            $(this).val($(this).data("old"));
-//            $(this).val(18);
-        else if (($(this).val()) <= 0)
+        } else if (parseInt($(this).val()) > 18) {
+            $('.calcInput .errorMsgTenor').show();
+//            $(this).val($(this).data("old"));
+            $(this).val(18);
+        } else if (($(this).val()) <= 0) {
 //            $(this).val(1);
             $(this).val($(this).data("old"));
+            $('.calcInput .errorMsgTenor').hide();
+        }
     });
 
     $('input.currency').on('keyup input', function (event) {
@@ -158,6 +168,7 @@ $(function () {
 //            $(this).val(firstamount);
 
     });
+
     $('input.currency2').on('keyup input', function (event) {
         if (event.which >= 37 && event.which <= 40)
             return;
@@ -178,6 +189,8 @@ $(function () {
     $('.ocbc_webview #showAllCat').on('click', function () {
 //        $('.ocbc_webview .product_category').removeClass('hidden');
         $('.ocbc_webview .product_category').css('display', 'block');
+
+
         $('#riskNotif').hide();
     });
 

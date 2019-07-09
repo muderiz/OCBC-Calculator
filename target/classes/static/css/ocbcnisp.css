@@ -69,7 +69,8 @@
 .calcInput .formRow .right{float:right; padding-right:30px;}
 
 .calcInput .formRow.error{border:1px solid #dd4b39; padding-bottom:20px;}
-.calcInput .errorMsg{clear:both; color:#dd4b39; width:100%; margin-top:-7px; padding:0 10px; text-align:right;}
+.calcInput .errorMsg{clear:both; color:#dd4b39; width:100%; margin-top:-7px; padding:0 10px; text-align:right; display: block;}
+.calcInput .errorMsgTenor{clear:both; color:#dd4b39; width:100%; margin-top:-7px; padding:0 10px; text-align:right; display: block;}
 
 .calcInput .formRow .i1{padding: 0 100px 0 30px;}
 .calcInput .formRow .i2{padding: 0 65px 0 55px;}

@@ -37,12 +37,13 @@
                         <input id="risk_profile_id" type="hidden" th:value="${risk_profile_id}"/>
                         <input id="refID" type="hidden" th:value="${refID}"/>
                         <input id="firstamount" type="hidden" th:value="${value}"/>
-                        <div class="formRow error">
+                        <div class="formRow">
                             <input id="age" type="text" class="inputnumage i4" th:value="${age}" maxlength="2" inputmode="numeric" pattern="[0-9]*" required/>
                             <div class="left">Usia Anak</div>
-                            <div class="right">tahun</div>
+                            <div class="right">Tahun</div>
                         </div>
-                        <div class="errorMsg">Pastikan data yang kamu isi sudah benar</div>
+                        <div id="errorTenor" class="errorMsgTenor" >Maksimal Usia Anak 18 Tahun</div>
+                        <!--                        <div class="errorMsg">Pastikan data yang kamu isi sudah benar</div>-->
 
                         <div class="formRow">
                             <input id="countryValue" type="text" class="i5" th:value="${country}" disabled />
@@ -55,11 +56,11 @@
 
 
 
-                        <div class="formRow">
+                        <div class="formRow error">
                             <input id="dana" type="text" class="inputnum currency i6" th:value="${value}" />
                             <div class="left">Dana tersedia Rp</div>
                         </div>
-
+                        <div class="errorMsg" >Pastikan data yang kamu isi sudah benar</div>
                         <div class="text-center">
                             <button id="hitungUlang" class="onBtn">Hitung Ulang</button>
                         </div>

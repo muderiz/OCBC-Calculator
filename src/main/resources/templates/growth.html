@@ -39,13 +39,13 @@
                                 <div class="left">Rp</div>
                                 <div class="right"><span th:text="${typeDesc}"></div>
                         </div>
-                        <div class="errorMsg">Pastikan data yang kamu isi sudah benar</div>
+                        <div class="errorMsg" >Pastikan data yang kamu isi sudah benar</div>
                         <div class="formRow">
                             <input id="tenor" type="text" class="inputnumtenor i2" th:value="${tenor}" inputmode="numeric" maxlength="2" min="0" max="50" pattern="[0-9]*" required/>
                             <div class="left">Selama</div>
                             <div class="right">tahun</div>
                         </div>
-
+                        <div id="errorTenor" class="errorMsgTenor" >Maksimal Tenor 50 Tahun</div>
                         <div class="text-center">
                             <button id="hitungUlang" class="onBtn">Hitung Ulang</button>
                         </div>
