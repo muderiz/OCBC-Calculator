@@ -54,8 +54,8 @@ public class GrowthCalculatorController {
             type = "false";
         }
 
-//        if (risk_profile_id == 0) {
-        if (1 == 0) {
+        if (risk_profile_id == 0) {
+//        if (1 == 0) {
             note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";

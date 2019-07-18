@@ -96,16 +96,24 @@
                         <div class="resultGraph ">
                             <div class="infoCol left">
                                 <div class="row title"><span>Tabungan</span></div>
-                                <div class="row desc">Menyisihkan hingga</div>
-                                <div class="row value">Rp. <span id="tabunganResult" th:text="${tabunganResult}"/></div>
-                                <div class="row note">(<span id="tabunganRate" th:text="${tabungan.Rate}"/> laba per tahun)</div>
+                                <div class="validRC">
+                                    <div class="row desc">Menyisihkan hingga</div>
+                                    <div class="row value">Rp. <span id="tabunganResult" th:text="${tabunganResult}"/></div>
+                                    <div class="row note">(<span id="tabunganRate" th:text="${tabungan.Rate}"/> laba per tahun)</div>
+                                </div>
+                                <br>
+                                    <div id="errorRc" class="errorRc"><b>Uang <span th:text="${name}"/> <span th:text="${rcdescerror10}"/></b></div>
                             </div>
 
                             <div class="infoCol right">
                                 <div class="row title"><span>Investasi</span></div>
-                                <div class="row desc">Menyisihkan hingga</div>
-                                <div class="row value">Rp. <span id="investasiResult" th:text="${investasiResult}"/></div>
-                                <div class="row note">(<span id="investasiRate" th:text="${investasi.Rate}"/> laba per tahun)</div>
+                                <div class="validRC">
+                                    <div class="row desc">Menyisihkan hingga</div>
+                                    <div class="row value">Rp. <span id="investasiResult" th:text="${investasiResult}"/></div>
+                                    <div class="row note">(<span id="investasiRate" th:text="${investasi.Rate}"/> laba per tahun)</div>
+                                </div>
+                                <br>
+                                    <div id="errorRc" class="errorRc"><b>Uang <span th:text="${name}"/> <span th:text="${rcdescerror10}"/></b></div>
                             </div>
 
                             <img class="graphBG" th:src="@{~/images/graph2.png}" />

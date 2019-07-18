@@ -94,8 +94,10 @@ public class EducationCalculatorController {
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("investasiFinalValue", newfuturevalue);
         model.addAttribute("investasiResult", investResult);
-        model.addAttribute("tabunganResult", tabungResult);
+        model.addAttribute("investasiRate", respInvestasi.Rate);
         model.addAttribute("tabungan", respTabungan);
+        model.addAttribute("tabunganResult", tabungResult);
+        model.addAttribute("tabunganRate", respTabungan.Rate);
         model.addAttribute("age", age);
         model.addAttribute("country", countryname);
         model.addAttribute("valuecountry", country);
@@ -108,8 +110,8 @@ public class EducationCalculatorController {
 //        model.addAttribute("rc", respInvestasi.RC);
         model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
 //        model.addAttribute("rcdesc", respInvestasi.rc_description);
-        model.addAttribute("rcdescerror8", appProp.response8);
-        
+        model.addAttribute("rcdescerror10", appProp.response10);
+
         return "pendidikan";
     }
 

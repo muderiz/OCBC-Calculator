@@ -96,12 +96,13 @@ $(function () {
     var firstage = $("#firstage").val();
     var firstcountry = $("#firstnamecountry").val();
     var secondamount = $("#secondamount").val();
+//    var rc = 2;
     var rc = $("#rc").val();
     var rcdesc = $("#rcdesc").val();
 
     $('.calcInput .errorMsgTenor').hide();
     $('.calcResult .errorMsgHitung').hide();
-    $('.errorRc8').hide();
+    $('.errorRc').hide();
     $('.ocbc_webview .ocbc_webview_overlay .highRiskConfirm').hide();
 
 
@@ -116,9 +117,9 @@ $(function () {
                     $("#textrcdesc").val(rcdesc);
                     $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
                     $('.calcResult .errorMsgHitung').show().css('color', 'red');
-                } else if (parseInt(rcdesc) == 8) {
+                } else if (parseInt(rc) == 8) {
                     $('.validRC').hide();
-                    $('.errorRc8').show();
+                    $('.errorRc').show();
                     $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
                     $('.calcResult .errorMsgHitung').show().css('color', 'red');
                 }
@@ -129,9 +130,9 @@ $(function () {
                     $("#textrcdesc").val(rcdesc);
                     $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
                     $('.calcResult .errorMsgHitung').show().css('color', 'red');
-                } else if (parseInt(rcdesc) == 10) {
+                } else if (parseInt(rc) == 10) {
                     $('.validRC').hide();
-                    $('.errorRc8').show();
+                    $('.errorRc').show();
                     $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
                     $('.calcResult .errorMsgHitung').show().css('color', 'red');
                 }
