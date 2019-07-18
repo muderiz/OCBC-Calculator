@@ -64,12 +64,14 @@ public class EtcCalculatorController {
         String newfuturevalue = decimalFormat.format(Double.parseDouble(future_value));
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
-       
+
         model.addAttribute("refID", refID);
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("investasiResult", investResult);
+        model.addAttribute("investasiRate", respInvestasi.Rate);
         model.addAttribute("tabunganResult", tabungResult);
         model.addAttribute("tabungan", respTabungan);
+        model.addAttribute("tabunganRate", respTabungan.Rate);
         model.addAttribute("target_dana", newfuturevalue);
         model.addAttribute("dana_sekarang", newpresentvalue);
         model.addAttribute("jangka_waktu", tenor);
@@ -77,6 +79,11 @@ public class EtcCalculatorController {
         model.addAttribute("name", name);
         model.addAttribute("note", note);
         model.addAttribute("idchannel", appProp.IdLiveChat);
+        model.addAttribute("rc", "2");
+//        model.addAttribute("rc", respInvestasi.RC);
+        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
+//        model.addAttribute("rcdesc", respInvestasi.rc_description);
+        model.addAttribute("rcdescerror10", appProp.response10);
 
         return "etc";
     }
@@ -92,24 +99,42 @@ public class EtcCalculatorController {
             @PathVariable String tenor,
             @PathVariable int risk_profile_id) throws IOException {
 
+        String note;
+        if (risk_profile_id == 0) {
+            note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
+        } else {
+            note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
+        }
         present_value = present_value.replace(",", "");
         future_value = future_value.replace(",", "");
+        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "tabungan");
+
         DecimalFormat decimalFormat = new DecimalFormat("");
         String newpresentvalue = decimalFormat.format(Double.parseDouble(present_value));
         String newfuturevalue = decimalFormat.format(Double.parseDouble(future_value));
+        String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
+        String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
-        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "tabungan");
-
-        model.addAttribute("investasi", respInvestasi);
         model.addAttribute("refID", refID);
+        model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("investasiResult", investResult);
+        model.addAttribute("investasiRate", respInvestasi.Rate);
+        model.addAttribute("tabunganResult", tabungResult);
         model.addAttribute("tabungan", respTabungan);
+        model.addAttribute("tabunganRate", respTabungan.Rate);
         model.addAttribute("target_dana", newfuturevalue);
         model.addAttribute("dana_sekarang", newpresentvalue);
         model.addAttribute("jangka_waktu", tenor);
         model.addAttribute("goals", goals);
         model.addAttribute("name", name);
+        model.addAttribute("note", note);
         model.addAttribute("idchannel", appProp.IdLiveChat);
+        model.addAttribute("rc", "0");
+//        model.addAttribute("rc", respInvestasi.RC);
+        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
+//        model.addAttribute("rcdesc", respInvestasi.rc_description);
+        model.addAttribute("rcdescerror10", appProp.response10);
 
         return "etcSummary";
     }

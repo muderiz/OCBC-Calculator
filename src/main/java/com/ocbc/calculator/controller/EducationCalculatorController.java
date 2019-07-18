@@ -124,22 +124,67 @@ public class EducationCalculatorController {
             @PathVariable String name,
             @PathVariable int risk_profile_id) throws IOException {
 
-        value = value.replace(",", "");
-        DecimalFormat decimalFormat = new DecimalFormat("");
-        String newvalue = decimalFormat.format(Double.parseDouble(value));
-        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "tabungan");
-
+        String note;
+        if (risk_profile_id == 0) {
+            note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
+        } else {
+            note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
+        }
         List<Country> listCountry = paramJSONServices.getListCountryfromFileJson("country.json");
 
+        int lengList = listCountry.size();
+        String countryname = "";
+        for (int i = 0; i < lengList; i++) {
+            Country countryArray = listCountry.get(i);
+            String countryvalue = countryArray.value;
+            String countrytext = countryArray.text;
+            if (country.equalsIgnoreCase(countryvalue) || country.equalsIgnoreCase(countrytext)) {
+                countryname = countryArray.text;
+                country = countryvalue;
+                break;
+
+            }
+        }
+
+        value = value.replace(",", "");
+        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "tabungan");
+
+//        String value_country = "";
+//        String nama = "";
+//        for (Country country1 : listCountry) {
+//            value_country = country1.value;
+//            nama = country1.text;
+//            if(value_country == country){
+//                
+//            }
+//        }
+        DecimalFormat decimalFormat = new DecimalFormat("");
+        String newvalue = decimalFormat.format(Double.parseDouble(value));
+        String newfuturevalue = decimalFormat.format(Double.parseDouble(respInvestasi.Target_Amount));
+        String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
+        String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
+
         model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("investasiFinalValue", newfuturevalue);
+        model.addAttribute("investasiResult", investResult);
+        model.addAttribute("investasiRate", respInvestasi.Rate);
         model.addAttribute("tabungan", respTabungan);
+        model.addAttribute("tabunganResult", tabungResult);
+        model.addAttribute("tabunganRate", respTabungan.Rate);
         model.addAttribute("age", age);
-        model.addAttribute("country", country);
-        model.addAttribute("value", value);
+        model.addAttribute("country", countryname);
+        model.addAttribute("valuecountry", country);
+        model.addAttribute("value", newvalue);
         model.addAttribute("name", name);
         model.addAttribute("listCountry", listCountry);
+        model.addAttribute("note", note);
         model.addAttribute("idchannel", appProp.IdLiveChat);
+        model.addAttribute("rc", "0");
+//        model.addAttribute("rc", respInvestasi.RC);
+        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
+//        model.addAttribute("rcdesc", respInvestasi.rc_description);
+        model.addAttribute("rcdescerror10", appProp.response10);
 
         return "pendidikanSummary";
     }
