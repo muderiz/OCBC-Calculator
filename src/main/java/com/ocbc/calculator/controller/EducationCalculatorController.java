@@ -57,7 +57,7 @@ public class EducationCalculatorController {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
         List<Country> listCountry = paramJSONServices.getListCountryfromFileJson("country.json");
-        
+
         int lengList = listCountry.size();
         String countryname = "";
         for (int i = 0; i < lengList; i++) {
@@ -85,7 +85,6 @@ public class EducationCalculatorController {
 //                
 //            }
 //        }
-
         DecimalFormat decimalFormat = new DecimalFormat("");
         String newvalue = decimalFormat.format(Double.parseDouble(value));
         String newfuturevalue = decimalFormat.format(Double.parseDouble(respInvestasi.Target_Amount));
@@ -105,7 +104,12 @@ public class EducationCalculatorController {
         model.addAttribute("listCountry", listCountry);
         model.addAttribute("note", note);
         model.addAttribute("idchannel", appProp.IdLiveChat);
-
+        model.addAttribute("rc", "0");
+//        model.addAttribute("rc", respInvestasi.RC);
+        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
+//        model.addAttribute("rcdesc", respInvestasi.rc_description);
+        model.addAttribute("rcdescerror8", appProp.response8);
+        
         return "pendidikan";
     }
 

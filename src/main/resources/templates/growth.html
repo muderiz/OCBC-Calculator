@@ -17,17 +17,16 @@
         <div class="ocbc_webview">
 
             <div class="ocbc_webview_overlay">
-                <input id="rcgrowth" type="hidden" th:value="${rcgrowth}"/>
-                <input id="rcdescgrowth" type="hidden" th:value="${rcdescgrowth}"/>
+                <input id="rc" type="hidden" th:value="${rc}"/>
+                <input id="rcdesc" type="hidden" th:value="${rcdesc}"/>
                 <div id="highRiskConfirm" class="highRiskConfirm">
                     <div class="dialogBox">
                         <div>
-                            <b><span id="textrcdesc" th:text="${rcdescgrowth}"></span></b>
+                            <b><span id="textrcdesc" th:text="${rcdesc}"></span></b>.
                             <br/>
-                            Silahkan hitung kembali.
+                            Harap periksa kembali input anda dan hitung ulang.
                             <br/><br/>
-                            <button id="highRiskConfirm_close" class="onBtn grey">HITUNG KEMBALI</button>
-                            <!--<button class="onBtn">LANJUTKAN</button>-->
+                            <button id="highRiskConfirm_close" class="onBtn">HITUNG KEMBALI</button>
                         </div>
                     </div>
                 </div>

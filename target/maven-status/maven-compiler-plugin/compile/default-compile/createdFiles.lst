@@ -4,6 +4,7 @@ com\ocbc\calculator\model\TargetValueRequest.class
 com\ocbc\calculator\services\CalculatorServices.class
 com\ocbc\calculator\controller\ListProductController.class
 com\ocbc\calculator\controller\EducationCalculatorController.class
+com\ocbc\calculator\controller\TncController.class
 com\ocbc\calculator\model\TargetValueResponse.class
 com\ocbc\calculator\model\FutureValueResponse.class
 com\ocbc\calculator\model\ListProductRequest.class

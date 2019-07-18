@@ -54,7 +54,8 @@ public class GrowthCalculatorController {
             type = "false";
         }
 
-        if (risk_profile_id == 0) {
+//        if (risk_profile_id == 0) {
+        if (1 == 0) {
             note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
@@ -78,10 +79,10 @@ public class GrowthCalculatorController {
         model.addAttribute("note", note);
         model.addAttribute("newamount", newamount);
         model.addAttribute("idchannel", appProp.IdLiveChat);
-        model.addAttribute("rcgrowth", "0");
-//        model.addAttribute("rcgrowth", respInvestasi.RC);
-        model.addAttribute("rcdescgrowth", "Atribut <Investment_Amount> bernilai negatif.");
-//        model.addAttribute("rcdescgrowth", respInvestasi.rc_description);
+//        model.addAttribute("rc", "0");
+        model.addAttribute("rc", respInvestasi.RC);
+//        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
+        model.addAttribute("rcdesc", respInvestasi.rc_description);
         model.addAttribute("rcdescerror8", appProp.response8);
 
         return "growth";
@@ -97,23 +98,46 @@ public class GrowthCalculatorController {
             @PathVariable int risk_profile_id) throws IOException {
 
         String typeDesc;
+        String note;
 
         if (type.equalsIgnoreCase("0")) {
             typeDesc = "per bulan";
+            type = "true";
         } else {
             typeDesc = "per lumpsum";
+            type = "false";
+        }
+
+//        if (risk_profile_id == 0) {
+        if (1 == 0) {
+            note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
+        } else {
+            note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
         amount = amount.replace(",", "");
+        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "investasi");
+        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "tabungan");
+
         DecimalFormat decimalFormat = new DecimalFormat("");
         String newamount = decimalFormat.format(Double.parseDouble(amount));
-        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "investasi");
-        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "investasi");
+        String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
+        String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
         model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("investasiResult", investResult);
+        model.addAttribute("investasiRate", respInvestasi.Rate);
         model.addAttribute("tabungan", respTabungan);
+        model.addAttribute("tabunganResult", tabungResult);
+        model.addAttribute("tabunganRate", respTabungan.Rate);
         model.addAttribute("typeDesc", typeDesc);
+        model.addAttribute("note", note);
+        model.addAttribute("newamount", newamount);
         model.addAttribute("idchannel", appProp.IdLiveChat);
-
+//        model.addAttribute("rcgrowth", "0");
+        model.addAttribute("rcgrowth", respInvestasi.RC);
+//        model.addAttribute("rcdescgrowth", "Atribut <Investment_Amount> bernilai negatif.");
+        model.addAttribute("rcdescgrowth", respInvestasi.rc_description);
+        model.addAttribute("rcdescerror8", appProp.response8);
         return "growthSummary";
     }
 

@@ -20,7 +20,20 @@
 
         <div class="ocbc_webview">
 
-            <div class="ocbc_webview_overlay"></div>
+            <div class="ocbc_webview_overlay"><input id="rc" type="hidden" th:value="${rc}"/>
+                <input id="rcdesc" type="hidden" th:value="${rcdesc}"/>
+                <div id="highRiskConfirm" class="highRiskConfirm">
+                    <div class="dialogBox">
+                        <div>
+                            <b><span id="textrcdesc" th:text="${rcdesc}"></span></b>.
+                            <br/>
+                            Harap periksa kembali input anda dan hitung ulang.
+                            <br/><br/>
+                            <button id="highRiskConfirm_close" class="onBtn">HITUNG KEMBALI</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="ocbc_webview_content">
 
@@ -110,7 +123,7 @@
                         </div>
 
                     </div>
-                   
+
                 </div>
             </div>
         </div>

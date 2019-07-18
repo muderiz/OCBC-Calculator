@@ -96,8 +96,8 @@ $(function () {
     var firstage = $("#firstage").val();
     var firstcountry = $("#firstnamecountry").val();
     var secondamount = $("#secondamount").val();
-    var rcgrowth = $("#rcgrowth").val();
-    var rcdescgrowth = $("#rcdescgrowth").val();
+    var rc = $("#rc").val();
+    var rcdesc = $("#rcdesc").val();
 
     $('.calcInput .errorMsgTenor').hide();
     $('.calcResult .errorMsgHitung').hide();
@@ -109,17 +109,38 @@ $(function () {
 
 
     $(window).load(function () {
-        if (parseInt(rcgrowth) > 0 && parseInt(rcgrowth) < 8 || parseInt(rcgrowth) == 99) {
-            $('.ocbc_webview .ocbc_webview_overlay .highRiskConfirm').show();
-            $("#textrcdesc").val(rcdescgrowth);
-            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
-            $('.calcResult .errorMsgHitung').show().css('color', 'red');
-        } else if (parseInt(rcgrowth) == 8) {
-            $('.validRC').hide();
-            $('.errorRc8').show();
-            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
-            $('.calcResult .errorMsgHitung').show().css('color', 'red');
+        switch (lifegoal) {
+            case "growth":
+                if (parseInt(rc) > 0 && parseInt(rc) < 8 || parseInt(rc) == 99) {
+                    $('.ocbc_webview .ocbc_webview_overlay .highRiskConfirm').show();
+                    $("#textrcdesc").val(rcdesc);
+                    $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
+                    $('.calcResult .errorMsgHitung').show().css('color', 'red');
+                } else if (parseInt(rcdesc) == 8) {
+                    $('.validRC').hide();
+                    $('.errorRc8').show();
+                    $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
+                    $('.calcResult .errorMsgHitung').show().css('color', 'red');
+                }
+                break;
+            case "education":
+                 if (parseInt(rc) > 0 && parseInt(rc) < 10 || parseInt(rc) == 99) {
+                    $('.ocbc_webview .ocbc_webview_overlay .highRiskConfirm').show();
+                    $("#textrcdesc").val(rcdesc);
+                    $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
+                    $('.calcResult .errorMsgHitung').show().css('color', 'red');
+                } else if (parseInt(rcdesc) == 10) {
+                    $('.validRC').hide();
+                    $('.errorRc8').show();
+                    $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
+                    $('.calcResult .errorMsgHitung').show().css('color', 'red');
+                }
+                break;
+            case "etc":
+              
+                break;
         }
+
     });
 
 
@@ -138,10 +159,10 @@ $(function () {
 //        });
 
         if ($(this).val() == firstage && $('#dana').val() == firstamount && $('#countryValue').val() == firstcountry) {
-            $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
+            $('#btnSubmit').attr('disabled', false);
             $('.calcResult .errorMsgHitung').hide();
         } else {
-            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
         }
     });
@@ -183,10 +204,10 @@ $(function () {
 
     $('input.inputnumtenor').on('keyup input', function (event) {
         if ($(this).val() == firsttenor && $('#amount').val() == firstamount) {
-            $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
+            $('#btnSubmit').attr('disabled', false);
             $('.calcResult .errorMsgHitung').hide();
         } else {
-            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
             ;
         }
@@ -213,10 +234,10 @@ $(function () {
 
     $('input.inputnumtenorEtc').on('keyup input', function (event) {
         if ($(this).val() == firsttenor && $('#dana_sekarang').val() == secondamount && $('#target_dana').val() == firstamount) {
-            $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
+            $('#btnSubmit').attr('disabled', false);
             $('.calcResult .errorMsgHitung').hide();
         } else {
-            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
             ;
         }
@@ -245,10 +266,10 @@ $(function () {
 
     $('input.inputnumage').on('keyup input', function (event) {
         if ($(this).val() == firstage && $('#dana').val() == firstamount && $('#countryValue').val() == firstcountry) {
-            $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
+            $('#btnSubmit').attr('disabled', false);
             $('.calcResult .errorMsgHitung').hide();
         } else {
-            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
         }
         $(this).val(function (index, value) {
@@ -289,7 +310,7 @@ $(function () {
             $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
             $('.calcResult .errorMsgHitung').hide();
         } else {
-            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
         }
         $(this).val(function (index, value) {
