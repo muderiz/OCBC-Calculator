@@ -24,7 +24,7 @@ public class TargetValueRequest {
     public String Future_Value_Code;
     public String Country;
     public String Children_Age;
-    public String Due_Date;
+    public int Due_Date;
     public String Product_ID;
     public String Risk_Profile_ID;
     

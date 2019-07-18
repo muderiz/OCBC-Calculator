@@ -37,7 +37,7 @@ public class EtcCalculatorController {
     @Autowired
     private AppProperties appProp;
 
-    // >> /etc/refid/Beli%20Mobil%20Mewah/Bambang/23,210,000/20,231,230,000/12
+    // >> /etc/refid/Beli%20Mobil%20Mewah/Bambang/23,210,000/20,231,230,000/12/0
     @GetMapping("/{refID}/{goals}/{name}/{present_value}/{future_value}/{tenor}/{risk_profile_id}")
     public String etc(Model model,
             @PathVariable String refID,
@@ -54,18 +54,21 @@ public class EtcCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-
         present_value = present_value.replace(",", "");
         future_value = future_value.replace(",", "");
+        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "tabungan");
+
         DecimalFormat decimalFormat = new DecimalFormat("");
         String newpresentvalue = decimalFormat.format(Double.parseDouble(present_value));
         String newfuturevalue = decimalFormat.format(Double.parseDouble(future_value));
-
-        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "tabungan");
-
-        model.addAttribute("investasi", respInvestasi);
+        String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
+        String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
+       
         model.addAttribute("refID", refID);
+        model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("investasiResult", investResult);
+        model.addAttribute("tabunganResult", tabungResult);
         model.addAttribute("tabungan", respTabungan);
         model.addAttribute("target_dana", newfuturevalue);
         model.addAttribute("dana_sekarang", newpresentvalue);

@@ -21,6 +21,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.hibernate.validator.internal.util.logging.Log;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,13 +44,13 @@ public class CalculatorServices {
         FutureValueRequest reqInvestasi = new FutureValueRequest();
         reqInvestasi.Channel_ID = appProp.Channel_ID;
         reqInvestasi.Ext_Reff_ID = refID;
-        reqInvestasi.Due_Date = "0";
+        reqInvestasi.Due_Date = 0;
         reqInvestasi.Investment_Amount = amount;
         reqInvestasi.Investment_Type = type;
         reqInvestasi.Product_ID = "0";
         reqInvestasi.Risk_Profile_ID = risk_profile_id + "";
         reqInvestasi.Tenor = tenor;
-
+        
         if (risk_profile_id == 0) {
             if (product_type.equalsIgnoreCase("investasi")) {
                 reqInvestasi.Future_Value_Type = "AG";
@@ -70,7 +71,6 @@ public class CalculatorServices {
 
         Gson gson = new Gson();
         String jsonInvestasi = gson.toJson(reqInvestasi);
-
         //get result from ocbc api : /Calculator/FutureValue
         RequestBody body = RequestBody.create(jsonInvestasi, JSON);
 
@@ -80,9 +80,10 @@ public class CalculatorServices {
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();
-
+        
         FutureValueResponse respGrowth = gson.fromJson(response.body().string(), FutureValueResponse.class);
-
+        System.out.println(jsonInvestasi);
+        System.out.println(respGrowth);
         return respGrowth;
     }
 
@@ -94,7 +95,7 @@ public class CalculatorServices {
         targetValueRequest.Channel_ID = appProp.Channel_ID;
         targetValueRequest.Children_Age = age;
         targetValueRequest.Country = country;
-        targetValueRequest.Due_Date = "0";
+        targetValueRequest.Due_Date = 0;
         targetValueRequest.Ext_Reff_ID = refID;
         targetValueRequest.Pre_Calculated_Future_Value = "0";
         targetValueRequest.Present_Value = value;
@@ -145,7 +146,7 @@ public class CalculatorServices {
         targetValueRequest.Channel_ID = appProp.Channel_ID;
         targetValueRequest.Children_Age = "0";
         targetValueRequest.Country = "";
-        targetValueRequest.Due_Date = "0";
+        targetValueRequest.Due_Date = 0;
         targetValueRequest.Ext_Reff_ID = refID;
         targetValueRequest.Pre_Calculated_Future_Value = future_value;
         targetValueRequest.Present_Value = present_value;

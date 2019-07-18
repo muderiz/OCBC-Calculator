@@ -1,31 +1,31 @@
 [
 
     {
-        "text": "(1) Indonesia",
-        "value": "Indonesia"
+        "text": "Indonesia",
+        "value": "1"
     },
     {
-        "text": "(2) Singapura",
-        "value": "Singapura"
+        "text": "Singapura",
+        "value": "2"
     },
     {
-        "text": "(3) Britania Raya / Inggris",
-        "value": "Britania Raya / Inggris"
+        "text": "Britania Raya (Inggris)",
+        "value": "3"
     }
     ,
     {
-        "text": "(4) Amerika Serikat (Universitas Negeri)",
-        "value": "Amerika Serikat (Universitas Negeri)"
+        "text": "Amerika Serikat (Universitas Negeri)",
+        "value": "4"
     }
     ,
     {
-        "text": "(5) Amerika Serikat (Universitas Swasta)",
-        "value": "Amerika Serikat (Universitas Swasta)"
+        "text": "Amerika Serikat (Universitas Swasta)",
+        "value": "5"
     }
     ,
     {
-        "text": "(6) Australia",
-        "value": "Australia"
+        "text": "Australia",
+        "value": "6"
     }
 
 ]

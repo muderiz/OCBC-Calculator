@@ -14,6 +14,7 @@
 .ocbc_webview .onBtn{background-color:#00A2A3; font-weight:bold; margin: 0 3px; font-size:11px; color:#fff; display:inline-block; text-align:center; border:0; border-radius:5px;  padding:6px 12px; vertical-align:middle}
 .ocbc_webview .onBtn.grey{background-color:#eee; color:#555;} .ocbc_webview .onBtn.grey.bordered{border:1px solid #777;}
 .ocbc_webview .onBtn.white{background-color:#fff; color:#555;} .ocbc_webview .onBtn.white.bordered{border:1px solid #555;}
+.ocbc_webview .onBtn.disabled{opacity:.5;}
 
 .ocbc_webview .text-center{text-align:center;}
 
@@ -71,6 +72,7 @@
 .calcInput .formRow.error{border:1px solid #dd4b39; padding-bottom:20px;}
 .calcInput .errorMsg{clear:both; color:#dd4b39; width:100%; margin-top:-7px; padding:0 10px; text-align:right; display: block;}
 .calcInput .errorMsgTenor{clear:both; color:#dd4b39; width:100%; margin-top:-7px; padding:0 10px; text-align:right; display: block;}
+.calcInput .errorMsgHitung{clear:both; color:#dd4b39; width:100%; margin-top:-7px; padding:0 10px; text-align:right; display: block;}
 
 .calcInput .formRow .i1{padding: 0 100px 0 30px;}
 .calcInput .formRow .i2{padding: 0 65px 0 55px;}
@@ -92,4 +94,8 @@
 .calcResult .resultGraph .infoCol .value{font-weight:bold; font-size:15px;}
 .calcResult .resultGraph .infoCol .note{font-style:italic; font-size:11px;}
 
-
+.tnc{height:100%;position:relative;}
+.tnc .titleBar{font-size:16px; font-weight:600; padding:10px;  position:absolute; top:0; width:100%;}
+.tnc .textContent{height:100%; padding:35px 10px 70px; }
+.tnc .scrollContainer{padding:10px; background-color:#fff; overflow-y:auto; height:100%;  box-shadow:  inset 0 0 5px rgba(0,0,0,.2); border-radius:5px;}
+.tnc .agreementBar{padding:10px;  position:absolute; bottom:0; width:100%; text-align:center;}

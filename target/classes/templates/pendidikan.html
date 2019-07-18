@@ -37,6 +37,11 @@
                         <input id="risk_profile_id" type="hidden" th:value="${risk_profile_id}"/>
                         <input id="refID" type="hidden" th:value="${refID}"/>
                         <input id="firstamount" type="hidden" th:value="${value}"/>
+                        <input id="firstage" type="hidden" th:value="${age}"/>
+                        <input id="firstnamecountry" type="hidden" th:value="${country}"/>
+                        <input id="firstvaluecountry" type="hidden" th:value="${valuecountry}"/>
+                        <label id="listcountry" type="hidden" th:value="${listCountry}"/>
+
                         <div class="formRow">
                             <input id="age" type="text" class="inputnumage i4" th:value="${age}" maxlength="2" inputmode="numeric" pattern="[0-9]*" required/>
                             <div class="left">Usia Anak</div>
@@ -48,7 +53,7 @@
                         <div class="formRow">
                             <input id="countryValue" type="text" class="i5" th:value="${country}" disabled />
                             <select id="countrySelect" class="countrySelect">
-                                <option th:each="negara: ${listCountry}" th:value="${negara.value}" th:text="${negara.text}"
+                                <option th:each="negara: ${listCountry}" th:value="${negara.text}" th:label="${negara.text}"
                                         th:selected="${negara.text==country}"></option>
                             </select>
                             <div class="left">Negara</div>
@@ -57,21 +62,21 @@
 
 
                         <div class="formRow error">
-                            <input id="dana" type="text" class="inputnum currency i6" th:value="${value}" />
+                            <input id="dana" type="text" class="inputnum4 currency i6" th:value="${value}" />
                             <div class="left">Dana tersedia Rp</div>
                         </div>
                         <div class="errorMsg" >Pastikan data yang kamu isi sudah benar</div>
                         <br>
-                        <div class="text-center">
-                            <button id="hitungUlang" class="onBtn">Hitung Ulang</button>
-                        </div>
+                            <div class="text-center">
+                                <button id="hitungUlang" class="onBtn">Hitung Ulang</button>
+                            </div>
 
                     </div>
 
                     <div class="calcResult">
                         <div class="text-center">
                             <span th:text="${name}"/> membutuhkan dana hingga Rp.
-                            <b th:text="${investasi.Final_Future_Value}"/> wujudkan dengan :
+                            <b th:text="${investasiFinalValue}"/> wujudkan dengan :
 
                         </div>
 
@@ -79,14 +84,14 @@
                             <div class="infoCol left">
                                 <div class="row title"><span>Tabungan</span></div>
                                 <div class="row desc">Menyisihkan hingga</div>
-                                <div class="row value"><span id="tabunganResult" th:text="${tabungan.Result}"/></div>
+                                <div class="row value">Rp. <span id="tabunganResult" th:text="${tabunganResult}"/></div>
                                 <div class="row note">(<span id="tabunganRate" th:text="${tabungan.Rate}"/> laba per tahun)</div>
                             </div>
 
                             <div class="infoCol right">
                                 <div class="row title"><span>Investasi</span></div>
                                 <div class="row desc">Menyisihkan hingga</div>
-                                <div class="row value"><span id="investasiResult" th:text="${investasi.Result}"/></div>
+                                <div class="row value">Rp. <span id="investasiResult" th:text="${investasiResult}"/></div>
                                 <div class="row note">(<span id="investasiRate" th:text="${investasi.Rate}"/> laba per tahun)</div>
                             </div>
 
@@ -100,9 +105,12 @@
 
                             <button id="btnSubmitOthers" class="onBtn grey bordered">Ganti Life Goal</button>
                             <button id="btnSubmit" class="onBtn">Goal Sudah Sesuai</button>
+                            <div id="alertHitung" class="errorMsgHitung" >Silahkan Lakukan Hitung Ulang Terlebih Dahulu</div>
 
                         </div>
+
                     </div>
+                   
                 </div>
             </div>
         </div>

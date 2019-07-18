@@ -21,7 +21,7 @@ public class FutureValueRequest {
     public String Yearly_Return_Code;
     public String Tenor;
     public String Investment_Amount;
-    public String Due_Date;
+    public int Due_Date;
     public String Product_ID;
     public String Risk_Profile_ID;
 

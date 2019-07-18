@@ -16,7 +16,22 @@
 
         <div class="ocbc_webview">
 
-            <div class="ocbc_webview_overlay"></div>
+            <div class="ocbc_webview_overlay">
+                <input id="rcgrowth" type="hidden" th:value="${rcgrowth}"/>
+                <input id="rcdescgrowth" type="hidden" th:value="${rcdescgrowth}"/>
+                <div id="highRiskConfirm" class="highRiskConfirm">
+                    <div class="dialogBox">
+                        <div>
+                            <b><span id="textrcdesc" th:text="${rcdescgrowth}"></span></b>
+                            <br/>
+                            Silahkan hitung kembali.
+                            <br/><br/>
+                            <button id="highRiskConfirm_close" class="onBtn grey">HITUNG KEMBALI</button>
+                            <!--<button class="onBtn">LANJUTKAN</button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="ocbc_webview_content">
 
@@ -34,6 +49,9 @@
                         <input id="lifegoal" type="hidden" value="growth"/>
                         <input id="refID" type="hidden" th:value="${refID}"/>
                         <input id="firstamount" type="hidden" th:value="${amount}"/>
+                        <input id="firsttenor" type="hidden" th:value="${tenor}"/>
+
+
                         <div class="formRow error">
                             <input id="amount" type="text" class="inputnum currency i1" th:value="${amount}" inputmode="numeric" pattern="[0-9]*" required>
                                 <div class="left">Rp</div>
@@ -57,23 +75,31 @@
                                 <br>
                                     selama <b>[[${tenor}]]</b> tahun :
                             </p>
-                        </div>
+                        </div>  
 
                         <div class="resultGraph ">
                             <div class="infoCol left">
                                 <div class="row title"><span>Tabungan</span></div>
                                 <div class="row desc">Pertumbuhan Hingga</div>
-                                <div class="row value"><span id="tabunganResult" th:text="${tabungan.Result}"/></div>
-                                <div class="row value"></div>
-                                <div class="row note">(<span id="tabunganRate" th:text="${tabungan.Rate}"/> laba per tahun)</div>
+                                <div class="validRC">
+                                    <div class="row value">Rp. <span id="tabunganResult" th:text="${tabunganResult}"/></div>
+                                    <div class="row value"></div>
+                                    <div class="row note">(<span id="tabunganRate" th:text="${tabunganRate}"/> laba per tahun)</div>
+                                </div>
+                                <br>
+                                    <div id="errorRc8" class="errorRc8"><b><span th:text="${rcdescerror8}"/></b></div>
                             </div>
 
                             <div class="infoCol right">
                                 <div class="row title"><span>Investasi</span></div>
                                 <div class="row desc">Pertumbuhan Hingga</div>
-                                <div class="row value"><span id="investasiResult" th:text="${investasi.Result}"/></div>
-                                <div class="row value"></div>
-                                <div class="row note">(<span id="investasiRate" th:text="${investasi.Rate}"/> laba per tahun)</div>
+                                <div class="validRC">
+                                    <div class="row value">Rp. <span id="investasiResult" th:text="${investasiResult}"/></div>
+                                    <div class="row value"></div>
+                                    <div class="row note">(<span id="investasiRate" th:text="${investasiRate}"/> laba per tahun)</div>
+                                </div>
+                                <br>
+                                    <div id="errorRc8" class="errorRc8"><b><span th:text="${rcdescerror8}"/></b></div>
                             </div>
 
                             <img class="graphBG" th:src="@{/images/graph1.png}" />
@@ -85,10 +111,12 @@
                             <br/> <br/>
 
                             <button id="btnSubmitOthers" class="onBtn grey bordered">Ganti Life Goal</button>
-                            <button id="btnSubmit" class="onBtn" >Goal Sudah Sesuai</button>
+                            <button id="btnSubmit" class="onBtn"  >Goal Sudah Sesuai</button>
+                            <div id="alertHitung" class="errorMsgHitung" >Silahkan Lakukan Hitung Ulang Terlebih Dahulu</div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </body>

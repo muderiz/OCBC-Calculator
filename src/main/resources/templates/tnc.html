@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <title>Hello</title>
+        <link rel="stylesheet" th:href="@{~/css/red.css?v=7}" />
+        <link rel="stylesheet" th:href="@{~/css/ocbcnisp.css}" />
+        <script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+        <script th:src="@{/js/talk.js}" type="text/javascript"></script>
+
+        <script th:src="@{/js/webview.js}" type="text/javascript"></script>
+    </head>
+
+    <body>
+        <!-- INSERT CONTENT START -->
+
+        <div class="ocbc_webview">
+
+            <div class="ocbc_webview_overlay"></div>
+
+            <div class="ocbc_webview_content">
+
+                <div class="tnc">
+
+                    <div class="titleBar">
+                        Syarat dan Ketentuan
+                    </div>
+
+                    <div class="textContent">
+                        <input id="idchannel" type="hidden" th:value="${idchannel}"/>
+                        <div class="scrollContainer">
+                            <p>
+                                Dengan memberikan Data Pribadi Anda, Anda menyadari bahwa Data Pribadi ini akan disimpan
+                                dan dimiliki oleh PT Bank OCBC NISP Tbk (“Bank OCBC NISP”) dan Bank OCBC NISP akan
+                                menggunakan dan/atau memanfaatkan setiap data, informasi dan keterangan yang terkait dengan
+                                Anda yang diperoleh Bank OCBC NISP termasuk untuk penawaran atau pemasaran produk wealth
+                                management dengan tetap memperhatikan peraturan dan ketentuan perundang-undangan yang
+                                berlaku.
+                            </p>
+                            <p>
+                                Angka untuk kalkulasi dan estimasi yang kami lakukan berdasarkan sumber terpercaya dan
+                                diperbaharui setiap bulannya. Namun, kalkulasi dan estimasi ini tidak menjamin kinerja
+                                sesungguhnya di masa yang akan datang. Dokumen penawaran atas produk investasi terkait
+                                tetap harus dipelajari dahulu secara seksama. Setiap proyeksi, pendapat atau fakta
+                                statistik lainnya yang ditampilkan dalam Informasi ini hanya merupakan suatu indikasi dan
+                                tidak dijamin dalam bentuk apapun.  
+                            </p>
+                            <p>
+                                Anda harus menetapkan sendiri setiap keputusan sesuai dengan kebutuhan dan strategi
+                                investasi dengan mempertimbangkan masalah hukum, pajak, dan akuntansi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="agreementBar">
+
+                        <label>
+                            <input id="check_tnc" type="checkbox">&nbsp;&nbsp;&nbsp;Saya menyetujui syarat dan ketentuan
+                        </label>
+                        <p></p>
+                        <button id="proceed_tnc" class="onBtn disabled" disabled >Setuju</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

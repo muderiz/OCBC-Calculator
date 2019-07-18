@@ -56,7 +56,7 @@ function submit(_lifegoal) {
             break;
         case "education":
             var age = $("#age").val();
-            var country = $("#countryValue").val();
+            var country = $("#firstvaluecountry").val();
             var value = $("#dana").val();
             message_in = age + "&" + country + "&" + value + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
 
@@ -75,22 +75,75 @@ function submit(_lifegoal) {
 
 function othersgoal() {
     var message_in;
-    var refID = $("#refID").val();
     var IdChannel = $("#idchannel").val();
     message_in = "";
 
     talk(IdChannel, message_in, "Ganti Life Goal");
 }
 
+function tnc() {
+    var message_in;
+    var IdChannel = $("#idchannel").val();
+    message_in = "setuju";
+
+    talk(IdChannel, message_in, "Setuju");
+}
+
 $(function () {
     var lifegoal = $("#lifegoal").val();
     var firstamount = $("#firstamount").val();
+    var firsttenor = $("#firsttenor").val();
+    var firstage = $("#firstage").val();
+    var firstcountry = $("#firstnamecountry").val();
     var secondamount = $("#secondamount").val();
+    var rcgrowth = $("#rcgrowth").val();
+    var rcdescgrowth = $("#rcdescgrowth").val();
+
     $('.calcInput .errorMsgTenor').hide();
+    $('.calcResult .errorMsgHitung').hide();
+    $('.errorRc8').hide();
+    $('.ocbc_webview .ocbc_webview_overlay .highRiskConfirm').hide();
+
+
+
+
+
+    $(window).load(function () {
+        if (parseInt(rcgrowth) > 0 && parseInt(rcgrowth) < 8 || parseInt(rcgrowth) == 99) {
+            $('.ocbc_webview .ocbc_webview_overlay .highRiskConfirm').show();
+            $("#textrcdesc").val(rcdescgrowth);
+            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('.calcResult .errorMsgHitung').show().css('color', 'red');
+        } else if (parseInt(rcgrowth) == 8) {
+            $('.validRC').hide();
+            $('.errorRc8').show();
+            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('.calcResult .errorMsgHitung').show().css('color', 'red');
+        }
+    });
+
+
 
     $('#countrySelect').on('change', function () {
         var cvalue = $('option:selected').val();
         $('#countryValue').val(cvalue);
+
+//        $.getJSON('country.json', function (data) {
+//            for (var i = 0; i < max; i++) {
+//                $.each(data.person, function (i, f) {
+//                    var tblRow
+//                    = ;
+//                });
+//            }
+//        });
+
+        if ($(this).val() == firstage && $('#dana').val() == firstamount && $('#countryValue').val() == firstcountry) {
+            $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
+            $('.calcResult .errorMsgHitung').hide();
+        } else {
+            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('.calcResult .errorMsgHitung').show().css('color', 'red');
+        }
     });
 
     $('#hitungUlang').click(function () {
@@ -105,16 +158,38 @@ $(function () {
         othersgoal();
     });
 
+    $('#proceed_tnc').on('click', function () {
+        tnc();
+    });
+
     $('input.inputnum').on('keyup input', function (event) {
+        if ($(this).val() == firstamount && $('#tenor').val() == firsttenor) {
+            $('#btnSubmit').attr('disabled', false);
+            $('.calcResult .errorMsgHitung').hide();
+        } else {
+            $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
+            $('.calcResult .errorMsgHitung').show().css('color', 'red');
+        }
         $(this).val(function (index, value) {
             return value
                     .replace(/^0+/, '')
                     .replace(/\D/g, "")
                     .replace(/^0+/, '');
         });
+
+
     });
 
+
     $('input.inputnumtenor').on('keyup input', function (event) {
+        if ($(this).val() == firsttenor && $('#amount').val() == firstamount) {
+            $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
+            $('.calcResult .errorMsgHitung').hide();
+        } else {
+            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('.calcResult .errorMsgHitung').show().css('color', 'red');
+            ;
+        }
         $(this).val(function (index, value) {
             return value
                     .replace(/^0+/, '')
@@ -136,7 +211,46 @@ $(function () {
 
     });
 
+    $('input.inputnumtenorEtc').on('keyup input', function (event) {
+        if ($(this).val() == firsttenor && $('#dana_sekarang').val() == secondamount && $('#target_dana').val() == firstamount) {
+            $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
+            $('.calcResult .errorMsgHitung').hide();
+        } else {
+            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('.calcResult .errorMsgHitung').show().css('color', 'red');
+            ;
+        }
+        $(this).val(function (index, value) {
+            return value
+                    .replace(/^0+/, '')
+                    .replace(/\D/g, "")
+                    .replace(/^0+/, '');
+        });
+
+        if (parseInt($(this).val()) <= 50 && parseInt($(this).val()) >= 0) {
+            ;
+        } else if (parseInt($(this).val()) > 50) {
+//            $(this).val($(this).data("old"));
+            $(this).val(50);
+            $('.calcInput .errorMsgTenor').show();
+
+        } else if (($(this).val()) <= 0) {
+            $(this).val($(this).data("old"));
+            $('.calcInput .errorMsgTenor').hide();
+        }
+
+    });
+
+
+
     $('input.inputnumage').on('keyup input', function (event) {
+        if ($(this).val() == firstage && $('#dana').val() == firstamount && $('#countryValue').val() == firstcountry) {
+            $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
+            $('.calcResult .errorMsgHitung').hide();
+        } else {
+            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('.calcResult .errorMsgHitung').show().css('color', 'red');
+        }
         $(this).val(function (index, value) {
             return value
                     .replace(/^0+/, '')
@@ -158,6 +272,7 @@ $(function () {
     });
 
     $('input.currency').on('keyup input', function (event) {
+
         if (event.which >= 37 && event.which <= 40)
             return;
 
@@ -169,16 +284,79 @@ $(function () {
 
     });
 
-    $('input.currency2').on('keyup input', function (event) {
+    $('input.inputnum2').on('keyup input', function (event) {
+        if ($(this).val() == firstamount && $('#jangka_waktu').val() == firsttenor && $('#dana_sekarang').val() == secondamount) {
+            $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
+            $('.calcResult .errorMsgHitung').hide();
+        } else {
+            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('.calcResult .errorMsgHitung').show().css('color', 'red');
+        }
+        $(this).val(function (index, value) {
+            return value
+                    .replace(/^0+/, '')
+                    .replace(/\D/g, "")
+                    .replace(/^0+/, '');
+        });
         if (event.which >= 37 && event.which <= 40)
             return;
 
         $(this).val(function (index, value) {
             return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         });
-//        if (($(this).val()) <= 0)
-//            $(this).val(secondamount);
 
+    });
+
+    $('input.inputnum3').on('keyup input', function (event) {
+        if ($(this).val() == secondamount && $('#jangka_waktu').val() == firsttenor && $('#target_dana').val() == firstamount) {
+            $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
+            $('.calcResult .errorMsgHitung').hide();
+        } else {
+            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('.calcResult .errorMsgHitung').show().css('color', 'red');
+        }
+        $(this).val(function (index, value) {
+            return value
+                    .replace(/^0+/, '')
+                    .replace(/\D/g, "")
+                    .replace(/^0+/, '');
+        });
+        if (event.which >= 37 && event.which <= 40)
+            return;
+
+        $(this).val(function (index, value) {
+            return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        });
+    });
+    $('input.inputnum4').on('keyup input', function (event) {
+        if ($(this).val() == firstamount && $('#age').val() == firstage && $('#countryValue').val() == firstcountry) {
+            $('#btnSubmit').attr('disabled', false).css('background-color', '#00A2A3');
+            $('.calcResult .errorMsgHitung').hide();
+        } else {
+            $('#btnSubmit').attr('disabled', true).css('background-color', 'grey');
+            $('.calcResult .errorMsgHitung').show().css('color', 'red');
+        }
+        $(this).val(function (index, value) {
+            return value
+                    .replace(/^0+/, '')
+                    .replace(/\D/g, "")
+                    .replace(/^0+/, '');
+        });
+        if (event.which >= 37 && event.which <= 40)
+            return;
+
+        $(this).val(function (index, value) {
+            return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        });
+    });
+
+    $('#check_tnc').on('click', function () {
+        var checked_status = this.checked;
+        if (checked_status == true) {
+            $("#proceed_tnc").removeAttr("disabled").removeClass('disabled');
+        } else {
+            $("#proceed_tnc").attr("disabled", "disabled").addClass('disabled');
+        }
     });
 
     $('.ocbc_webview .openTrigger').on('click', function () {
@@ -189,8 +367,6 @@ $(function () {
     $('.ocbc_webview #showAllCat').on('click', function () {
 //        $('.ocbc_webview .product_category').removeClass('hidden');
         $('.ocbc_webview .product_category').css('display', 'block');
-
-
         $('#riskNotif').hide();
     });
 

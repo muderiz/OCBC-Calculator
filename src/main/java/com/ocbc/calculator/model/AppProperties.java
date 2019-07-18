@@ -28,5 +28,11 @@ public class AppProperties {
 
     @Value("${ocbc.nisp.id.livechat}")
     public String IdLiveChat;
+    
+    @Value("${ocbc.nisp.error.response.8}")
+    public String response8;
+    
+    @Value("${ocbc.nisp.error.response.10}")
+    public String response10;
 
 }
