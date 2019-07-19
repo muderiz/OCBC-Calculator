@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ocbc</groupId>
     <artifactId>calculator</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>webview</version>
     <name>WebViewOCBC</name>
     <description>WebView for Chatbot</description>
 

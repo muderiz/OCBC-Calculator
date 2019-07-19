@@ -60,7 +60,7 @@ public class GrowthCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-        amount = amount.replace(",", "");
+        amount = amount.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
         FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "investasi");
         FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "tabungan");
 

@@ -72,7 +72,7 @@ public class EducationCalculatorController {
             }
         }
 
-        value = value.replace(",", "");
+        value = value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
         TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "investasi");
         TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "tabungan");
 
@@ -106,10 +106,10 @@ public class EducationCalculatorController {
         model.addAttribute("listCountry", listCountry);
         model.addAttribute("note", note);
         model.addAttribute("idchannel", appProp.IdLiveChat);
-        model.addAttribute("rc", "0");
-//        model.addAttribute("rc", respInvestasi.RC);
-        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
-//        model.addAttribute("rcdesc", respInvestasi.rc_description);
+//        model.addAttribute("rc", "0");
+        model.addAttribute("rc", respInvestasi.RC);
+//        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
+        model.addAttribute("rcdesc", respInvestasi.rc_description);
         model.addAttribute("rcdescerror10", appProp.response10);
 
         return "pendidikan";

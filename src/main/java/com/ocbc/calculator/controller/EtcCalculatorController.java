@@ -100,13 +100,13 @@ public class EtcCalculatorController {
             @PathVariable int risk_profile_id) throws IOException {
 
         String note;
-        if (risk_profile_id == 0) {
+        if (risk_profile_id == 0) {  
             note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-        present_value = present_value.replace(",", "");
-        future_value = future_value.replace(",", "");
+        present_value = present_value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
+        future_value = future_value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
         TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "investasi");
         TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "tabungan");
 
@@ -130,10 +130,10 @@ public class EtcCalculatorController {
         model.addAttribute("name", name);
         model.addAttribute("note", note);
         model.addAttribute("idchannel", appProp.IdLiveChat);
-        model.addAttribute("rc", "0");
-//        model.addAttribute("rc", respInvestasi.RC);
-        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
-//        model.addAttribute("rcdesc", respInvestasi.rc_description);
+//        model.addAttribute("rc", "0");
+        model.addAttribute("rc", respInvestasi.RC);
+//        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
+        model.addAttribute("rcdesc", respInvestasi.rc_description);
         model.addAttribute("rcdescerror10", appProp.response10);
 
         return "etcSummary";
