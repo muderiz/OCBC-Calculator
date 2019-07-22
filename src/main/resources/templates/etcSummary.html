@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
 
-        <title>Hello</title>
+        <title></title>
         <link rel="stylesheet" th:href="@{~/css/red.css?v=7}"/>
         <link rel="stylesheet" th:href="@{~/css/ocbcnisp.css}"/>
         <script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
@@ -17,7 +17,21 @@
 
         <div class="ocbc_webview">
 
-            <div class="ocbc_webview_overlay"></div>
+            <div class="ocbc_webview_overlay">
+                <input id="rc" type="hidden" th:value="${rc}"/>
+                <input id="rcdesc" type="hidden" th:value="${rcdesc}"/>
+                <div id="highRiskConfirm" class="highRiskConfirm">
+                    <div class="dialogBox">
+                        <div>
+                            <b><span id="textrcdesc" th:text="${rcdesc}"></span></b>.
+                            <br />
+                            Harap periksa kembali input anda dan hitung ulang.
+                            <br/><br/>
+                            <button id="highRiskConfirm_close" class="onBtn">HITUNG KEMBALI</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="ocbc_webview_content">
 
@@ -31,19 +45,23 @@
                         <input id="lifegoal" type="hidden" value="etc"/>
                         <input id="idchannel" type="hidden" th:value="${idchannel}"/>
                         <input id="refID" type="hidden" th:value="${refID}"/>
+                        <input id="risk_profile_id" type="hidden" th:value="${risk_profile_id}"/>
+                        <input id="firstamount" type="hidden" th:value="${target_dana}"/>
+                        <input id="firsttenor" type="hidden" th:value="${jangka_waktu}"/>
+                        <input id="secondamount" type="hidden" th:value="${dana_sekarang}"/>
                         <div class="formRow error">
-                            <input id="target_dana" type="text" class="inputnum currency i6" th:value="${target_dana}" inputmode="numeric" pattern="[0-9]*" required/>
+                            <input id="target_dana" type="text" class="inputnum2 i6" th:value="${target_dana}" inputmode="numeric" pattern="[0-9]*" required/>
                             <div class="left">Target Dana <b>Rp</b></div>
                         </div>
                         <div class="errorMsg">Pastikan data yang kamu isi sudah benar</div>
 
-                        <div class="formRow">
-                            <input id="dana_sekarang" type="text" class="inputnum currency i6" th:value="${dana_sekarang}" inputmode="numeric" pattern="[0-9]*" required/>
+                        <div class="formRow error2">
+                            <input id="dana_sekarang" type="text" class="inputnum3 i6" th:value="${dana_sekarang}" inputmode="numeric" pattern="[0-9]*" required/>
                             <div class="left">Dana tersedia <b>Rp</b></div>
                         </div>
-
+                        <div class="errorMsg2">Pastikan data yang kamu isi sudah benar</div>
                         <div class="formRow">
-                            <input id="jangka_waktu" type="text" class="inputnum i2" th:value="${jangka_waktu}" inputmode="numeric" maxlength="2" pattern="[0-9]*" required/>
+                            <input id="jangka_waktu" type="text" class="inputnumtenorEtc i2" th:value="${jangka_waktu}" inputmode="numeric" maxlength="2" pattern="[0-9]*" required/>
                             <div class="left">Jangka Waktu</div>
                             <div class="right">tahun</div>
                         </div>
@@ -57,24 +75,33 @@
 
                     <div class="calcResult">
                         <div class="text-center">
-                            <span id="name" th:text="${customer_name}"/> membutuhkan dana hingga
-                            <b><span th:text="${future_value}"></span></b> wujudkan dengan :
+                            <span id="name" th:text="${name}"/> membutuhkan dana hingga Rp. 
+                            <b><span th:text="${target_dana}"></span></b> wujudkan dengan :
 
                         </div>
 
                         <div class="resultGraph ">
                             <div class="infoCol left">
                                 <div class="row title"><span>Tabungan</span></div>
-                                <div class="row desc">Menyisihkan hingga</div>
-                                <div class="row value"><span id="tabunganResult" th:text="${tabungan.Final_Future_Value}"></span></div>
-                                <div class="row note">(<span id="tabunganRate" th:text="${tabungan.Rate}"></span> laba per tahun)</div>
+                                <div class="validRC">
+                                    <div class="row desc">Menyisihkan hingga</div>
+                                    <div class="row value">Rp. <span id="tabunganResult" th:text="${tabunganResult}"></span></div>
+                                    <div class="row note">(<span id="tabunganRate" th:text="${tabungan.Rate}"></span> laba per tahun)</div>
+                                </div>
+                                <br>
+                                    <div id="errorRc" class="errorRc"><b>Uang <span th:text="${name}"/> <span th:text="${rcdescerror10}"/></b></div>
                             </div>
 
                             <div class="infoCol right">
                                 <div class="row title"><span>Investasi</span></div>
-                                <div class="row desc">Menyisihkan hingga</div>
-                                <div class="row value"><span id="investasiResult" th:text="${investasi.Final_Future_Value}"></span></div>
-                                <div class="row note">(<span id="investasiRate" th:text="${investasi.Rate}"></span> laba per tahun)</div>
+                                <div class="validRC">
+                                    <div class="row desc">Menyisihkan hingga</div>
+                                    <div class="row value">Rp. <span id="investasiResult" th:text="${investasiResult}"></span></div>
+                                    <div class="row note">(<span id="investasiRate" th:text="${investasi.Rate}"></span> laba per tahun)</div>
+                                </div>
+                                <br>
+                                    <div id="errorRc" class="errorRc"><b>Uang <span th:text="${name}"/> <span th:text="${rcdescerror10}"/></b></div>
+
                             </div>
 
                             <img class="graphBG" th:src="@{/images/graph3.png}" />
@@ -82,12 +109,12 @@
                         </div>
 
                         <div class="text-center">
-                            *Angka hanya estimasi. Untuk angka sesuai dengan profil <span th:text="${customer_name}"></span>, silahkan melengkapi
-                            profil risiko <span th:text="${customer_name}"></span> selanjutnya.
+                            <i><span th:text="${note}">.</i>
                             <br/> <br/>
 
-                            <button class="onBtn grey bordered">Ganti Life Goal</button>
+                            <button id="btnSubmitOthers" class="onBtn grey bordered">Ganti Life Goal</button>
                             <button id="btnSubmit" class="onBtn">Goal Sudah Sesuai</button>
+                            <div id="alertHitung" class="errorMsgHitung" >Silahkan Lakukan Hitung Ulang Terlebih Dahulu</div>
 
                         </div>
                     </div>
