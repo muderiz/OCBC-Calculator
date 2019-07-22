@@ -61,13 +61,15 @@ public class GrowthCalculatorController {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
         amount = amount.toLowerCase()
+                .replace(",-", "")
                 .replace(",", "")
                 .replace("rp. ", "")
                 .replace("rp ", "")
                 .replace("rp.", "")
                 .replace("rp", "")
                 .replace(".000", "000")
-                .replace(".00", "");
+                .replace(".00", "")
+                .replace(".0", "");
         FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "investasi");
         FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "tabungan");
 
@@ -122,13 +124,15 @@ public class GrowthCalculatorController {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
         amount = amount.toLowerCase()
+                .replace(",-", "")
                 .replace(",", "")
                 .replace("rp. ", "")
                 .replace("rp ", "")
                 .replace("rp.", "")
                 .replace("rp", "")
                 .replace(".000", "000")
-                .replace(".00", "");
+                .replace(".00", "")
+                .replace(".0", "");
         FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "investasi");
         FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "tabungan");
 

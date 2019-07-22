@@ -52,18 +52,26 @@ public class EtcCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-        present_value = present_value.toLowerCase().replace("rp. ", "")
+        present_value = present_value.toLowerCase()
+                .replace(",-", "")
+                .replace(",", "")
+                .replace("rp. ", "")
                 .replace("rp ", "")
                 .replace("rp.", "")
                 .replace("rp", "")
                 .replace(".000", "000")
-                .replace(".00", "");
-        future_value = future_value.replace("rp. ", "")
+                .replace(".00", "")
+                .replace(".0", "");
+        future_value = future_value.toLowerCase()
+                .replace(",-", "")
+                .replace(",", "")
+                .replace("rp. ", "")
                 .replace("rp ", "")
                 .replace("rp.", "")
                 .replace("rp", "")
                 .replace(".000", "000")
-                .replace(".00", "");
+                .replace(".00", "")
+                .replace(".0", "");
         TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "investasi");
         TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "tabungan");
 
@@ -113,18 +121,26 @@ public class EtcCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-        present_value = present_value.toLowerCase().replace("rp. ", "")
+        present_value = present_value.toLowerCase()
+                .replace(",-", "")
+                .replace(",", "")
+                .replace("rp. ", "")
                 .replace("rp ", "")
                 .replace("rp.", "")
                 .replace("rp", "")
                 .replace(".000", "000")
-                .replace(".00", "");
-        future_value = future_value.replace("rp. ", "")
+                .replace(".00", "")
+                .replace(".0", "");
+        future_value = future_value.toLowerCase()
+                .replace(",-", "")
+                .replace(",", "")
+                .replace("rp. ", "")
                 .replace("rp ", "")
                 .replace("rp.", "")
                 .replace("rp", "")
                 .replace(".000", "000")
-                .replace(".00", "");
+                .replace(".00", "")
+                .replace(".0", "");
         TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "investasi");
         TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "tabungan");
 

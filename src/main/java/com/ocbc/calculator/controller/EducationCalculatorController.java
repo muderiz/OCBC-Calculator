@@ -68,13 +68,16 @@ public class EducationCalculatorController {
             }
         }
 
-        value = value.toLowerCase().replace(",", "")
+        value = value.toLowerCase()
+                .replace(",-", "")
+                .replace(",", "")
                 .replace("rp. ", "")
                 .replace("rp ", "")
                 .replace("rp.", "")
                 .replace("rp", "")
                 .replace(".000", "000")
-                .replace(".00", "");
+                .replace(".00", "")
+                .replace(".0", "");
         TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "investasi");
         TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "tabungan");
 
@@ -139,13 +142,16 @@ public class EducationCalculatorController {
             }
         }
 
-         value = value.toLowerCase().replace(",", "")
+        value = value.toLowerCase()
+                .replace(",-", "")
+                .replace(",", "")
                 .replace("rp. ", "")
                 .replace("rp ", "")
                 .replace("rp.", "")
                 .replace("rp", "")
                 .replace(".000", "000")
-                .replace(".00", "");
+                .replace(".00", "")
+                .replace(".0", "");
         TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "investasi");
         TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "tabungan");
 
