@@ -46,7 +46,6 @@ public class EducationCalculatorController {
             @PathVariable String value,
             @PathVariable String name,
             @PathVariable int risk_profile_id) throws IOException {
-//        ObjectMapper mapper = new ObjectMapper();
         String note;
         if (risk_profile_id == 0) {
             note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
@@ -69,23 +68,18 @@ public class EducationCalculatorController {
             }
         }
 
-        value = value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
-//        String[] splitvalue = value.split(".");
-//        String newvalue = splitvalue[0];
+        value = value.toLowerCase().replace(",", "")
+                .replace("rp. ", "")
+                .replace("rp ", "")
+                .replace("rp.", "")
+                .replace("rp", "")
+                .replace(".000", "000")
+                .replace(".00", "");
         TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "investasi");
         TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "tabungan");
 
-//        String value_country = "";
-//        String nama = "";
-//        for (Country country1 : listCountry) {
-//            value_country = country1.value;
-//            nama = country1.text;
-//            if(value_country == country){
-//                
-//            }
-//        }
         DecimalFormat decimalFormat = new DecimalFormat("");
-//        String newvalue = decimalFormat.format(Double.parseDouble(value));
+        String newvalue = decimalFormat.format(Double.parseDouble(value));
         String newfuturevalue = decimalFormat.format(Double.parseDouble(respInvestasi.Target_Amount));
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
@@ -100,7 +94,7 @@ public class EducationCalculatorController {
         model.addAttribute("age", age);
         model.addAttribute("country", countryname);
         model.addAttribute("valuecountry", country);
-        model.addAttribute("value", value);
+        model.addAttribute("value", newvalue);
         model.addAttribute("name", name);
         model.addAttribute("listCountry", listCountry);
         model.addAttribute("note", note);
@@ -145,23 +139,18 @@ public class EducationCalculatorController {
             }
         }
 
-       value = value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
-        String[] splitvalue = value.split(".");
-        String newvalue = splitvalue[0];
-        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "tabungan");
+         value = value.toLowerCase().replace(",", "")
+                .replace("rp. ", "")
+                .replace("rp ", "")
+                .replace("rp.", "")
+                .replace("rp", "")
+                .replace(".000", "000")
+                .replace(".00", "");
+        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "tabungan");
 
-//        String value_country = "";
-//        String nama = "";
-//        for (Country country1 : listCountry) {
-//            value_country = country1.value;
-//            nama = country1.text;
-//            if(value_country == country){
-//                
-//            }
-//        }
         DecimalFormat decimalFormat = new DecimalFormat("");
-//        String newvalue = decimalFormat.format(Double.parseDouble(value));
+        String newvalue = decimalFormat.format(Double.parseDouble(value));
         String newfuturevalue = decimalFormat.format(Double.parseDouble(respInvestasi.Target_Amount));
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));

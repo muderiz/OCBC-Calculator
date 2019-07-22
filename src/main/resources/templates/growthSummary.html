@@ -27,12 +27,16 @@
                     </div>
 
                     <div class="calcInput">
-                        <input id="type" type="hidden" th:value="${type}"/>
                         <input id="idchannel" type="hidden" th:value="${idchannel}"/>
+                        <input id="type" type="hidden" th:value="${type}"/>
+                        <input id="name" type="hidden" th:value="${name}"/>
+                        <input id="risk_profile_id" type="hidden" th:value="${risk_profile_id}"/>
                         <input id="lifegoal" type="hidden" value="growth"/>
                         <input id="refID" type="hidden" th:value="${refID}"/>
+                        <input id="firstamount" type="hidden" th:value="${newamount}"/>
+                        <input id="firsttenor" type="hidden" th:value="${tenor}"/>
                         <div class="formRow error">
-                            <input id="amount" type="text" class="inputnum currency i1" th:value="${amount}" inputmode="numeric" pattern="[0-9]*" required>
+                            <input id="amount" type="text" class="inputnum currency i1" th:value="${newamount}" inputmode="numeric" pattern="[0-9]*" required>
                                 <div class="left">Rp</div>
                                 <div class="right"><span th:text="${typeDesc}"></div>
                         </div>
@@ -50,27 +54,35 @@
                     </div>
                     <div class="calcResult">
                         <div class="text-center">
-                            <p th:inline="text">Dengan <b>[[${amount}]]</b> [[${typeDesc}]]
+                            <p th:inline="text">Dengan Rp. <b>[[${newamount}]]</b> [[${typeDesc}]]
                                 <br>
-                                    selama [[${tenor}]] tahun :
+                                    selama <b>[[${tenor}]]</b> tahun :
                             </p>
-                        </div>
+                        </div>  
 
                         <div class="resultGraph ">
                             <div class="infoCol left">
                                 <div class="row title"><span>Tabungan</span></div>
                                 <div class="row desc">Pertumbuhan Hingga</div>
-                                <div class="row value"><span id="tabunganResult" th:text="${tabungan.Result}"/></div>
-                                <div class="row value"></div>
-                                <div class="row note">(<span id="tabunganRate" th:text="${tabungan.Rate}"/> laba per tahun)</div>
+                                <div class="validRC">
+                                    <div class="row value">Rp. <span id="tabunganResult" th:text="${tabunganResult}"/></div>
+                                    <div class="row value"></div>
+                                    <div class="row note">(<span id="tabunganRate" th:text="${tabunganRate}"/> laba per tahun)</div>
+                                </div>
+                                <br>
+                                    <div id="errorRc" class="errorRc"><b><span th:text="${rcdescerror8}"/></b></div>
                             </div>
 
                             <div class="infoCol right">
                                 <div class="row title"><span>Investasi</span></div>
                                 <div class="row desc">Pertumbuhan Hingga</div>
-                                <div class="row value"><span id="investasiResult" th:text="${investasi.Result}"/></div>
-                                <div class="row value"></div>
-                                <div class="row note">(<span id="investasiRate" th:text="${investasi.Rate}"/> laba per tahun)</div>
+                                <div class="validRC">
+                                    <div class="row value">Rp. <span id="investasiResult" th:text="${investasiResult}"/></div>
+                                    <div class="row value"></div>
+                                    <div class="row note">(<span id="investasiRate" th:text="${investasiRate}"/> laba per tahun)</div>
+                                </div>
+                                <br>
+                                    <div id="errorRc" class="errorRc"><b><span th:text="${rcdescerror8}"/></b></div>
                             </div>
 
                             <img class="graphBG" th:src="@{/images/graph1.png}" />
@@ -78,11 +90,12 @@
                         </div>
 
                         <div class="text-center">
-                            *Estimasi laba telah disesuaikan dengan profil risiko Dewi: <b>Balance</b>.
+                            <i><span th:text="${note}">.</i>
                             <br/> <br/>
 
-                            <button class="onBtn grey bordered">Ganti Life Goal</button>
-                            <button id="btnLanjut" class="onBtn" >Goal Sudah Sesuai</button>
+                            <button id="btnSubmitOthers" class="onBtn grey bordered">Ganti Life Goal</button>
+                            <button id="btnSubmit" class="onBtn"  >Goal Sudah Sesuai</button>
+                            <div id="alertHitung" class="errorMsgHitung" >Silahkan Lakukan Hitung Ulang Terlebih Dahulu</div>
                         </div>
                     </div>
                 </div>

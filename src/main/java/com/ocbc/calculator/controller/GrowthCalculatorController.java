@@ -60,14 +60,19 @@ public class GrowthCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-        amount = amount.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
-//        String[] splitamount = amount.split(".");
-//        String newamount = splitamount[0];
+        amount = amount.toLowerCase()
+                .replace(",", "")
+                .replace("rp. ", "")
+                .replace("rp ", "")
+                .replace("rp.", "")
+                .replace("rp", "")
+                .replace(".000", "000")
+                .replace(".00", "");
         FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "investasi");
         FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "tabungan");
 
         DecimalFormat decimalFormat = new DecimalFormat("");
-//        String newamount = decimalFormat.format(Double.parseDouble(amount));
+        String newamount = decimalFormat.format(Double.parseDouble(amount));
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
@@ -79,7 +84,7 @@ public class GrowthCalculatorController {
         model.addAttribute("tabunganRate", respTabungan.Rate);
         model.addAttribute("typeDesc", typeDesc);
         model.addAttribute("note", note);
-        model.addAttribute("newamount", amount);
+        model.addAttribute("newamount", newamount);
         model.addAttribute("idchannel", appProp.IdLiveChat);
 //        model.addAttribute("rc", "0");
         model.addAttribute("rc", respInvestasi.RC);
@@ -116,14 +121,19 @@ public class GrowthCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-        amount = amount.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
-        String[] splitamount = amount.split(".");
-        String newamount = splitamount[0];
-        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "investasi");
-        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "tabungan");
+        amount = amount.toLowerCase()
+                .replace(",", "")
+                .replace("rp. ", "")
+                .replace("rp ", "")
+                .replace("rp.", "")
+                .replace("rp", "")
+                .replace(".000", "000")
+                .replace(".00", "");
+        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "investasi");
+        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "tabungan");
 
         DecimalFormat decimalFormat = new DecimalFormat("");
-//        String newamount = decimalFormat.format(Double.parseDouble(amount));
+        String newamount = decimalFormat.format(Double.parseDouble(amount));
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
@@ -137,11 +147,12 @@ public class GrowthCalculatorController {
         model.addAttribute("note", note);
         model.addAttribute("newamount", newamount);
         model.addAttribute("idchannel", appProp.IdLiveChat);
-//        model.addAttribute("rcgrowth", "0");
-        model.addAttribute("rcgrowth", respInvestasi.RC);
-//        model.addAttribute("rcdescgrowth", "Atribut <Investment_Amount> bernilai negatif.");
-        model.addAttribute("rcdescgrowth", respInvestasi.rc_description);
+//        model.addAttribute("rc", "0");
+        model.addAttribute("rc", respInvestasi.RC);
+//        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
+        model.addAttribute("rcdesc", respInvestasi.rc_description);
         model.addAttribute("rcdescerror8", appProp.response8);
+
         return "growthSummary";
     }
 
