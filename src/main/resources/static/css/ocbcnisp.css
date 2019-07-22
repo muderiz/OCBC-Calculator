@@ -12,6 +12,7 @@
 .ocbc_webview_content{position:absolute; background:#eee; height:95%; bottom:0; left:0; right:0;}
 
 .ocbc_webview .onBtn{background-color:#00A2A3; font-weight:bold; margin: 0 3px; font-size:11px; color:#fff; display:inline-block; text-align:center; border:0; border-radius:5px;  padding:6px 12px; vertical-align:middle}
+/*.ocbc_webview .onBtnHitung{background-color:#00A2A3; font-weight:bold; margin: 0 3px; font-size:11px; color:#fff; display:inline-block; text-align:center; border:0; border-radius:5px;  padding:6px 12px; vertical-align:middle}*/
 .ocbc_webview .onBtn.grey{background-color:#eee; color:#555;} .ocbc_webview .onBtn.grey.bordered{border:1px solid #777;}
 .ocbc_webview .onBtn.white{background-color:#fff; color:#555;} .ocbc_webview .onBtn.white.bordered{border:1px solid #555;}
 .ocbc_webview .onBtn.disabled{opacity:.5;}
@@ -69,8 +70,11 @@
 .calcInput .formRow .left{float:left; padding-left:10px;}
 .calcInput .formRow .right{float:right; padding-right:30px;}
 
-.calcInput .formRow.error{border:1px solid #dd4b39; padding-bottom:20px;}
+.calcInput .formRow.error{margin:10px 0;background:#fff; position:relative; border-radius:4px;}
+.calcInput .formRow.error2{margin:10px 0;background:#fff; position:relative; border-radius:4px;}
+/*.calcInput .formRow.error{border:1px solid #dd4b39; padding-bottom:20px;}*/
 .calcInput .errorMsg{clear:both; color:#dd4b39; width:100%; margin-top:-7px; padding:0 10px; text-align:right; display: block;}
+.calcInput .errorMsg2{clear:both; color:#dd4b39; width:100%; margin-top:-7px; padding:0 10px; text-align:right; display: block;}
 .calcInput .errorMsgTenor{clear:both; color:#dd4b39; width:100%; margin-top:-7px; padding:0 10px; text-align:right; display: block;}
 .calcInput .errorMsgHitung{clear:both; color:#dd4b39; width:100%; margin-top:-7px; padding:0 10px; text-align:right; display: block;}
 

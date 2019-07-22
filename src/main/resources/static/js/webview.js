@@ -96,10 +96,11 @@ $(function () {
     var firstage = $("#firstage").val();
     var firstcountry = $("#firstnamecountry").val();
     var secondamount = $("#secondamount").val();
-//    var rc = 2;
     var rc = $("#rc").val();
     var rcdesc = $("#rcdesc").val();
 
+    $('.calcInput .errorMsg').hide();
+    $('.calcInput .errorMsg2').hide();
     $('.calcInput .errorMsgTenor').hide();
     $('.calcResult .errorMsgHitung').hide();
     $('.errorRc').hide();
@@ -156,7 +157,6 @@ $(function () {
     });
 
     $('#countrySelect').on('change', function () {
-
         var cvalue = $('option:selected').val();
         $('#countryValue').val(cvalue);
 
@@ -186,6 +186,16 @@ $(function () {
     });
 
     $('input.inputnum').on('keyup input', function (event) {
+        if ($(this).val() == 0) {
+            $('.calcInput .formRow.error').css('border', '2px solid #dd4b39').css('padding-bottom', '20px');
+            $('.calcInput .errorMsg').show();
+            $('#hitungUlang').attr('disabled', true).css('opacity', '.5');
+
+        } else {
+            $('.calcInput .formRow.error').css('border', '').css('padding-bottom', '');
+            $('.calcInput .errorMsg').hide();
+            $('#hitungUlang').attr('disabled', false).css('opacity', '1');
+        }
         if ($(this).val() == firstamount && $('#tenor').val() == firsttenor) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
@@ -203,6 +213,11 @@ $(function () {
 
 
     $('input.inputnumtenor').on('keyup input', function (event) {
+        if ($(this).val() == 0) {
+            $('#hitungUlang').attr('disabled', true).css('opacity', '.5');
+        } else {
+            $('#hitungUlang').attr('disabled', false).css('opacity', '1');
+        }
         if ($(this).val() == firsttenor && $('#amount').val() == firstamount) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
@@ -233,6 +248,11 @@ $(function () {
     });
 
     $('input.inputnumtenorEtc').on('keyup input', function (event) {
+        if ($(this).val() == 0) {
+            $('#hitungUlang').attr('disabled', true).css('opacity', '.5');
+        } else {
+            $('#hitungUlang').attr('disabled', false).css('opacity', '1');
+        }
         if ($(this).val() == firsttenor && $('#dana_sekarang').val() == secondamount && $('#target_dana').val() == firstamount) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
@@ -263,6 +283,11 @@ $(function () {
     });
 
     $('input.inputnumage').on('keyup input', function (event) {
+        if ($(this).val() == 0) {
+            $('#hitungUlang').attr('disabled', true).css('opacity', '.5');
+        } else {
+            $('#hitungUlang').attr('disabled', false).css('opacity', '1');
+        }
         if ($(this).val() == firstage && $('#dana').val() == firstamount && $('#countryValue').val() == firstcountry) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
@@ -292,6 +317,7 @@ $(function () {
 
     $('input.currency').on('keyup input', function (event) {
 
+
         if (event.which >= 37 && event.which <= 40)
             return;
 
@@ -304,6 +330,15 @@ $(function () {
     });
 
     $('input.inputnum2').on('keyup input', function (event) {
+        if ($(this).val() == 0) {
+            $('.calcInput .formRow.error').css('border', '2px solid #dd4b39').css('padding-bottom', '20px');
+            $('.calcInput .errorMsg').show();
+            $('#hitungUlang').attr('disabled', true).css('opacity', '.5');
+        } else {
+            $('.calcInput .formRow.error').css('border', '').css('padding-bottom', '');
+            $('.calcInput .errorMsg').hide();
+            $('#hitungUlang').attr('disabled', false).css('opacity', '1');
+        }
         if ($(this).val() == firstamount && $('#jangka_waktu').val() == firsttenor && $('#dana_sekarang').val() == secondamount) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
@@ -327,6 +362,27 @@ $(function () {
     });
 
     $('input.inputnum3').on('keyup input', function (event) {
+        $(this).val(function (index, value) {
+            return value
+                    .replace(/^0+/, '')
+                    .replace(/\D/g, "")
+                    .replace(/^0+/, '');
+        });
+        if (event.which >= 37 && event.which <= 40)
+            return;
+
+        $(this).val(function (index, value) {
+            return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        });
+        if ($(this).val() == 0) {
+            $('.calcInput .formRow.error2').css('border', '2px solid #dd4b39').css('padding-bottom', '20px');
+            $('.calcInput .errorMsg2').show();
+            $('#hitungUlang').attr('disabled', true).css('opacity', '.5');
+        } else {
+            $('.calcInput .formRow.error2').css('border', '').css('padding-bottom', '');
+            $('.calcInput .errorMsg2').hide();
+            $('#hitungUlang').attr('disabled', false).css('opacity', '1');
+        }
         if ($(this).val() == secondamount && $('#jangka_waktu').val() == firsttenor && $('#target_dana').val() == firstamount) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
@@ -334,6 +390,8 @@ $(function () {
             $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
         }
+    });
+    $('input.inputnum4').on('keyup input', function (event) {
         $(this).val(function (index, value) {
             return value
                     .replace(/^0+/, '')
@@ -346,8 +404,17 @@ $(function () {
         $(this).val(function (index, value) {
             return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         });
-    });
-    $('input.inputnum4').on('keyup input', function (event) {
+
+        if ($(this).val() == 0) {
+            $('.calcInput .formRow.error').css('border', '2px solid #dd4b39').css('padding-bottom', '20px');
+            $('.calcInput .errorMsg').show();
+            $('#hitungUlang').attr('disabled', true).css('opacity', '.5');
+        } else {
+            $('.calcInput .formRow.error').css('border', '').css('padding-bottom', '');
+            $('.calcInput .errorMsg').hide();
+            $('#hitungUlang').attr('disabled', false).css('opacity', '1');
+        }
+
         if ($(this).val() == firstamount && $('#age').val() == firstage && $('#countryValue').val() == firstcountry) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
@@ -355,18 +422,8 @@ $(function () {
             $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
         }
-        $(this).val(function (index, value) {
-            return value
-                    .replace(/^0+/, '')
-                    .replace(/\D/g, "")
-                    .replace(/^0+/, '');
-        });
-        if (event.which >= 37 && event.which <= 40)
-            return;
 
-        $(this).val(function (index, value) {
-            return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        });
+
     });
 
     $('#check_tnc').on('click', function () {

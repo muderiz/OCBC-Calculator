@@ -55,11 +55,11 @@
                         </div>
                         <div class="errorMsg">Pastikan data yang kamu isi sudah benar</div>
 
-                        <div class="formRow">
-                            <input id="dana_sekarang" type="text" class="inputnum3 currency i6" th:value="${dana_sekarang}" inputmode="numeric" pattern="[0-9]*" required/>
+                        <div class="formRow error2">
+                            <input id="dana_sekarang" type="text" class="inputnum3 i6" th:value="${dana_sekarang}" inputmode="numeric" pattern="[0-9]*" required/>
                             <div class="left">Dana tersedia <b>Rp</b></div>
                         </div>
-
+                        <div class="errorMsg2">Pastikan data yang kamu isi sudah benar</div>
                         <div class="formRow">
                             <input id="jangka_waktu" type="text" class="inputnumtenorEtc i2" th:value="${jangka_waktu}" inputmode="numeric" maxlength="2" pattern="[0-9]*" required/>
                             <div class="left">Jangka Waktu</div>

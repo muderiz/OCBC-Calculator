@@ -48,18 +48,18 @@ public class GrowthCalculatorController {
 
         if (type.equalsIgnoreCase("0")) {
             typeDesc = "per bulan";
-            type = "true";
+            type = "false";
         } else {
             typeDesc = "per lumpsum";
-            type = "false";
+            type = "true";
         }
 
         if (risk_profile_id == 0) {
-//        if (1 == 0) {
             note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
+        
         amount = amount.toLowerCase()
                 .replace(",-", "")
                 .replace(",", "")
@@ -111,10 +111,10 @@ public class GrowthCalculatorController {
 
         if (type.equalsIgnoreCase("0")) {
             typeDesc = "per bulan";
-            type = "true";
+            type = "false";
         } else {
             typeDesc = "per lumpsum";
-            type = "false";
+            type = "true";
         }
 
 //        if (risk_profile_id == 0) {
