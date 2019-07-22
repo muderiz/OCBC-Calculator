@@ -6,13 +6,11 @@
 package com.ocbc.calculator.controller;
 
 import com.ocbc.calculator.model.AppProperties;
-import com.ocbc.calculator.model.Country;
 import com.ocbc.calculator.model.TargetValueResponse;
 import com.ocbc.calculator.services.CalculatorServices;
 import com.ocbc.calculator.services.ParamJSONServices;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,14 +52,18 @@ public class EtcCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-        present_value = present_value.replace(",", "");
-        future_value = future_value.replace(",", "");
-        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "tabungan");
+        present_value = present_value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
+        future_value = future_value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
+        String[] splitpresent_value = present_value.split(".");
+        String[] splitfuture_value = future_value.split(".");
+        String newpresentvalue = splitpresent_value[0];
+        String newfuturevalue = splitfuture_value[0];
+        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "tabungan");
 
         DecimalFormat decimalFormat = new DecimalFormat("");
-        String newpresentvalue = decimalFormat.format(Double.parseDouble(present_value));
-        String newfuturevalue = decimalFormat.format(Double.parseDouble(future_value));
+//        String newpresentvalue = decimalFormat.format(Double.parseDouble(present_value));
+//        String newfuturevalue = decimalFormat.format(Double.parseDouble(future_value));
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
@@ -79,10 +81,10 @@ public class EtcCalculatorController {
         model.addAttribute("name", name);
         model.addAttribute("note", note);
         model.addAttribute("idchannel", appProp.IdLiveChat);
-        model.addAttribute("rc", "2");
-//        model.addAttribute("rc", respInvestasi.RC);
-        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
-//        model.addAttribute("rcdesc", respInvestasi.rc_description);
+//        model.addAttribute("rc", "2");
+        model.addAttribute("rc", respInvestasi.RC);
+//        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
+        model.addAttribute("rcdesc", respInvestasi.rc_description);
         model.addAttribute("rcdescerror10", appProp.response10);
 
         return "etc";
@@ -100,19 +102,23 @@ public class EtcCalculatorController {
             @PathVariable int risk_profile_id) throws IOException {
 
         String note;
-        if (risk_profile_id == 0) {  
+        if (risk_profile_id == 0) {
             note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
         present_value = present_value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
         future_value = future_value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
-        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "tabungan");
+        String[] splitpresent_value = present_value.split(".");
+        String[] splitfuture_value = future_value.split(".");
+        String newpresentvalue = splitpresent_value[0];
+        String newfuturevalue = splitfuture_value[0];
+        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "tabungan");
 
         DecimalFormat decimalFormat = new DecimalFormat("");
-        String newpresentvalue = decimalFormat.format(Double.parseDouble(present_value));
-        String newfuturevalue = decimalFormat.format(Double.parseDouble(future_value));
+//        String newpresentvalue = decimalFormat.format(Double.parseDouble(present_value));
+//        String newfuturevalue = decimalFormat.format(Double.parseDouble(future_value));
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 

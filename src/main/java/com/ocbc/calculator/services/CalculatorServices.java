@@ -94,11 +94,11 @@ public class CalculatorServices {
         TargetValueRequest targetValueRequest = new TargetValueRequest();
         targetValueRequest.Channel_ID = appProp.Channel_ID;
         targetValueRequest.Children_Age = age;
-        targetValueRequest.Country = country;
+        targetValueRequest.EC_ID = country;
         targetValueRequest.Due_Date = 0;
         targetValueRequest.Ext_Reff_ID = refID;
         targetValueRequest.Pre_Calculated_Future_Value = "0";
-        targetValueRequest.Present_Value = value;
+        targetValueRequest.Initial_Amount = value;
         targetValueRequest.Product_ID = "0";
         targetValueRequest.Risk_Profile_ID = risk_profile_id + "";
 
@@ -145,11 +145,11 @@ public class CalculatorServices {
         TargetValueRequest targetValueRequest = new TargetValueRequest();
         targetValueRequest.Channel_ID = appProp.Channel_ID;
         targetValueRequest.Children_Age = "0";
-        targetValueRequest.Country = "";
+        targetValueRequest.EC_ID = "";
         targetValueRequest.Due_Date = 0;
         targetValueRequest.Ext_Reff_ID = refID;
         targetValueRequest.Pre_Calculated_Future_Value = future_value;
-        targetValueRequest.Present_Value = present_value;
+        targetValueRequest.Initial_Amount = present_value;
         targetValueRequest.Product_ID = "0";
         targetValueRequest.Risk_Profile_ID = risk_profile_id + "";
         targetValueRequest.Tenor = tenor;

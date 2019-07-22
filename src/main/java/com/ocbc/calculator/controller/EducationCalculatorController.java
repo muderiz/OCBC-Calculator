@@ -5,7 +5,6 @@
  */
 package com.ocbc.calculator.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ocbc.calculator.model.AppProperties;
 import com.ocbc.calculator.model.Country;
 import com.ocbc.calculator.model.TargetValueResponse;
@@ -14,8 +13,6 @@ import com.ocbc.calculator.services.ParamJSONServices;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
-import jdk.nashorn.internal.parser.JSONParser;
-import jdk.nashorn.internal.runtime.JSONFunctions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,8 +70,10 @@ public class EducationCalculatorController {
         }
 
         value = value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
-        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "tabungan");
+        String[] splitvalue = value.split(".");
+        String newvalue = splitvalue[0];
+        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "tabungan");
 
 //        String value_country = "";
 //        String nama = "";
@@ -86,7 +85,7 @@ public class EducationCalculatorController {
 //            }
 //        }
         DecimalFormat decimalFormat = new DecimalFormat("");
-        String newvalue = decimalFormat.format(Double.parseDouble(value));
+//        String newvalue = decimalFormat.format(Double.parseDouble(value));
         String newfuturevalue = decimalFormat.format(Double.parseDouble(respInvestasi.Target_Amount));
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
@@ -146,9 +145,11 @@ public class EducationCalculatorController {
             }
         }
 
-        value = value.replace(",", "");
-        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "tabungan");
+       value = value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
+        String[] splitvalue = value.split(".");
+        String newvalue = splitvalue[0];
+        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "tabungan");
 
 //        String value_country = "";
 //        String nama = "";
@@ -160,7 +161,7 @@ public class EducationCalculatorController {
 //            }
 //        }
         DecimalFormat decimalFormat = new DecimalFormat("");
-        String newvalue = decimalFormat.format(Double.parseDouble(value));
+//        String newvalue = decimalFormat.format(Double.parseDouble(value));
         String newfuturevalue = decimalFormat.format(Double.parseDouble(respInvestasi.Target_Amount));
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
@@ -180,10 +181,10 @@ public class EducationCalculatorController {
         model.addAttribute("listCountry", listCountry);
         model.addAttribute("note", note);
         model.addAttribute("idchannel", appProp.IdLiveChat);
-        model.addAttribute("rc", "0");
-//        model.addAttribute("rc", respInvestasi.RC);
-        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
-//        model.addAttribute("rcdesc", respInvestasi.rc_description);
+//        model.addAttribute("rc", "0");
+        model.addAttribute("rc", respInvestasi.RC);
+//        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
+        model.addAttribute("rcdesc", respInvestasi.rc_description);
         model.addAttribute("rcdescerror10", appProp.response10);
 
         return "pendidikanSummary";

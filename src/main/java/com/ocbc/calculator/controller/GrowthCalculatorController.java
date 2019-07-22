@@ -61,11 +61,13 @@ public class GrowthCalculatorController {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
         amount = amount.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
-        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "investasi");
-        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "tabungan");
+        String[] splitamount = amount.split(".");
+        String newamount = splitamount[0];
+        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "investasi");
+        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "tabungan");
 
         DecimalFormat decimalFormat = new DecimalFormat("");
-        String newamount = decimalFormat.format(Double.parseDouble(amount));
+//        String newamount = decimalFormat.format(Double.parseDouble(amount));
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
@@ -114,12 +116,14 @@ public class GrowthCalculatorController {
         } else {
             note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
         }
-        amount = amount.replace(",", "");
-        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "investasi");
-        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, amount, type, tenor, risk_profile_id, "tabungan");
+        amount = amount.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
+        String[] splitamount = amount.split(".");
+        String newamount = splitamount[0];
+        FutureValueResponse respInvestasi = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "investasi");
+        FutureValueResponse respTabungan = calculatorServices.calculateGrowth(refID, newamount, type, tenor, risk_profile_id, "tabungan");
 
         DecimalFormat decimalFormat = new DecimalFormat("");
-        String newamount = decimalFormat.format(Double.parseDouble(amount));
+//        String newamount = decimalFormat.format(Double.parseDouble(amount));
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
