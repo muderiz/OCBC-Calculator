@@ -54,12 +54,12 @@ public class EtcCalculatorController {
         }
         present_value = present_value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
         future_value = future_value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
-        String[] splitpresent_value = present_value.split(".");
-        String[] splitfuture_value = future_value.split(".");
-        String newpresentvalue = splitpresent_value[0];
-        String newfuturevalue = splitfuture_value[0];
-        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, newpresentvalue, newfuturevalue, tenor, risk_profile_id, "tabungan");
+//        String[] splitpresent_value = present_value.split(".");
+//        String[] splitfuture_value = future_value.split(".");
+//        String newpresentvalue = splitpresent_value[0];
+//        String newfuturevalue = splitfuture_value[0];
+        TargetValueResponse respInvestasi = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEtc(refID, present_value, future_value, tenor, risk_profile_id, "tabungan");
 
         DecimalFormat decimalFormat = new DecimalFormat("");
 //        String newpresentvalue = decimalFormat.format(Double.parseDouble(present_value));
@@ -74,8 +74,8 @@ public class EtcCalculatorController {
         model.addAttribute("tabunganResult", tabungResult);
         model.addAttribute("tabungan", respTabungan);
         model.addAttribute("tabunganRate", respTabungan.Rate);
-        model.addAttribute("target_dana", newfuturevalue);
-        model.addAttribute("dana_sekarang", newpresentvalue);
+        model.addAttribute("target_dana", future_value);
+        model.addAttribute("dana_sekarang", present_value);
         model.addAttribute("jangka_waktu", tenor);
         model.addAttribute("goals", goals);
         model.addAttribute("name", name);

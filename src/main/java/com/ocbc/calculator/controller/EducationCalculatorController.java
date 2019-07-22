@@ -70,10 +70,10 @@ public class EducationCalculatorController {
         }
 
         value = value.toLowerCase().replace(",", "").replace("rp.", "").replace("rp", "");
-        String[] splitvalue = value.split(".");
-        String newvalue = splitvalue[0];
-        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "investasi");
-        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, newvalue, risk_profile_id, "tabungan");
+//        String[] splitvalue = value.split(".");
+//        String newvalue = splitvalue[0];
+        TargetValueResponse respInvestasi = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "investasi");
+        TargetValueResponse respTabungan = calculatorServices.calculateEducation(refID, age, country, value, risk_profile_id, "tabungan");
 
 //        String value_country = "";
 //        String nama = "";
@@ -100,7 +100,7 @@ public class EducationCalculatorController {
         model.addAttribute("age", age);
         model.addAttribute("country", countryname);
         model.addAttribute("valuecountry", country);
-        model.addAttribute("value", newvalue);
+        model.addAttribute("value", value);
         model.addAttribute("name", name);
         model.addAttribute("listCountry", listCountry);
         model.addAttribute("note", note);
