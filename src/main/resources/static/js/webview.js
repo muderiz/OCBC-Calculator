@@ -108,6 +108,7 @@ $(function () {
 
 
     $(window).load(function () {
+
         switch (lifegoal) {
             case "growth":
                 if (parseInt(rc) > 0 && parseInt(rc) < 8 || parseInt(rc) == 99) {
@@ -324,6 +325,19 @@ $(function () {
     });
 
     $('input.inputnum2').on('keyup input', function (event) {
+        $(this).val(function (index, value) {
+            return value
+                    .replace(/^0+/, '')
+                    .replace(/\D/g, "")
+                    .replace(/^0+/, '');
+        });
+        if (event.which >= 37 && event.which <= 40) {
+            return;
+        }
+
+        $(this).val(function (index, value) {
+            return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        });
         if ($(this).val() == 0) {
             $('.calcInput .formRow.error').css('border', '1px solid #dd4b39').css('padding-bottom', '20px');
             $('.calcInput .errorMsg').show();
@@ -340,18 +354,7 @@ $(function () {
             $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
         }
-        $(this).val(function (index, value) {
-            return value
-                    .replace(/^0+/, '')
-                    .replace(/\D/g, "")
-                    .replace(/^0+/, '');
-        });
-        if (event.which >= 37 && event.which <= 40)
-            return;
 
-        $(this).val(function (index, value) {
-            return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        });
 
     });
 
@@ -362,8 +365,9 @@ $(function () {
                     .replace(/\D/g, "")
                     .replace(/^0+/, '');
         });
-        if (event.which >= 37 && event.which <= 40)
+        if (event.which >= 37 && event.which <= 40) {
             return;
+        }
 
         $(this).val(function (index, value) {
             return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");

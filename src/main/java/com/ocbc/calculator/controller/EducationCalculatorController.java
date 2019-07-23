@@ -47,9 +47,6 @@ public class EducationCalculatorController {
             @PathVariable String name,
             @PathVariable int risk_profile_id) throws IOException {
         String note;
-        if (value.isEmpty()) {
-            value = "";
-        }
         if (risk_profile_id == 0) {
             note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
         } else {
