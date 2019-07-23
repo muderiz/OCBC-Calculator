@@ -98,7 +98,7 @@ public class EtcCalculatorController {
 //        model.addAttribute("rc", "2");
         model.addAttribute("rc", respInvestasi.RC);
 //        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
-        model.addAttribute("rcdesc", respInvestasi.rc_description);
+        model.addAttribute("rcdesc", respInvestasi.RC_Description);
         model.addAttribute("rcdescerror10", appProp.response10);
 
         return "etc";
@@ -167,7 +167,7 @@ public class EtcCalculatorController {
 //        model.addAttribute("rc", "2");
         model.addAttribute("rc", respInvestasi.RC);
 //        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
-        model.addAttribute("rcdesc", respInvestasi.rc_description);
+        model.addAttribute("rcdesc", respInvestasi.RC_Description);
         model.addAttribute("rcdescerror10", appProp.response10);
 
         return "etcSummary";

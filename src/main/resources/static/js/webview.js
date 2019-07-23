@@ -108,7 +108,6 @@ $(function () {
 
 
     $(window).load(function () {
-
         switch (lifegoal) {
             case "growth":
                 if (parseInt(rc) > 0 && parseInt(rc) < 8 || parseInt(rc) == 99) {
@@ -209,7 +208,7 @@ $(function () {
         });
     });
 
-
+    
     $('input.inputnumtenor').on('keyup input', function (event) {
         if ($(this).val() == 0) {
             $('#hitungUlang').attr('disabled', true).css('opacity', '.5');

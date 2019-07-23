@@ -91,7 +91,7 @@ public class GrowthCalculatorController {
 //        model.addAttribute("rc", "0");
         model.addAttribute("rc", respInvestasi.RC);
 //        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
-        model.addAttribute("rcdesc", respInvestasi.rc_description);
+        model.addAttribute("rcdesc", respInvestasi.RC_Description);
         model.addAttribute("rcdescerror8", appProp.response8);
 
         return "growth";
@@ -154,7 +154,7 @@ public class GrowthCalculatorController {
 //        model.addAttribute("rc", "0");
         model.addAttribute("rc", respInvestasi.RC);
 //        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
-        model.addAttribute("rcdesc", respInvestasi.rc_description);
+        model.addAttribute("rcdesc", respInvestasi.RC_Description);
         model.addAttribute("rcdescerror8", appProp.response8);
 
         return "growthSummary";

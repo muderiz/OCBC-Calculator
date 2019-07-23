@@ -24,7 +24,7 @@ public class ListProductResponse implements Serializable{
 
     public String Channel_ID;
 
-    public String rc_description;
+    public String RC_Description;
 
     public List<Product> List_Product = new ArrayList<Product>();
 }

@@ -50,7 +50,7 @@ public class DummyAPIController {
         response.Channel_ID = appProperties.Channel_ID;
         response.Ext_Reff_ID = "test123";
         response.RC = "0";
-        response.rc_description = "Success";
+        response.RC_Description = "Success";
 
         Product objProduct = new Product();
         objProduct.Product_Type = "MFB";

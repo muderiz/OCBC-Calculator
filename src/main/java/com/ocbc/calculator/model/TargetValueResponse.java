@@ -18,7 +18,7 @@ public class TargetValueResponse {
     public String Channel_ID;
     public String Ext_Reff_ID;
     public String RC;
-    public String rc_description;
+    public String RC_Description;
     public String Rate;
     public String Target_Amount;
     public String Investment_Type;
@@ -28,7 +28,7 @@ public class TargetValueResponse {
         this.Channel_ID = Channel_ID;
         this.Ext_Reff_ID = Ext_Reff_ID;
         this.RC = RC;
-        this.rc_description = rc_description;
+        this.RC_Description = rc_description;
         this.Rate = Rate;
         this.Target_Amount = Target_Amount;
         this.Investment_Type = Investment_Type;
@@ -37,6 +37,6 @@ public class TargetValueResponse {
 
     @Override
     public String toString() {
-        return "ClassPojo [Ext_Reff_ID = " + Ext_Reff_ID + ", RC = " + RC + ", Rate = " + Rate + ", Final_Future_Value = " + Target_Amount + ", Channel_ID = " + Channel_ID + ", rc_description = " + rc_description + ", Investment_Type = " + Investment_Type + ", Result = " + Result + "]";
+        return "ClassPojo [Ext_Reff_ID = " + Ext_Reff_ID + ", RC = " + RC + ", Rate = " + Rate + ", Final_Future_Value = " + Target_Amount + ", Channel_ID = " + Channel_ID + ", rc_description = " + RC_Description + ", Investment_Type = " + Investment_Type + ", Result = " + Result + "]";
     }
 }

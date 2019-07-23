@@ -20,19 +20,19 @@ public class FutureValueResponse{
         this.RC = RC;
         this.Rate = Rate;
         this.Channel_ID = Channel_ID;
-        this.rc_description = rc_description;
+        this.RC_Description = rc_description;
         this.Result = Result;
     }
     
     public String Channel_ID;
     public String Ext_Reff_ID;
     public String RC;
-    public String rc_description;
+    public String RC_Description;
     public String Rate;
     public String Result;
 
     @Override
     public String toString() {
-        return "ClassPojo [ Channel_ID = " + Channel_ID + ",Ext_Reff_ID = " + Ext_Reff_ID + ", RC = " + RC + ", rc_description = " + rc_description + ",Rate = " + Rate + ",  Result = " + Result + "]";
+        return "ClassPojo [ Channel_ID = " + Channel_ID + ",Ext_Reff_ID = " + Ext_Reff_ID + ", RC = " + RC + ", rc_description = " + RC_Description + ",Rate = " + Rate + ",  Result = " + Result + "]";
     }
 }
