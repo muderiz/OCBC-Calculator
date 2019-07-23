@@ -145,7 +145,7 @@ public class CalculatorServices {
         TargetValueRequest targetValueRequest = new TargetValueRequest();
         targetValueRequest.Channel_ID = appProp.Channel_ID;
         targetValueRequest.Children_Age = "0";
-        targetValueRequest.EC_ID = "";
+        targetValueRequest.EC_ID = "0";
         targetValueRequest.Due_Date = 0;
         targetValueRequest.Ext_Reff_ID = refID;
         targetValueRequest.Pre_Calculated_Future_Value = future_value;
