@@ -50,7 +50,7 @@
                         <input id="firstamount" type="hidden" th:value="${newamount}"/>
                         <input id="firsttenor" type="hidden" th:value="${tenor}"/>
                         <div class="formRow error">
-                            <input id="amount" type="text" class="inputnum currency i1" th:value="${newamount}" inputmode="numeric" pattern="[0-9]*" required>
+                            <input id="amount" type="text" class="inputnum currency i1" th:value="${newamount}" inputmode="numeric" pattern="[0-9]*" required/>
                                 <div class="left">Rp</div>
                                 <div class="right"><span th:text="${typeDesc}"></div>
                         </div>
