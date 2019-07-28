@@ -37,9 +37,10 @@ public class ListProductController {
     // >> /product/refID/123123123/2/2
     // >> /product/refID/123123123/3/2
     // >> /product/refID/123123123/4/2
-    @GetMapping("/{refID}/{amount}/{risk_profile_id}/{tipe}")
+    @GetMapping("/{refID}/{lifegoalid}/{amount}/{risk_profile_id}/{tipe}")
     public String product(Model model,
             @PathVariable String refID,
+            @PathVariable int lifegoalid,
             @PathVariable int amount,
             @PathVariable int risk_profile_id,
             @PathVariable int tipe) throws IOException {
@@ -81,14 +82,18 @@ public class ListProductController {
                 break;
         }
 
+        model.addAttribute("refID", refID);
+        model.addAttribute("lifegoalid", lifegoalid);
         model.addAttribute("listConservative", listConservative);
         model.addAttribute("listBalance", listBalance);
         model.addAttribute("listGrowth", listGrowth);
         model.addAttribute("listAggresive", listAggresive);
+        model.addAttribute("investmenttype", tipe);
         model.addAttribute("risk_profile_id", risk_profile_id);
         model.addAttribute("risk_profile_desc", risk_profile_desc);
         model.addAttribute("idchannel", appProp.IdLiveChat);
 
         return "product";
     }
+
 }

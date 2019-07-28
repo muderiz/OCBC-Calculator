@@ -54,8 +54,20 @@
                                 </td>
                             </tr>
                         </table>
-                        <input id="idchannel" type="hidden" th:value="${idchannel}"/>
+
                         <input id="lifegoal" type="hidden" value="product"/>
+                        <input id="refID" type="hidden" value="refID"/>
+                        <input id="lifegoalid" type="hidden" th:value="${lifegoalid}"/>
+                        <input id="idchannel" type="hidden" th:value="${idchannel}"/>
+                        <input id="investmenttype" type="hidden" th:value="${investmenttype}"/>
+                        <input id="riskprofileid" type="hidden" value="1"/>
+                        <input id="namereksadana" type="hidden" value="1"/>
+                        <input id="averagerate" type="hidden" value="1"/>
+                        <input id="badrate" type="hidden" value="1"/>
+                        <input id="goodrate" type="hidden" value="1"/>
+                        <input id="productid" type="hidden" value="1"/>
+                        <input id="producttype" type="hidden" value="1"/>
+
                     </div>
 
                     <div class="productList_scrollArea">
@@ -65,13 +77,17 @@
                             <div class="product_selection_catTitle type1">
                                 CONSERVATIVE </div>
 
-                            <ul class="productList_container" th:each="conservative: ${listConservative}">
-
-                                <li class="productList type1" >
+                            <ul class="productList_container">
+                                <li class="productList type1" th:each="conservative: ${listConservative}" >
+                                    <input class="namareksa" type="hidden" th:value="${conservative.Product_Name}"/>
+                                    <input class="averagerate" type="hidden" th:value="${conservative.Average_Rate}"/>
+                                    <input class="badrate" type="hidden" th:value="${conservative.Bad_Rate}"/>
+                                    <input class="goodrate" type="hidden" th:value="${conservative.Good_Rate}"/>
+                                    <input class="productid" type="hidden" th:value="${conservative.Product_ID}"/>
+                                    <input class="producttype" type="hidden" th:value="${conservative.Product_Type}"/>
                                     <div class="productBar openTrigger clearfix">
                                         <div class="productBar_cell left">
                                             <span th:text="${conservative.Product_Name}"></span>
-                                            <!--Aberdeen Standar Ind Money Market Lorem Ipsum dolor Sit Amet-->
                                         </div>
 
                                         <div class="productBar_cell right">
@@ -129,7 +145,7 @@
                                             Jenis Reksadana
                                             <b th:text="${conservative.Mutual_Fund_Type_Desc}"></b>
 
-                                            <button class="onBtn btnConservative">PILIH</button>
+                                            <button class="onBtn btnConservative" th:classappend="'testfinal'">PILIH</button>
                                         </div>
 
                                     </div>
@@ -143,9 +159,15 @@
                             <div class="product_selection_catTitle type2">
                                 BALANCE </div>
 
-                            <ul class="productList_container" th:each="balance: ${listBalance}">
+                            <ul class="productList_container" >
 
-                                <li class="productList type1" >
+                                <li class="productList type2" th:each="balance: ${listBalance}">
+                                    <input class="namareksa" type="hidden" th:value="${balance.Product_Name}"/>
+                                    <input class="averagerate" type="hidden" th:value="${balance.Average_Rate}"/>
+                                    <input class="badrate" type="hidden" th:value="${balance.Bad_Rate}"/>
+                                    <input class="goodrate" type="hidden" th:value="${balance.Good_Rate}"/>
+                                    <input class="productid" type="hidden" th:value="${balance.Product_ID}"/>
+                                    <input class="producttype" type="hidden" th:value="${balance.Product_Type}"/>
                                     <div class="productBar openTrigger clearfix">
                                         <div class="productBar_cell left">
                                             <span th:text="${balance.Product_Name}"></span>
@@ -206,7 +228,7 @@
                                             Jenis Reksadana
                                             <b th:text="${balance.Mutual_Fund_Type_Desc}"></b>
 
-                                            <button class="onBtn btnBalance" th:classappend="${risk_profile_id<2} ? 'higherRisk_selection' : ''">PILIH</button>
+                                            <button class="onBtn btnBalance" th:classappend="${risk_profile_id<2} ? 'higherRisk_selection' : 'testfinal'">PILIH</button>
                                         </div>
 
                                     </div>
@@ -220,9 +242,15 @@
                             <div class="product_selection_catTitle type3">
                                 GROWTH </div>
 
-                            <ul class="productList_container" th:each="growth: ${listGrowth}">
+                            <ul class="productList_container" >
 
-                                <li class="productList type1" >
+                                <li class="productList type3" th:each="growth: ${listGrowth}">
+                                    <input class="namareksa" type="hidden" th:value="${growth.Product_Name}"/>
+                                    <input class="averagerate" type="hidden" th:value="${growth.Average_Rate}"/>
+                                    <input class="badrate" type="hidden" th:value="${growth.Bad_Rate}"/>
+                                    <input class="goodrate" type="hidden" th:value="${growth.Good_Rate}"/>
+                                    <input class="productid" type="hidden" th:value="${growth.Product_ID}"/>
+                                    <input class="producttype" type="hidden" th:value="${growth.Product_Type}"/>
                                     <div class="productBar openTrigger clearfix">
                                         <div class="productBar_cell left">
                                             <span th:text="${growth.Product_Name}"></span>
@@ -308,9 +336,15 @@
                                 AGGRESIVE
                             </div>
 
-                            <ul class="productList_container" th:each="aggresive: ${listAggresive}">
+                            <ul class="productList_container" >
 
-                                <li class="productList type1" >
+                                <li class="productList type4" th:each="aggresive: ${listAggresive}" >
+                                    <input class="namareksa" type="hidden" th:value="${aggresive.Product_Name}"/>
+                                    <input class="averagerate" type="hidden" th:value="${aggresive.Average_Rate}"/>
+                                    <input class="badrate" type="hidden" th:value="${aggresive.Bad_Rate}"/>
+                                    <input class="goodrate" type="hidden" th:value="${aggresive.Good_Rate}"/>
+                                    <input class="productid" type="hidden" th:value="${aggresive.Product_ID}"/>
+                                    <input class="producttype" type="hidden" th:value="${aggresive.Product_Type}"/>
                                     <div class="productBar openTrigger clearfix">
                                         <div class="productBar_cell left">
                                             <span th:text="${aggresive.Product_Name}"></span>
@@ -393,7 +427,7 @@
                                 Apakah Dewi yakin ingin melanjutkan dengan produk terpilih?
                                 <br/><br/>
                                 <button id="highRiskConfirm_close" class="onBtn grey">KEMBALI</button>
-                                <button class="onBtn">LANJUTKAN</button>
+                                <button id="highRiskConfirm_next" class="onBtn">LANJUTKAN</button>
                             </div>
                         </div>
                     </div>

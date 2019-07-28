@@ -50,7 +50,7 @@ public class CalculatorServices {
         reqInvestasi.Product_ID = "0";
         reqInvestasi.Risk_Profile_ID = risk_profile_id + "";
         reqInvestasi.Tenor = tenor;
-        
+
         if (risk_profile_id == 0) {
             if (product_type.equalsIgnoreCase("investasi")) {
                 reqInvestasi.Future_Value_Type = "AG";
@@ -80,7 +80,7 @@ public class CalculatorServices {
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();
-        
+
         FutureValueResponse respGrowth = gson.fromJson(response.body().string(), FutureValueResponse.class);
         System.out.println(jsonInvestasi);
         System.out.println(respGrowth);
@@ -111,7 +111,7 @@ public class CalculatorServices {
                 targetValueRequest.Payment_Type = "CE";
             } else {
                 targetValueRequest.Payment_Type = "SV";
-                targetValueRequest.Yearly_Return_Code = "C";
+                targetValueRequest.Yearly_Return_Code = "E";
             }
         } else {
             if (product_type.equalsIgnoreCase("investasi")) {
@@ -120,7 +120,7 @@ public class CalculatorServices {
 
             } else {
                 targetValueRequest.Payment_Type = "SV";
-                targetValueRequest.Yearly_Return_Code = "C";
+                targetValueRequest.Yearly_Return_Code = "E";
             }
         }
 
@@ -221,4 +221,44 @@ public class CalculatorServices {
         return listProductResponse;
     }
 
+    public FutureValueResponse reksadanaGrowth(String refID, String amount, String invest_type, String tenor, int risk_profile_id, String product_type, String product_id) throws IOException {
+
+        FutureValueRequest reqInvestasi = new FutureValueRequest();
+        reqInvestasi.Channel_ID = appProp.Channel_ID;
+        reqInvestasi.Ext_Reff_ID = refID;
+        reqInvestasi.Due_Date = 0;
+        reqInvestasi.Investment_Amount = amount;
+        reqInvestasi.Investment_Type = invest_type;
+        reqInvestasi.Product_ID = product_id;
+        reqInvestasi.Risk_Profile_ID = risk_profile_id + "";
+        reqInvestasi.Tenor = tenor;
+
+        if (product_type.equalsIgnoreCase("TK")) {
+            reqInvestasi.Future_Value_Type = "TK";
+            reqInvestasi.Yearly_Return_Code = "D";
+        } else if (product_type.equalsIgnoreCase("MFA")) {
+            reqInvestasi.Future_Value_Type = "MF";
+            reqInvestasi.Yearly_Return_Code = "E";
+        } else if (product_type.equalsIgnoreCase("MFB")) {
+            reqInvestasi.Future_Value_Type = "MF";
+            reqInvestasi.Yearly_Return_Code = "E";
+        }
+
+        Gson gson = new Gson();
+        String jsonInvestasi = gson.toJson(reqInvestasi);
+        //get result from ocbc api : /Calculator/FutureValue
+        RequestBody body = RequestBody.create(jsonInvestasi, JSON);
+
+        Request request = new Request.Builder()
+                .url(appProp.BASE_URL + appProp.POST_FUTUREVALUE)
+                .post(body)
+                .build();
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        FutureValueResponse respGrowth = gson.fromJson(response.body().string(), FutureValueResponse.class);
+        System.out.println(jsonInvestasi);
+        System.out.println(respGrowth);
+        return respGrowth;
+    }
 }

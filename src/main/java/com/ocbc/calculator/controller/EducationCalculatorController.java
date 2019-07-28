@@ -88,6 +88,7 @@ public class EducationCalculatorController {
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
         model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("targetamount", respInvestasi.Target_Amount);
         model.addAttribute("investasiFinalValue", newfuturevalue);
         model.addAttribute("investasiResult", investResult);
         model.addAttribute("investasiRate", respInvestasi.Rate);

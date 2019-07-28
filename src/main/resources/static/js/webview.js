@@ -35,6 +35,30 @@ function hitungUlang(_lifegoal) {
             var risk_profile_id = $("#risk_profile_id").val();
             window.location.href = "/etc/" + refID + "/" + goals + "/" + name + "/" + dana_sekarang + "/" + target_dana + "/" + tenor + "/" + risk_profile_id;
             break;
+        case "product":
+            var url;
+            var goals = $("#goals").text();
+            var lifegoalid = $("#lifegoalid").val();
+            var namareksa = $("#namereksadana").val();
+            var averagerate = $("#averagerate").val();
+            var badrate = $("#badrate").val();
+            var goodrate = $("#goodrate").val();
+            var amount = $("#amount").val();
+            var tenor = $("#tenor").val();
+            var riskprofileid = $("#riskprofileid").val();
+            var investmenttype = $("#investmenttype").val();
+            var productid = $("#productid").val();
+            var producttype = $("#producttype").val();
+
+            if (lifegoalid == 1) {
+                url = "/productfinal/growth/" + refID + "/" + namareksa + "/" + averagerate + "/" + badrate + "/" + goodrate + "/"
+                        + amount + "/" + tenor + "/" + riskprofileid + "/" + investmenttype + "/" + producttype + "/" + productid;
+            } else {
+                url = "/productfinal/etc/" + refID + "/2/123123123/1/2";
+            }
+
+            window.location.href = url;
+            break;
 
     }
 }
@@ -58,7 +82,8 @@ function submit(_lifegoal) {
             var age = $("#age").val();
             var country = $("#firstvaluecountry").val();
             var value = $("#dana").val();
-            message_in = age + "&" + country + "&" + value + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
+            var targetamount = $("#targetamount").val();
+            message_in = age + "&" + country + "&" + value + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate + "&" + targetamount;
 
             break;
         case "etc":
@@ -88,6 +113,9 @@ function tnc() {
 
     talk(IdChannel, message_in, "Setuju");
 }
+function back() {
+    window.history.back();
+}
 
 $(function () {
     var lifegoal = $("#lifegoal").val();
@@ -105,7 +133,8 @@ $(function () {
     $('.calcResult .errorMsgHitung').hide();
     $('.errorRc').hide();
     $('.ocbc_webview .ocbc_webview_overlay .highRiskConfirm').hide();
-
+    $('#imagelumpsum').hide();
+    $('#imageannual').hide();
 
     $(window).load(function () {
         switch (lifegoal) {
@@ -149,6 +178,18 @@ $(function () {
                 }
 
                 break;
+
+            case "finalgowth":
+                var typedesc = $("#typedesc").val();
+                if (typedesc == "Annual") {
+                    $('#imageannual').show();
+                } else {
+                    $('#imagelumpsum').show();
+                }
+                break;
+            case "finaletc":
+
+                break;
         }
 
     });
@@ -172,6 +213,14 @@ $(function () {
 
     $('#btnSubmit').on('click', function () {
         submit(lifegoal);
+    });
+
+    $('.testfinal').on('click', function () {
+        hitungUlang(lifegoal);
+    });
+
+    $('#gantiproduk').on('click', function () {
+        back();
     });
 
     $('#btnSubmitOthers').on('click', function () {
@@ -208,7 +257,7 @@ $(function () {
         });
     });
 
-    
+
     $('input.inputnumtenor').on('keyup input', function (event) {
         if ($(this).val() == 0) {
             $('#hitungUlang').attr('disabled', true).css('opacity', '.5');
@@ -424,10 +473,6 @@ $(function () {
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
         }
 
-
-
-
-
     });
 
     $('#check_tnc').on('click', function () {
@@ -442,6 +487,9 @@ $(function () {
     $('.ocbc_webview .openTrigger').on('click', function () {
         $('.ocbc_webview .productDetail').slideUp();
         $(this).siblings('.productDetail').slideDown();
+
+
+
     });
 
     $('.ocbc_webview #showAllCat').on('click', function () {
@@ -451,17 +499,89 @@ $(function () {
     });
 
     $('.ocbc_webview .higherRisk_selection').on('click', function () {
-        if ($(this).hasClass('btnBalance'))
+        if ($(this).hasClass('btnBalance')) {
             $('.ocbc_webview #pilihanUser').text('(BALANCE)');
-        else if (($(this).hasClass('btnGrowth')))
+            $('.ocbc_webview .highRiskConfirm').show();
+        } else if (($(this).hasClass('btnGrowth'))) {
             $('.ocbc_webview #pilihanUser').text('(GROWTH)');
-        else if (($(this).hasClass('btnAggresive')))
+            $('.ocbc_webview .highRiskConfirm').show();
+        } else if (($(this).hasClass('btnAggresive'))) {
             $('.ocbc_webview #pilihanUser').text('(AGGRESIVE)');
+            $('.ocbc_webview .highRiskConfirm').show();
 
-        $('.ocbc_webview .highRiskConfirm').show();
+        }
     });
-
     $('.ocbc_webview #highRiskConfirm_close').on('click', function () {
         $('.ocbc_webview .highRiskConfirm').hide();
+    });
+
+    $('.productList.type1').click(function () {
+        var namareksa = $(this).find('input.namareksa').val();
+        var averagerate = $(this).find('input.averagerate').val();
+        var badrate = $(this).find('input.badrate').val();
+        var goodrate = $(this).find('input.goodrate').val();
+        var productid = $(this).find('input.productid').val();
+        var producttype = $(this).find('input.producttype').val();
+        $('#namereksadana').val(namareksa);
+        $('#averagerate').val(averagerate);
+        $('#badrate').val(badrate);
+        $('#goodrate').val(goodrate);
+        $('#productid').val(productid);
+        $('#producttype').val(producttype);
+        $('#riskprofileid').val(1);
+    });
+
+    $('.productList.type2').click(function () {
+        var namareksa = $(this).find('input.namareksa').val();
+        var averagerate = $(this).find('input.averagerate').val();
+        var badrate = $(this).find('input.badrate').val();
+        var goodrate = $(this).find('input.goodrate').val();
+        var productid = $(this).find('input.productid').val();
+        var producttype = $(this).find('input.producttype').val();
+        $('#namereksadana').val(namareksa);
+        $('#averagerate').val(averagerate);
+        $('#badrate').val(badrate);
+        $('#goodrate').val(goodrate);
+        $('#productid').val(productid);
+        $('#producttype').val(producttype);
+        $('#riskprofileid').val(2);
+
+    });
+    $('.productList.type3').click(function () {
+        var namareksa = $(this).find('input.namareksa').val();
+        var averagerate = $(this).find('input.averagerate').val();
+        var badrate = $(this).find('input.badrate').val();
+        var goodrate = $(this).find('input.goodrate').val();
+        var productid = $(this).find('input.productid').val();
+        var producttype = $(this).find('input.producttype').val();
+        $('#namereksadana').val(namareksa);
+        $('#averagerate').val(averagerate);
+        $('#badrate').val(badrate);
+        $('#goodrate').val(goodrate);
+        $('#productid').val(productid);
+        $('#producttype').val(producttype);
+        $('#riskprofileid').val(3);
+
+    });
+    $('.productList.type4').click(function () {
+        var namareksa = $(this).find('input.namareksa').val();
+        var averagerate = $(this).find('input.averagerate').val();
+        var badrate = $(this).find('input.badrate').val();
+        var goodrate = $(this).find('input.goodrate').val();
+        var productid = $(this).find('input.productid').val();
+        var producttype = $(this).find('input.producttype').val();
+        $('#namereksadana').val(namareksa);
+        $('#averagerate').val(averagerate);
+        $('#badrate').val(badrate);
+        $('#goodrate').val(goodrate);
+        $('#productid').val(productid);
+        $('#producttype').val(producttype);
+        $('#riskprofileid').val(4);
+
+    });
+
+
+    $('.ocbc_webview #highRiskConfirm_next').on('click', function () {
+        hitungUlang(lifegoal);
     });
 });

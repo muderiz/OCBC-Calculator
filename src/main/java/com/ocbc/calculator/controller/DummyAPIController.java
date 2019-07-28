@@ -34,13 +34,13 @@ public class DummyAPIController {
 
     @PostMapping("/TargetValue")
     public TargetValueResponse getTargetValue(@RequestBody TargetValueRequest request) {
-        return new TargetValueResponse("1","testid","0","Success",
-                "2.0","1000000","0","123123123");
+        return new TargetValueResponse("1", "testid", "0", "Success",
+                "2.0", "1000000", "0", "123123123");
     }
 
     @PostMapping("/FutureValue")
     public FutureValueResponse getFutureValue(@RequestBody FutureValueRequest request) {
-        return new FutureValueResponse("1","testid","0","Success","2.0","1200000");
+        return new FutureValueResponse("1", "testid", "0", "Success", "2.0", "1200000");
     }
 
     @PostMapping("/ListProduct")
@@ -55,7 +55,7 @@ public class DummyAPIController {
         Product objProduct = new Product();
         objProduct.Product_Type = "MFB";
         objProduct.Product_ID = "16";
-        objProduct.Product_Name = "Aberdeen Indonesia Bond Fund";
+        objProduct.Product_Name = "Aberdeen Standard Ind Money Market";
         objProduct.Product_Rate = "0.00";
         objProduct.Mutual_Fund_Code = "NISDAT2  ";
         objProduct.Standard_Deviation = 0.0121;
@@ -76,7 +76,49 @@ public class DummyAPIController {
         objProduct = new Product();
         objProduct.Product_Type = "MFB";
         objProduct.Product_ID = "16";
-        objProduct.Product_Name = "Aberdeen Indonesia Bond Fund";
+        objProduct.Product_Name = "Ashmore Dana Pasar Uang Nusantara";
+        objProduct.Product_Rate = "0.00";
+        objProduct.Mutual_Fund_Code = "NISDAT2  ";
+        objProduct.Standard_Deviation = 0.0121;
+        objProduct.Average_Rate = "7.24";
+        objProduct.Bad_Rate = "6.3";
+        objProduct.Good_Rate = "8.5";
+        objProduct.Performance_of_1_month = "-0.02";
+        objProduct.Performance_of_6_month = "3.98";
+        objProduct.Performance_of_12_month = "4.90";
+        objProduct.Performance_of_60_month = "41.65";
+        objProduct.YTD = 0.035;
+        objProduct.Mutual_Fund_Nav = "2127.19";
+        objProduct.Mutual_Fund_Risk_Profile_ID = 1;
+        objProduct.Mutual_Fund_Type = 1;
+
+        response.List_Product.add(objProduct);
+
+        objProduct = new Product();
+        objProduct.Product_Type = "MFB";
+        objProduct.Product_ID = "16";
+        objProduct.Product_Name = "BNP Paribas Rupiah Plus";
+        objProduct.Product_Rate = "0.00";
+        objProduct.Mutual_Fund_Code = "NISDAT2  ";
+        objProduct.Standard_Deviation = 0.0121;
+        objProduct.Average_Rate = "7.24";
+        objProduct.Bad_Rate = "6.3";
+        objProduct.Good_Rate = "8.5";
+        objProduct.Performance_of_1_month = "-0.02";
+        objProduct.Performance_of_6_month = "3.98";
+        objProduct.Performance_of_12_month = "4.90";
+        objProduct.Performance_of_60_month = "41.65";
+        objProduct.YTD = 0.035;
+        objProduct.Mutual_Fund_Nav = "2127.19";
+        objProduct.Mutual_Fund_Risk_Profile_ID = 1;
+        objProduct.Mutual_Fund_Type = 1;
+
+        response.List_Product.add(objProduct);
+
+        objProduct = new Product();
+        objProduct.Product_Type = "MFB";
+        objProduct.Product_ID = "16";
+        objProduct.Product_Name = "Aberdeen Standard Ind Bond Fund";
         objProduct.Product_Rate = "0.00";
         objProduct.Mutual_Fund_Code = "NISDAT2  ";
         objProduct.Standard_Deviation = 0.0121;
@@ -93,11 +135,11 @@ public class DummyAPIController {
         objProduct.Mutual_Fund_Type = 2;
 
         response.List_Product.add(objProduct);
-
+        
         objProduct = new Product();
         objProduct.Product_Type = "MFB";
         objProduct.Product_ID = "16";
-        objProduct.Product_Name = "Aberdeen Indonesia Bond Fund";
+        objProduct.Product_Name = "Schroder Dana Terpadu II";
         objProduct.Product_Rate = "0.00";
         objProduct.Mutual_Fund_Code = "NISDAT2  ";
         objProduct.Standard_Deviation = 0.0121;
@@ -118,7 +160,7 @@ public class DummyAPIController {
         objProduct = new Product();
         objProduct.Product_Type = "MFB";
         objProduct.Product_ID = "16";
-        objProduct.Product_Name = "Aberdeen Indonesia Bond Fund";
+        objProduct.Product_Name = "Schroder Dana Prestasi Plus";
         objProduct.Product_Rate = "0.00";
         objProduct.Mutual_Fund_Code = "NISDAT2  ";
         objProduct.Standard_Deviation = 0.0121;
