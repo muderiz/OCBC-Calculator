@@ -104,7 +104,7 @@ public class EtcCalculatorController {
         return "etc";
     }
 
-    // >> /etc/summary/refid/Beli%20Mobil%20Mewah/Bambang/23,210,000/20,231,230,000/12
+    // >> /etc/summary/refid/Beli%20Mobil%20Mewah/Bambang/23,210,000/20,231,230,000/12/0
     @GetMapping("/summary/{refID}/{goals}/{name}/{present_value}/{future_value}/{tenor}/{risk_profile_id}")
     public String etcSummary(Model model,
             @PathVariable String refID,

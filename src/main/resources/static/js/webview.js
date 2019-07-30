@@ -27,17 +27,17 @@ function hitungUlang(_lifegoal) {
             window.location.href = "/education/" + refID + "/" + age + "/" + country + "/" + value + "/" + name + "/" + risk_profile_id;
             break;
         case "etc":
-            var goals = $("#goals").text();
+            var goalsetc = $("#goals").val();
             var name = $("#name").text();
             var dana_sekarang = $("#dana_sekarang").val();
             var target_dana = $("#target_dana").val();
             var tenor = $("#jangka_waktu").val();
             var risk_profile_id = $("#risk_profile_id").val();
-            window.location.href = "/etc/" + refID + "/" + goals + "/" + name + "/" + dana_sekarang + "/" + target_dana + "/" + tenor + "/" + risk_profile_id;
+
+            window.location.href = "/etc/" + refID + "/" + goalsetc + "/" + name + "/" + dana_sekarang + "/" + target_dana + "/" + tenor + "/" + risk_profile_id;
             break;
         case "product":
             var url;
-            var goals = $("#goals").text();
             var lifegoalid = $("#lifegoalid").val();
             var namareksa = $("#namereksadana").val();
             var averagerate = $("#averagerate").val();
@@ -49,12 +49,16 @@ function hitungUlang(_lifegoal) {
             var investmenttype = $("#investmenttype").val();
             var productid = $("#productid").val();
             var producttype = $("#producttype").val();
+            var country = $("#country").val();
+            var initial_amount = $("#initial_amount").val();
 
             if (lifegoalid == 1) {
-                url = "/productfinal/growth/" + refID + "/" + namareksa + "/" + averagerate + "/" + badrate + "/" + goodrate + "/"
+                url = "/product/finalgrowth/" + refID + "/" + namareksa + "/" + averagerate + "/" + badrate + "/" + goodrate + "/"
                         + amount + "/" + tenor + "/" + riskprofileid + "/" + investmenttype + "/" + producttype + "/" + productid;
             } else {
-                url = "/productfinal/etc/" + refID + "/2/123123123/1/2";
+                url = "/product/finaletc/" + refID + "/" + lifegoalid + "/" + country + "/" + amount + "/" + namareksa + "/"
+                        + averagerate + "/" + badrate + "/" + goodrate + "/" + initial_amount + "/" + tenor + "/" + riskprofileid + "/"
+                        + investmenttype + "/" + producttype + "/" + productid;
             }
 
             window.location.href = url;
@@ -94,14 +98,54 @@ function submit(_lifegoal) {
             message_in = target_dana + "&" + dana_sekarang + "&" + tenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
 
             break;
+
+
     }
     talk(IdChannel, message_in, "Goal Sudah Sesuai");
+}
+
+function finalgrowth() {
+    var message_in;
+    var IdChannel = $("#idchannel").val();
+    var namareksadana = $("#namareksadana").val();
+    var resultamount = $("#resultamount").val();
+    var rate = $("#rate").val();
+
+    message_in = "lainnya" + "&" + namareksadana + "&" + resultamount + "&" + rate;
+
+    talk(IdChannel, message_in, "Pilih Jenis Investasi");
+}
+
+function finaletclumpsum() {
+    var message_in;
+    var IdChannel = $("#idchannel").val();
+    var namareksadana = $("#namareksadana").val();
+    var modeinvestlumpsum = $("#modeinvestlumpsum").val();
+    var resultPresentlumpsum = $("#resultPresentlumpsum").val();
+    var ratelumpsum = $("#ratelumpsum").val();
+
+    message_in = "lainnya" + "&" + namareksadana + "&" + modeinvestlumpsum + "&" + resultPresentlumpsum + "&" + ratelumpsum;
+
+    talk(IdChannel, message_in, "Pilih Jenis Investasi");
+}
+
+function finaletcmonthly() {
+    var message_in;
+    var IdChannel = $("#idchannel").val();
+    var namareksadana = $("#namareksadana").val();
+    var modeinvestannual = $("#modeinvestannual").val();
+    var resultTargetannual = $("#resultTargetannual").val();
+    var rateannual = $("#rateannual").val();
+
+    message_in = "lainnya" + "&" + namareksadana + "&" + modeinvestannual + "&" + resultTargetannual + "&" + rateannual;
+
+    talk(IdChannel, message_in, "Pilih Jenis Investasi");
 }
 
 function othersgoal() {
     var message_in;
     var IdChannel = $("#idchannel").val();
-    message_in = "";
+    message_in = "ganti life goal";
 
     talk(IdChannel, message_in, "Ganti Life Goal");
 }
@@ -113,6 +157,7 @@ function tnc() {
 
     talk(IdChannel, message_in, "Setuju");
 }
+
 function back() {
     window.history.back();
 }
@@ -181,7 +226,7 @@ $(function () {
 
             case "finalgowth":
                 var typedesc = $("#typedesc").val();
-                if (typedesc == "Annual") {
+                if (typedesc == "Bulanan") {
                     $('#imageannual').show();
                 } else {
                     $('#imagelumpsum').show();
@@ -213,6 +258,18 @@ $(function () {
 
     $('#btnSubmit').on('click', function () {
         submit(lifegoal);
+    });
+
+    $('#FinalGrowth').on('click', function () {
+        finalgrowth();
+    });
+
+    $('#FinalEtcLumpsum').on('click', function () {
+        finaletclumpsum();
+    });
+
+    $('#FinalEtcAnnual').on('click', function () {
+        finaletcmonthly();
     });
 
     $('.testfinal').on('click', function () {

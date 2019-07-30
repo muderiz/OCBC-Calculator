@@ -10,11 +10,12 @@ package com.ocbc.calculator.model;
  * @author cokkyturnip
  */
 public class ListProductRequest {
+
     public String Ext_Reff_ID;
 
     public int Risk_Profile_ID;
 
-    public String MFA_list;
+    public String MFA_List;
 
     public int Nominal_Amount;
 
@@ -24,11 +25,8 @@ public class ListProductRequest {
 
     public int Tipe;
 
-    
-
     @Override
-    public String toString()
-    {
-        return "ClassPojo [Ext_Reff_ID = "+Ext_Reff_ID+", Risk_Profile_ID = "+Risk_Profile_ID+", MFA_list = "+MFA_list+", Nominal_Amount = "+Nominal_Amount+", Channel_ID = "+Channel_ID+", List_Product_Type = "+List_Product_Type+", Tipe = "+Tipe+"]";
+    public String toString() {
+        return "ClassPojo [Ext_Reff_ID = " + Ext_Reff_ID + ", Risk_Profile_ID = " + Risk_Profile_ID + ", MFA_list = " + MFA_List + ", Nominal_Amount = " + Nominal_Amount + ", Channel_ID = " + Channel_ID + ", List_Product_Type = " + List_Product_Type + ", Tipe = " + Tipe + "]";
     }
 }

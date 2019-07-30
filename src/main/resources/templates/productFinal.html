@@ -24,12 +24,14 @@
 
             <div class="ocbc_webview_content">
                 <input id="lifegoal" type="hidden" value="finaletc"/>
+                <input id="namareksadana" type="hidden" th:value="${namareksadana}"/>
+                <input id="idchannel" type="hidden" th:value="${idchannel}"/>
                 <div class="product_selection">
 
                     <div class="selected_product_box">
-                        <div><button class="onBtn white bordered">&lsaquo;&nbsp; Ganti Pilihan Produk</button></div>
+                        <div><button id="gantiproduk" class="onBtn white bordered">&lsaquo;&nbsp; Ganti Pilihan Produk</button></div>
                         <div class="subtitle">Produk reksadana :</div>
-                        <div class="title">Aberdeen Standar Ind Money Market Lorem Ipsum dolor Sit Amet</div>
+                        <div class="title"><span th:text="${namareksadana}"></span></div>
 
                     </div>
 
@@ -44,32 +46,36 @@
                             <ul class="productList_container">
 
                                 <li class="productList">
-
+                                    <input id="modeinvestlumpsum" type="hidden" th:value="${typeDescLumpsum}"/>
+                                    <input id="resultPresentlumpsum" type="hidden" th:value="${resultPresent}"/>
+                                    <input id="ratelumpsum" type="hidden" th:value="${rate}"/>
                                     <div class="productBar clearfix">
                                         <div class="left">
                                             <img class="icon" th:src="@{/images/investtype_lumpsum.png}"/>
                                         </div>
                                         <div class="right">
-                                            <div class="type">Lumpsum</div>
-                                            <div class="rate"><b class="price">Rp 3,500,000,000</b></div>
-                                            <div class="estimate">Est. laba <b>7,4% (7.20% - 7.80%) </b>/thn</div>
-                                            <div class="action"><button class="onBtn lg">Pilih Jenis Investasi</button></div>
+                                            <div class="type"><span th:text="${typeDescLumpsum}"></div>
+                                            <div class="rate"><b class="price">Rp<span th:text="${resultPresent}"></b></div>
+                                            <div class="estimate">Est. laba <b><span th:text="${rate}"></b> /thn</div>
+                                            <div class="action"><button id="FinalEtcLumpsum" class="onBtn lg">Pilih Jenis Investasi</button></div>
                                         </div>
                                     </div>
 
                                 </li>
 
                                 <li class="productList">
-
+                                    <input id="modeinvestannual" type="hidden" th:value="${typeDescAnnual}"/>
+                                    <input id="resultTargetannual" type="hidden" th:value="${resultTarget}"/>
+                                    <input id="rateannual" type="hidden" th:value="${rate}"/>
                                     <div class="productBar clearfix">
                                         <div class="left">
                                             <img class="icon"  th:src="@{/images/investtype_annual.png}"/>
                                         </div>
                                         <div class="right">
-                                            <div class="type">Annual</div>
-                                            <div class="rate"><b class="price">Rp 3,500,000,000</b> / bulan</div>
-                                            <div class="estimate">Est. laba <b>7,4% (7.20% - 7.80%) </b>/thn</div>
-                                            <div class="action"><button class="onBtn lg">Pilih Jenis Investasi</button></div>
+                                            <div class="type"><span th:text="${typeDescAnnual}"></div>
+                                            <div class="rate"><b class="price">Rp  <span th:text="${resultTarget}"></b> / bulan</div>
+                                            <div class="estimate">Est. laba <b><span th:text="${rate}"></b> /thn</div>
+                                            <div class="action"><button id="FinalEtcAnnual" class="onBtn lg">Pilih Jenis Investasi</button></div>
                                         </div>
                                     </div>
 

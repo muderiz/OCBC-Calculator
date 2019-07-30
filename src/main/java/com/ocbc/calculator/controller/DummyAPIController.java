@@ -11,6 +11,7 @@ import com.ocbc.calculator.model.FutureValueRequest;
 import com.ocbc.calculator.model.FutureValueResponse;
 import com.ocbc.calculator.model.ListProductRequest;
 import com.ocbc.calculator.model.ListProductResponse;
+import com.ocbc.calculator.model.PresentValueResponse;
 import com.ocbc.calculator.model.Product;
 import com.ocbc.calculator.model.TargetValueRequest;
 import com.ocbc.calculator.model.TargetValueResponse;
@@ -36,6 +37,12 @@ public class DummyAPIController {
     public TargetValueResponse getTargetValue(@RequestBody TargetValueRequest request) {
         return new TargetValueResponse("1", "testid", "0", "Success",
                 "2.0", "1000000", "0", "123123123");
+    }
+
+    @PostMapping("/PresentValue")
+    public PresentValueResponse getPresentValue(@RequestBody PresentValueResponse request) {
+        return new PresentValueResponse("1", "testid", "0", "Success",
+                "2.0", "0", "123123123");
     }
 
     @PostMapping("/FutureValue")
@@ -135,7 +142,7 @@ public class DummyAPIController {
         objProduct.Mutual_Fund_Type = 2;
 
         response.List_Product.add(objProduct);
-        
+
         objProduct = new Product();
         objProduct.Product_Type = "MFB";
         objProduct.Product_ID = "16";

@@ -22,6 +22,9 @@ public class AppProperties {
 
     @Value("${ocbc.nisp.api.post.listproduct}")
     public String POST_LISTPRODUCT;
+    
+    @Value("${ocbc.nisp.api.post.presentvalue}")
+    public String POST_PRESENTVALUE;
 
     @Value("${model.request.all.Channel_ID}")
     public String Channel_ID;

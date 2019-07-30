@@ -36,16 +36,21 @@ public class ListProductController {
     // >> /product/refID/123123123/1/2
     // >> /product/refID/123123123/2/2
     // >> /product/refID/123123123/3/2
-    // >> /product/refID/123123123/4/2
-    @GetMapping("/{refID}/{lifegoalid}/{amount}/{risk_profile_id}/{tipe}")
+    // >> /product?refid=...&amount=...&4/2
+    @GetMapping("/{refID}/{lifegoalid}/{amount}/{tenor}/{risk_profile_id}/{tipe}/{investment_type}/{initial_amount}/{country}")
     public String product(Model model,
             @PathVariable String refID,
             @PathVariable int lifegoalid,
             @PathVariable int amount,
+            @PathVariable int tenor,
             @PathVariable int risk_profile_id,
-            @PathVariable int tipe) throws IOException {
+            @PathVariable int tipe,
+            @PathVariable int investment_type,
+            @PathVariable int initial_amount,
+            @PathVariable int country
+            ) throws IOException {
 
-        //ambil list product
+        //ambil list product    
         ListProductResponse listProductResponse = calculatorServices.showListProduct(refID, amount, risk_profile_id, tipe);
 
         List<Product> listProduct = listProductResponse.List_Product;
@@ -84,11 +89,13 @@ public class ListProductController {
 
         model.addAttribute("refID", refID);
         model.addAttribute("lifegoalid", lifegoalid);
+        model.addAttribute("initial_amount", initial_amount);
+        model.addAttribute("country", country);
         model.addAttribute("listConservative", listConservative);
         model.addAttribute("listBalance", listBalance);
         model.addAttribute("listGrowth", listGrowth);
         model.addAttribute("listAggresive", listAggresive);
-        model.addAttribute("investmenttype", tipe);
+        model.addAttribute("investmenttype", investment_type);
         model.addAttribute("risk_profile_id", risk_profile_id);
         model.addAttribute("risk_profile_desc", risk_profile_desc);
         model.addAttribute("idchannel", appProp.IdLiveChat);

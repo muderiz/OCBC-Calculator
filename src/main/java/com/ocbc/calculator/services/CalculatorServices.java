@@ -11,6 +11,8 @@ import com.ocbc.calculator.model.FutureValueRequest;
 import com.ocbc.calculator.model.FutureValueResponse;
 import com.ocbc.calculator.model.ListProductRequest;
 import com.ocbc.calculator.model.ListProductResponse;
+import com.ocbc.calculator.model.PresentValueRequest;
+import com.ocbc.calculator.model.PresentValueResponse;
 import com.ocbc.calculator.model.Product;
 import com.ocbc.calculator.model.TargetValueRequest;
 import com.ocbc.calculator.model.TargetValueResponse;
@@ -197,10 +199,13 @@ public class CalculatorServices {
         ListProductRequest listProductRequest = new ListProductRequest();
         listProductRequest.Channel_ID = appProp.Channel_ID;
         listProductRequest.Ext_Reff_ID = refID;
-        listProductRequest.MFA_list = "20";
+        listProductRequest.MFA_List = "20";
         listProductRequest.Nominal_Amount = amount;
         listProductRequest.Risk_Profile_ID = risk_profile_id;
         listProductRequest.Tipe = tipe;
+        String[] type = new String[1];
+        type[0] = "MFB";
+        listProductRequest.List_Product_Type = type;
 
         Gson gson = new Gson();
         String jsonTargetValue = gson.toJson(listProductRequest);
@@ -259,6 +264,109 @@ public class CalculatorServices {
         FutureValueResponse respGrowth = gson.fromJson(response.body().string(), FutureValueResponse.class);
         System.out.println(jsonInvestasi);
         System.out.println(respGrowth);
+
         return respGrowth;
+    }
+
+    public TargetValueResponse reksadanaEtcTarget(String refID, String age, String tenor, String country, String initial_amount, String target_amount, int risk_profile_id, String product_type, int lifegoalId, String productId) throws IOException {
+        int intAge = Integer.parseInt(age);
+        int intTenor = 18 - intAge <= 1 ? 1 : 18 - intAge;
+
+        TargetValueRequest targetValueRequest = new TargetValueRequest();
+        targetValueRequest.Channel_ID = appProp.Channel_ID;
+
+        targetValueRequest.Due_Date = 0;
+        targetValueRequest.Ext_Reff_ID = refID;
+        targetValueRequest.Pre_Calculated_Future_Value = target_amount;
+        targetValueRequest.Initial_Amount = initial_amount;
+        targetValueRequest.Product_ID = productId;
+        targetValueRequest.Risk_Profile_ID = risk_profile_id + "";
+        targetValueRequest.EC_ID = country;
+        targetValueRequest.Children_Age = age;
+
+        if (lifegoalId == 2) {
+            targetValueRequest.Tenor = String.valueOf(intTenor);
+        } else {
+            targetValueRequest.Tenor = tenor;
+        }
+
+        if (product_type.equalsIgnoreCase("TK")) {
+            targetValueRequest.Yearly_Return_Code = "F";
+            targetValueRequest.Payment_Type = "TK";
+            targetValueRequest.Future_Value_Code = "D";
+
+        } else if (product_type.equalsIgnoreCase("MFA")) {
+            targetValueRequest.Yearly_Return_Code = "G";
+            targetValueRequest.Payment_Type = "MF";
+            targetValueRequest.Future_Value_Code = "E";
+
+        } else if (product_type.equalsIgnoreCase("MFB")) {
+            targetValueRequest.Yearly_Return_Code = "G";
+            targetValueRequest.Payment_Type = "MF";
+            targetValueRequest.Future_Value_Code = "E";
+
+        }
+
+        Gson gson = new Gson();
+        String jsonTargetValue = gson.toJson(targetValueRequest);
+
+        RequestBody body = RequestBody.create(jsonTargetValue, JSON);
+
+        Request request = new Request.Builder()
+                .url(appProp.BASE_URL + appProp.POST_TARGETVALUE)
+                .post(body)
+                .build();
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        TargetValueResponse targetValueResponse = gson.fromJson(response.body().string(), TargetValueResponse.class);
+
+        return targetValueResponse;
+    }
+
+    public PresentValueResponse reksadanaEtcPresent(String refID, String age, int lifegoalid, String productID, String tenor, String target_amount, String product_type) throws IOException {
+        int intAge = Integer.parseInt(age);
+        int intTenor = 18 - intAge <= 1 ? 1 : 18 - intAge;
+
+        PresentValueRequest presentValueRequest = new PresentValueRequest();
+        presentValueRequest.Channel_ID = appProp.Channel_ID;
+        presentValueRequest.Payment = "0";
+        presentValueRequest.Due_Date = 0;
+        presentValueRequest.Ext_Reff_ID = refID;
+        presentValueRequest.Target_Amount = target_amount;
+        presentValueRequest.Product_ID = productID;
+
+        if (lifegoalid == 2) {
+            presentValueRequest.Tenor = String.valueOf(intTenor);
+        } else {
+            presentValueRequest.Tenor = tenor;
+        }
+
+        if (product_type.equalsIgnoreCase("DP")) {
+            presentValueRequest.Yearly_Return_Code = "B";
+            presentValueRequest.Present_Value_Type = "DP";
+        } else if (product_type.equalsIgnoreCase("MFA")) {
+            presentValueRequest.Yearly_Return_Code = "C";
+            presentValueRequest.Present_Value_Type = "MF";
+        } else if (product_type.equalsIgnoreCase("MFB")) {
+            presentValueRequest.Yearly_Return_Code = "C";
+            presentValueRequest.Present_Value_Type = "MF";
+        }
+
+        Gson gson = new Gson();
+        String jsonPresentValue = gson.toJson(presentValueRequest);
+
+        RequestBody body = RequestBody.create(jsonPresentValue, JSON);
+
+        Request request = new Request.Builder()
+                .url(appProp.BASE_URL + appProp.POST_PRESENTVALUE)
+                .post(body)
+                .build();
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        PresentValueResponse presentValueResponse = gson.fromJson(response.body().string(), PresentValueResponse.class);
+
+        return presentValueResponse;
     }
 }

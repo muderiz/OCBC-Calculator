@@ -25,6 +25,11 @@
             <div class="ocbc_webview_content">
                 <input id="lifegoal" type="hidden" value="finalgowth"/>
                 <input id="typedesc" type="hidden" th:value="${typeDesc}"/>
+                <input id="namareksadana" type="hidden" th:value="${namareksadana}"/>
+                <input id="resultamount" type="hidden" th:value="${resultamount}"/>
+                <input id="rate" type="hidden" th:value="${rate}"/>
+                <input id="idchannel" type="hidden" th:value="${idchannel}"/>
+
                 <div class="product_selection">
 
                     <div class="selected_product_box">
@@ -55,7 +60,7 @@
                                             <div class="type"><span th:text="${typeDesc}"></div>
                                             <div class="rate"><b class="price">Rp <span th:text="${resultamount}"></b></div>
                                             <div class="estimate">Est. laba <b><span th:text="${rate}"></b> /thn</div>
-                                            <div class="action"><button class="onBtn lg">Pilih Jenis Investasi</button></div>
+                                            <div class="action"><button id="FinalGrowth" class="onBtn lg">Pilih Jenis Investasi</button></div>
                                         </div>
                                     </div>
 

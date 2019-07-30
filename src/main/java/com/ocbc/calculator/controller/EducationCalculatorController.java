@@ -120,8 +120,7 @@ public class EducationCalculatorController {
             @PathVariable String value,
             @PathVariable String name,
             @PathVariable int risk_profile_id) throws IOException {
-
-        String note;
+       String note;
         if (risk_profile_id == 0) {
             note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
         } else {
@@ -163,6 +162,7 @@ public class EducationCalculatorController {
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
         model.addAttribute("investasi", respInvestasi);
+        model.addAttribute("targetamount", respInvestasi.Target_Amount);
         model.addAttribute("investasiFinalValue", newfuturevalue);
         model.addAttribute("investasiResult", investResult);
         model.addAttribute("investasiRate", respInvestasi.Rate);
@@ -183,6 +183,6 @@ public class EducationCalculatorController {
         model.addAttribute("rcdesc", respInvestasi.RC_Description);
         model.addAttribute("rcdescerror10", appProp.response10);
 
-        return "pendidikanSummary";
+        return "pendidikan";
     }
 }
