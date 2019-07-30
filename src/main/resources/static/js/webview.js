@@ -126,7 +126,6 @@ function finaletclumpsum() {
     var ratelumpsum = $("#ratelumpsum").val();
     var productid = $("#productid").val();
 
-
     message_in = "lainnya" + "&" + namareksadana + "&" + modeinvestlumpsum + "&" + resultPresentlumpsum + "&" + ratelumpsum + "&" + productid;
 
     talk(IdChannel, message_in, "Pilih Jenis Investasi");
