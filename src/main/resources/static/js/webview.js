@@ -110,8 +110,9 @@ function finalgrowth() {
     var namareksadana = $("#namareksadana").val();
     var resultamount = $("#resultamount").val();
     var rate = $("#rate").val();
+    var productid = $("#productid").val();
 
-    message_in = "lainnya" + "&" + namareksadana + "&" + resultamount + "&" + rate;
+    message_in = "lainnya" + "&" + namareksadana + "&" + resultamount + "&" + rate + "&" + productid;
 
     talk(IdChannel, message_in, "Pilih Jenis Investasi");
 }
@@ -123,8 +124,10 @@ function finaletclumpsum() {
     var modeinvestlumpsum = $("#modeinvestlumpsum").val();
     var resultPresentlumpsum = $("#resultPresentlumpsum").val();
     var ratelumpsum = $("#ratelumpsum").val();
+    var productid = $("#productid").val();
 
-    message_in = "lainnya" + "&" + namareksadana + "&" + modeinvestlumpsum + "&" + resultPresentlumpsum + "&" + ratelumpsum;
+
+    message_in = "lainnya" + "&" + namareksadana + "&" + modeinvestlumpsum + "&" + resultPresentlumpsum + "&" + ratelumpsum + "&" + productid;
 
     talk(IdChannel, message_in, "Pilih Jenis Investasi");
 }
@@ -136,8 +139,10 @@ function finaletcmonthly() {
     var modeinvestannual = $("#modeinvestannual").val();
     var resultTargetannual = $("#resultTargetannual").val();
     var rateannual = $("#rateannual").val();
+    var productid = $("#productid").val();
 
-    message_in = "lainnya" + "&" + namareksadana + "&" + modeinvestannual + "&" + resultTargetannual + "&" + rateannual;
+
+    message_in = "lainnya" + "&" + namareksadana + "&" + modeinvestannual + "&" + resultTargetannual + "&" + rateannual + "&" + productid;
 
     talk(IdChannel, message_in, "Pilih Jenis Investasi");
 }

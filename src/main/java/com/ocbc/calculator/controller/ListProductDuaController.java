@@ -67,6 +67,7 @@ public class ListProductDuaController {
         DecimalFormat decimalFormat = new DecimalFormat("");
         String result = decimalFormat.format(Double.parseDouble(respReksadanaGrowth.Result));
 
+        model.addAttribute("productid", productid);
         model.addAttribute("namareksadana", namareksa);
         model.addAttribute("typeDesc", typeDesc);
         model.addAttribute("rate", rate);
@@ -111,6 +112,7 @@ public class ListProductDuaController {
         String resultTarget = decimalFormat.format(Double.parseDouble(respReksadanaEtcTarget.Result));
         String resultPresent = decimalFormat.format(Double.parseDouble(respReksadanaEtcPresent.Result));
 
+        model.addAttribute("productid", productid);
         model.addAttribute("namareksadana", namareksa);
         model.addAttribute("typeDescAnnual", "Bulanan");
         model.addAttribute("typeDescLumpsum", "Lumpsum");
