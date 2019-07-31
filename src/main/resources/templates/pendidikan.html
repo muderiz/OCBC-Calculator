@@ -68,7 +68,7 @@
                             <input id="countryValue" type="text" class="i5" th:value="${country}" disabled />
                             <select id="countrySelect" class="countrySelect">
                                 <option th:each="negara: ${listCountry}" th:value="${negara.text}" th:label="${negara.text}"
-                                        th:selected="${negara.text==country}"></option>
+                                        th:selected="${negara.text==country}"><span th:text="${negara.text}"/></option>
                             </select>
                             <div class="left">Negara</div>
                         </div>

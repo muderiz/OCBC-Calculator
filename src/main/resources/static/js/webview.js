@@ -51,14 +51,15 @@ function hitungUlang(_lifegoal) {
             var producttype = $("#producttype").val();
             var country = $("#country").val();
             var initial_amount = $("#initial_amount").val();
+            var urlBack = $("#urlBack").val();
 
             if (lifegoalid == 1) {
                 url = "/product/finalgrowth/" + refID + "/" + namareksa + "/" + averagerate + "/" + badrate + "/" + goodrate + "/"
-                        + amount + "/" + tenor + "/" + riskprofileid + "/" + investmenttype + "/" + producttype + "/" + productid;
+                        + amount + "/" + tenor + "/" + riskprofileid + "/" + investmenttype + "/" + producttype + "/" + productid + "/" + urlBack;
             } else {
                 url = "/product/finaletc/" + refID + "/" + lifegoalid + "/" + country + "/" + amount + "/" + namareksa + "/"
                         + averagerate + "/" + badrate + "/" + goodrate + "/" + initial_amount + "/" + tenor + "/" + riskprofileid + "/"
-                        + investmenttype + "/" + producttype + "/" + productid;
+                        + investmenttype + "/" + producttype + "/" + productid + "/" + urlBack;
             }
 
             window.location.href = url;
@@ -163,7 +164,8 @@ function tnc() {
 }
 
 function back() {
-    window.history.back();
+    var urlBack = $("#urlBack").val();
+    window.location.href = "/product/" + urlBack;
 }
 
 $(function () {

@@ -39,7 +39,7 @@ public class ListProductDuaController {
     private AppProperties appProp;
 
 //    /growth/sdf/sfd/5/5/5/500000/5/1/0/TK/16
-    @GetMapping("/finalgrowth/{refID}/{namareksa}/{averagerate}/{badrate}/{goodrate}/{amount}/{tenor}/{risk_profile_id}/{invest_type}/{producttype}/{productid}")
+    @GetMapping("/finalgrowth/{refID}/{namareksa}/{averagerate}/{badrate}/{goodrate}/{amount}/{tenor}/{risk_profile_id}/{invest_type}/{producttype}/{productid}/{lifegoalid}/{tipe}/{initial_amount}/{country}/{firstriskprofile}")
     public String finalGrowth(Model model,
             @PathVariable String refID,
             @PathVariable String namareksa,
@@ -51,17 +51,23 @@ public class ListProductDuaController {
             @PathVariable int risk_profile_id,
             @PathVariable String invest_type,
             @PathVariable String producttype,
-            @PathVariable String productid) throws IOException {
+            @PathVariable String productid,
+            @PathVariable String lifegoalid,
+            @PathVariable String tipe,
+            @PathVariable String initial_amount,
+            @PathVariable String country,
+            @PathVariable String firstriskprofile) throws IOException {
 
         String typeDesc;
+        String newinvestipe;
         if (invest_type.equalsIgnoreCase("0")) {
             typeDesc = "Bulanan";
-            invest_type = "false";
+            newinvestipe = "false";
         } else {
             typeDesc = "Lumpsum";
-            invest_type = "true";
+            newinvestipe = "true";
         }
-        FutureValueResponse respReksadanaGrowth = calculatorServices.reksadanaGrowth(refID, amount, invest_type, tenor, risk_profile_id, producttype, productid);
+        FutureValueResponse respReksadanaGrowth = calculatorServices.reksadanaGrowth(refID, amount, newinvestipe, tenor, risk_profile_id, producttype, productid);
         String rate = averagerate + "% (" + badrate + "% - " + goodrate + "%)";
 
         DecimalFormat decimalFormat = new DecimalFormat("");
@@ -73,12 +79,13 @@ public class ListProductDuaController {
         model.addAttribute("rate", rate);
         model.addAttribute("resultamount", result);
         model.addAttribute("idchannel", appProp.IdLiveChat);
+        model.addAttribute("urlBack", refID + "/" + lifegoalid + "/" + amount + "/" + tenor + "/" + firstriskprofile + "/" + tipe + "/" + invest_type + "/" + initial_amount + "/" + country);
 
         return "productFinalGrowth";
     }
 
     // /etc/asd/2/3/3/400000000/Mocking Jay/5/4/5/400000/4/1/3/MFB/14
-    @GetMapping("/finaletc/{refID}/{lifegoalId}/{country}/{target_amount}/{namareksa}/{averagerate}/{badrate}/{goodrate}/{amount}/{tenor}/{risk_profile_id}/{invest_type}/{producttype}/{productid}")
+    @GetMapping("/finaletc/{refID}/{lifegoalId}/{country}/{target_amount}/{namareksa}/{averagerate}/{badrate}/{goodrate}/{amount}/{tenor}/{risk_profile_id}/{invest_type}/{producttype}/{productid}/{tipe}/{firstriskprofile}")
     public String finalEtc(Model model,
             @PathVariable String refID,
             @PathVariable int lifegoalId,
@@ -93,7 +100,9 @@ public class ListProductDuaController {
             @PathVariable int risk_profile_id,
             @PathVariable String invest_type,
             @PathVariable String producttype,
-            @PathVariable String productid) throws IOException {
+            @PathVariable String productid,
+            @PathVariable String tipe,
+            @PathVariable String firstriskprofile) throws IOException {
 
         String age = "";
         if (lifegoalId == 2) {
@@ -120,6 +129,8 @@ public class ListProductDuaController {
         model.addAttribute("resultTarget", resultTarget);
         model.addAttribute("resultPresent", resultPresent);
         model.addAttribute("idchannel", appProp.IdLiveChat);
+
+        model.addAttribute("urlBack", refID + "/" + lifegoalId + "/" + target_amount + "/" + tenor + "/" + firstriskprofile + "/" + tipe + "/" + invest_type + "/" + amount + "/" + country);
 
         return "productFinal";
     }
