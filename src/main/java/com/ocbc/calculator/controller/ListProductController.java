@@ -48,7 +48,7 @@ public class ListProductController {
             @PathVariable int investment_type,
             @PathVariable int initial_amount,
             @PathVariable int country
-            ) throws IOException {
+    ) throws IOException {
 
         //ambil list product    
         ListProductResponse listProductResponse = calculatorServices.showListProduct(refID, amount, risk_profile_id, tipe);
@@ -72,6 +72,20 @@ public class ListProductController {
                 .collect(Collectors.toList());
 
         String risk_profile_desc = "";
+//        switch (risk_profile_id) {
+//            case 1:
+//                risk_profile_desc = "CONSERVATIVE";
+//                break;
+//            case 2:
+//                risk_profile_desc = "BALANCE";
+//                break;
+//            case 3:
+//                risk_profile_desc = "GROWTH";
+//                break;
+//            case 4:
+//                risk_profile_desc = "AGGRESIVE";
+//                break;
+//        }
         switch (risk_profile_id) {
             case 1:
                 risk_profile_desc = "CONSERVATIVE";
@@ -83,10 +97,18 @@ public class ListProductController {
                 risk_profile_desc = "GROWTH";
                 break;
             case 4:
-                risk_profile_desc = "AGGRESIVE";
+                risk_profile_desc = "AGGRESSIVE";
+                break;
+            default:
                 break;
         }
 
+        String urlBack = "";
+        if (lifegoalid == 1) {
+            urlBack = lifegoalid + "/" + tipe + "/" + initial_amount + "/" + country + "/" + risk_profile_id;
+        } else {
+            urlBack = tipe + "/" + risk_profile_id;
+        }
         model.addAttribute("refID", refID);
         model.addAttribute("lifegoalid", lifegoalid);
         model.addAttribute("initial_amount", initial_amount);
@@ -99,6 +121,7 @@ public class ListProductController {
         model.addAttribute("risk_profile_id", risk_profile_id);
         model.addAttribute("risk_profile_desc", risk_profile_desc);
         model.addAttribute("idchannel", appProp.IdLiveChat);
+        model.addAttribute("urlBack", urlBack);
 
         return "product";
     }

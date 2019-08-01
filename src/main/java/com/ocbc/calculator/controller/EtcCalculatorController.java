@@ -47,10 +47,27 @@ public class EtcCalculatorController {
             @PathVariable int risk_profile_id) throws IOException {
 
         String note;
+        String risk_profile_desc = "";
+        switch (risk_profile_id) {
+            case 1:
+                risk_profile_desc = "CONSERVATIVE";
+                break;
+            case 2:
+                risk_profile_desc = "BALANCE";
+                break;
+            case 3:
+                risk_profile_desc = "GROWTH";
+                break;
+            case 4:
+                risk_profile_desc = "AGGRESSIVE";
+                break;
+            default:
+                break;
+        }
         if (risk_profile_id == 0) {
             note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
         } else {
-            note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
+            note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": " + risk_profile_desc;
         }
         present_value = present_value.toLowerCase()
                 .replace(",-", "")
@@ -116,10 +133,27 @@ public class EtcCalculatorController {
             @PathVariable int risk_profile_id) throws IOException {
 
         String note;
+        String risk_profile_desc = "";
+        switch (risk_profile_id) {
+            case 1:
+                risk_profile_desc = "CONSERVATIVE";
+                break;
+            case 2:
+                risk_profile_desc = "BALANCE";
+                break;
+            case 3:
+                risk_profile_desc = "GROWTH";
+                break;
+            case 4:
+                risk_profile_desc = "AGGRESSIVE";
+                break;
+            default:
+                break;
+        }
         if (risk_profile_id == 0) {
             note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
         } else {
-            note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": Balance";
+            note = "Estimasi laba telah disesuaikan dengan profil risiko " + name + ": " + risk_profile_desc;
         }
         present_value = present_value.toLowerCase()
                 .replace(",-", "")

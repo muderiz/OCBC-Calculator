@@ -55,6 +55,7 @@
                         <input id="firstnamecountry" type="hidden" th:value="${country}"/>
                         <input id="firstvaluecountry" type="hidden" th:value="${valuecountry}"/>
                         <input id="targetamount" type="hidden" th:value="${investasiFinalValue}"/>
+
                         <div class="formRow">
                             <input id="age" type="text" class="inputnumage i4" th:value="${age}" maxlength="2" inputmode="numeric" pattern="[0-9]*" required/>
                             <div class="left">Usia Anak</div>
@@ -67,7 +68,7 @@
                             <input id="countryValue" type="text" class="i5" th:value="${country}" disabled />
                             <select id="countrySelect" class="countrySelect">
                                 <option th:each="negara: ${listCountry}" th:value="${negara.text}" th:label="${negara.text}"
-                                        th:selected="${negara.text==country}"></option>
+                                        th:selected="${negara.text==country}"><span th:text="${negara.text}"/></option>
                             </select>
                             <div class="left">Negara</div>
                         </div>
@@ -75,7 +76,7 @@
 
 
                         <div class="formRow error">
-                            <input id="dana" type="text" class="inputnum4 currency i6" th:value="${value}" />
+                            <input id="dana" type="text" class="inputnum4 i6" th:value="${value}" inputmode="numeric" pattern="[0-9]*" required />
                             <div class="left">Dana tersedia Rp</div>
                         </div>
                         <div class="errorMsg" >Pastikan data yang kamu isi sudah benar</div>
