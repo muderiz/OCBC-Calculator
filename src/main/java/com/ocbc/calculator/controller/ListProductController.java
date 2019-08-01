@@ -97,7 +97,7 @@ public class ListProductController {
                 risk_profile_desc = "GROWTH";
                 break;
             case 4:
-                risk_profile_desc = "AGGRESIVE";
+                risk_profile_desc = "AGGRESSIVE";
                 break;
             default:
                 break;

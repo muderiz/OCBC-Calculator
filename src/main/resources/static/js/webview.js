@@ -27,7 +27,7 @@ function hitungUlang(_lifegoal) {
             window.location.href = "/education/" + refID + "/" + age + "/" + country + "/" + value + "/" + name + "/" + risk_profile_id;
             break;
         case "etc":
-            var goalsetc = $("#goals").val();
+            var goalsetc = $("#goalsdesc").val();
             var name = $("#name").text();
             var dana_sekarang = $("#dana_sekarang").val();
             var target_dana = $("#target_dana").val();
@@ -66,6 +66,11 @@ function hitungUlang(_lifegoal) {
             break;
 
     }
+}
+
+function back() {
+    var urlBack = $("#urlBack").val();
+    window.location.href = "/product/" + urlBack;
 }
 
 function submit(_lifegoal) {
@@ -163,10 +168,7 @@ function tnc() {
     talk(IdChannel, message_in, "Setuju");
 }
 
-function back() {
-    var urlBack = $("#urlBack").val();
-    window.location.href = "/product/" + urlBack;
-}
+
 
 $(function () {
     var lifegoal = $("#lifegoal").val();
@@ -569,7 +571,7 @@ $(function () {
             $('.ocbc_webview #pilihanUser').text('(GROWTH)');
             $('.ocbc_webview .highRiskConfirm').show();
         } else if (($(this).hasClass('btnAggresive'))) {
-            $('.ocbc_webview #pilihanUser').text('(AGGRESIVE)');
+            $('.ocbc_webview #pilihanUser').text('(AGGRESSIVE)');
             $('.ocbc_webview .highRiskConfirm').show();
 
         }
