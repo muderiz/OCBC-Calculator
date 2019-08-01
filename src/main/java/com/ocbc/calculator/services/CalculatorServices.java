@@ -359,7 +359,7 @@ public class CalculatorServices {
         RequestBody body = RequestBody.create(jsonPresentValue, JSON);
 
         Request request = new Request.Builder()
-                .url(appProp.BASE_URL + appProp.POST_PRESENTVALUE)
+                .url(appProp.getSdkDolphinBaseUrl() + "/")
                 .post(body)
                 .build();
         Call call = client.newCall(request);
