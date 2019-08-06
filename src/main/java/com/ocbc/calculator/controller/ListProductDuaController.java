@@ -39,7 +39,7 @@ public class ListProductDuaController {
     private AppProperties appProp;
 
 //    /growth/sdf/sfd/5/5/5/500000/5/1/0/TK/16
-    @GetMapping("/finalgrowth/{refID}/{namareksa}/{averagerate}/{badrate}/{goodrate}/{amount}/{tenor}/{risk_profile_id}/{invest_type}/{producttype}/{productid}/{lifegoalid}/{tipe}/{initial_amount}/{country}/{firstriskprofile}")
+    @GetMapping("/finalgrowth/{refID}/{namareksa}/{averagerate}/{badrate}/{goodrate}/{amount}/{tenor}/{risk_profile_id}/{invest_type}/{producttype}/{productid}/{lifegoalid}/{tipe}/{initial_amount}/{country}/{firstriskprofile}/{nama}")
     public String finalGrowth(Model model,
             @PathVariable String refID,
             @PathVariable String namareksa,
@@ -56,7 +56,8 @@ public class ListProductDuaController {
             @PathVariable String tipe,
             @PathVariable String initial_amount,
             @PathVariable String country,
-            @PathVariable String firstriskprofile) throws IOException {
+            @PathVariable String firstriskprofile,
+            @PathVariable String nama) throws IOException {
 
         String typeDesc;
         String newinvestipe;
@@ -64,7 +65,7 @@ public class ListProductDuaController {
             typeDesc = "Bulanan";
             newinvestipe = "false";
         } else {
-            typeDesc = "Lumpsum";
+            typeDesc = "Sekali di awal";
             newinvestipe = "true";
         }
         FutureValueResponse respReksadanaGrowth = calculatorServices.reksadanaGrowth(refID, amount, newinvestipe, tenor, risk_profile_id, producttype, productid);
@@ -79,13 +80,13 @@ public class ListProductDuaController {
         model.addAttribute("rate", rate);
         model.addAttribute("resultamount", result);
         model.addAttribute("idchannel", appProp.IdLiveChat);
-        model.addAttribute("urlBack", refID + "/" + lifegoalid + "/" + amount + "/" + tenor + "/" + firstriskprofile + "/" + tipe + "/" + invest_type + "/" + initial_amount + "/" + country);
+        model.addAttribute("urlBack", refID + "/" + lifegoalid + "/" + amount + "/" + tenor + "/" + firstriskprofile + "/" + tipe + "/" + invest_type + "/" + initial_amount + "/" + country + "/" + nama);
 
         return "productFinalGrowth";
     }
 
     // /etc/asd/2/3/3/400000000/Mocking Jay/5/4/5/400000/4/1/3/MFB/14
-    @GetMapping("/finaletc/{refID}/{lifegoalId}/{country}/{target_amount}/{namareksa}/{averagerate}/{badrate}/{goodrate}/{amount}/{tenor}/{risk_profile_id}/{invest_type}/{producttype}/{productid}/{tipe}/{firstriskprofile}")
+    @GetMapping("/finaletc/{refID}/{lifegoalId}/{country}/{target_amount}/{namareksa}/{averagerate}/{badrate}/{goodrate}/{amount}/{tenor}/{risk_profile_id}/{invest_type}/{producttype}/{productid}/{tipe}/{firstriskprofile}/{nama}")
     public String finalEtc(Model model,
             @PathVariable String refID,
             @PathVariable int lifegoalId,
@@ -102,7 +103,8 @@ public class ListProductDuaController {
             @PathVariable String producttype,
             @PathVariable String productid,
             @PathVariable String tipe,
-            @PathVariable String firstriskprofile) throws IOException {
+            @PathVariable String firstriskprofile,
+            @PathVariable String nama) throws IOException {
 
         String age = "";
         if (lifegoalId == 2) {
@@ -111,7 +113,7 @@ public class ListProductDuaController {
             country = "0";
             age = "0";
         }
-        int newamount = Integer.parseInt(target_amount) - Integer.parseInt(amount);
+        long newamount = Long.parseLong(target_amount) - Long.parseLong(amount);
         TargetValueResponse respReksadanaEtcTarget = calculatorServices.reksadanaEtcTarget(refID, age, tenor, country, amount, target_amount, risk_profile_id, producttype, lifegoalId, productid);
         PresentValueResponse respReksadanaEtcPresent = calculatorServices.reksadanaEtcPresent(refID, age, lifegoalId, productid, tenor, newamount + "", producttype);
 
@@ -124,13 +126,13 @@ public class ListProductDuaController {
         model.addAttribute("productid", productid);
         model.addAttribute("namareksadana", namareksa);
         model.addAttribute("typeDescAnnual", "Bulanan");
-        model.addAttribute("typeDescLumpsum", "Lumpsum");
+        model.addAttribute("typeDescLumpsum", "Sekali di awal");
         model.addAttribute("rate", rate);
         model.addAttribute("resultTarget", resultTarget);
         model.addAttribute("resultPresent", resultPresent);
         model.addAttribute("idchannel", appProp.IdLiveChat);
 
-        model.addAttribute("urlBack", refID + "/" + lifegoalId + "/" + target_amount + "/" + tenor + "/" + firstriskprofile + "/" + tipe + "/" + invest_type + "/" + amount + "/" + country);
+        model.addAttribute("urlBack", refID + "/" + lifegoalId + "/" + target_amount + "/" + tenor + "/" + firstriskprofile + "/" + tipe + "/" + invest_type + "/" + amount + "/" + country + "/" + nama);
 
         return "productFinal";
     }

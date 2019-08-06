@@ -195,14 +195,14 @@ public class CalculatorServices {
         return targetValueResponse;
     }
 
-    public ListProductResponse showListProduct(String refID, int amount, int risk_profile_id, int tipe) throws IOException {
+    public ListProductResponse showListProduct(String refID, String amount, int risk_profile_id, String tipe) throws IOException {
         ListProductRequest listProductRequest = new ListProductRequest();
         listProductRequest.Channel_ID = appProp.Channel_ID;
         listProductRequest.Ext_Reff_ID = refID;
         listProductRequest.MFA_List = "20";
-        listProductRequest.Nominal_Amount = amount;
+        listProductRequest.Nominal_Amount = Long.parseLong(amount);
         listProductRequest.Risk_Profile_ID = risk_profile_id;
-        listProductRequest.Tipe = tipe;
+        listProductRequest.Tipe = Integer.parseInt(tipe);
         String[] type = new String[1];
         type[0] = "MFB";
         listProductRequest.List_Product_Type = type;
@@ -359,7 +359,7 @@ public class CalculatorServices {
         RequestBody body = RequestBody.create(jsonPresentValue, JSON);
 
         Request request = new Request.Builder()
-                .url(appProp.getSdkDolphinBaseUrl() + "/")
+                .url(appProp.BASE_URL + appProp.POST_PRESENTVALUE)
                 .post(body)
                 .build();
         Call call = client.newCall(request);

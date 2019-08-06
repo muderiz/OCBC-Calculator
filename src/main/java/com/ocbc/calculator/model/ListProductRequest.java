@@ -17,7 +17,7 @@ public class ListProductRequest {
 
     public String MFA_List;
 
-    public int Nominal_Amount;
+    public long Nominal_Amount;
 
     public String Channel_ID;
 

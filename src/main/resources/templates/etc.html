@@ -53,13 +53,13 @@
                         <input id="secondamount" type="hidden" th:value="${dana_sekarang}"/>
                         <div class="formRow error">
                             <input id="target_dana" type="text" class="inputnum2 i6" th:value="${target_dana}" inputmode="numeric" pattern="[0-9]*" required/>
-                            <div class="left">Target Dana <b>Rp</b></div>
+                            <div class="left">Target dana <b>IDR</b></div>
                         </div>
                         <div class="errorMsg">Pastikan data yang kamu isi sudah benar</div>
 
                         <div class="formRow error2">
                             <input id="dana_sekarang" type="text" class="inputnum3 i6" th:value="${dana_sekarang}" inputmode="numeric" pattern="[0-9]*" required/>
-                            <div class="left">Dana tersedia <b>Rp</b></div>
+                            <div class="left">Dana tersedia <b>IDR</b></div>
                         </div>
                         <div class="errorMsg2">Pastikan data yang kamu isi sudah benar</div>
                         <div class="formRow">
@@ -77,8 +77,8 @@
 
                     <div class="calcResult">
                         <div class="text-center">
-                            <span id="name" th:text="${name}"/> membutuhkan dana hingga Rp. 
-                            <b><span th:text="${target_dana}"></span></b> wujudkan dengan :
+                            <span id="name" th:text="${name}"/> membutuhkan dana hingga IDR 
+                            <b><span th:text="${target_dana}"></span></b> wujudkan dengan:
 
                         </div>
 
@@ -87,7 +87,8 @@
                                 <div class="row title"><span>Tabungan</span></div>
                                 <div class="validRC">
                                     <div class="row desc">Menyisihkan hingga</div>
-                                    <div class="row value">Rp. <span id="tabunganResult" th:text="${tabunganResult}"></span></div>
+                                    <div class="row value">IDR <span id="tabunganResult" th:text="${tabunganResult}"></span></div>
+                                    <div class="row desc">per bulan</div>
                                     <div class="row note">( <span id="tabunganRate" th:text="${tabungan.Rate}"></span> laba per tahun )</div>
                                 </div>
                                 <br>
@@ -98,7 +99,8 @@
                                 <div class="row title"><span>Investasi</span></div>
                                 <div class="validRC">
                                     <div class="row desc">Menyisihkan hingga</div>
-                                    <div class="row value">Rp. <span id="investasiResult" th:text="${investasiResult}"></span></div>
+                                    <div class="row value">IDR <span id="investasiResult" th:text="${investasiResult}"></span></div>
+                                    <div class="row desc">per bulan</div>
                                     <div class="row note">( <span id="investasiRate" th:text="${investasi.Rate}"></span> laba per tahun )</div>
                                 </div>
                                 <br>

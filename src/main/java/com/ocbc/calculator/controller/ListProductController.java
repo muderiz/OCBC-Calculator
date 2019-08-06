@@ -10,6 +10,7 @@ import com.ocbc.calculator.model.ListProductResponse;
 import com.ocbc.calculator.model.Product;
 import com.ocbc.calculator.services.CalculatorServices;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,25 +36,34 @@ public class ListProductController {
 
     // >> /product/refID/123123123/1/2
     // >> /product/refID/123123123/2/2
-    // >> /product/refID/123123123/3/2
+    // >> /product/refID/1/50000000/3/2/2/1/5000000/2/Deka
     // >> /product?refid=...&amount=...&4/2
-    @GetMapping("/{refID}/{lifegoalid}/{amount}/{tenor}/{risk_profile_id}/{tipe}/{investment_type}/{initial_amount}/{country}")
+    @GetMapping("/{refID}/{lifegoalid}/{amount}/{tenor}/{risk_profile_id}/{tipe}/{investment_type}/{initial_amount}/{country}/{nama}")
     public String product(Model model,
             @PathVariable String refID,
             @PathVariable int lifegoalid,
-            @PathVariable int amount,
-            @PathVariable int tenor,
+            @PathVariable String amount,
+            @PathVariable String tenor,
             @PathVariable int risk_profile_id,
-            @PathVariable int tipe,
-            @PathVariable int investment_type,
-            @PathVariable int initial_amount,
-            @PathVariable int country
+            @PathVariable String tipe,
+            @PathVariable String investment_type,
+            @PathVariable String initial_amount,
+            @PathVariable String country,
+            @PathVariable String nama
     ) throws IOException {
 
         //ambil list product    
         ListProductResponse listProductResponse = calculatorServices.showListProduct(refID, amount, risk_profile_id, tipe);
 
         List<Product> listProduct = listProductResponse.List_Product;
+
+        for (Product product : listProduct) {
+            double koma = Math.pow(10, 2);
+            product.YTD = Math.round(product.YTD * koma) / koma;
+
+            DecimalFormat decimalFormat = new DecimalFormat("");
+            product.Mutual_Fund_Nav = decimalFormat.format(Double.parseDouble(product.Mutual_Fund_Nav));
+        }
 
         List<Product> listConservative = listProduct.stream()
                 .filter(product -> product.Mutual_Fund_Risk_Profile_ID == 1)
@@ -105,14 +115,15 @@ public class ListProductController {
 
         String urlBack = "";
         if (lifegoalid == 1) {
-            urlBack = lifegoalid + "/" + tipe + "/" + initial_amount + "/" + country + "/" + risk_profile_id;
+            urlBack = lifegoalid + "/" + tipe + "/" + initial_amount + "/" + country + "/" + risk_profile_id + "/" + nama;
         } else {
-            urlBack = tipe + "/" + risk_profile_id;
+            urlBack = tipe + "/" + risk_profile_id + "/" + nama;
         }
         model.addAttribute("refID", refID);
         model.addAttribute("lifegoalid", lifegoalid);
         model.addAttribute("initial_amount", initial_amount);
         model.addAttribute("country", country);
+        model.addAttribute("nama", nama);
         model.addAttribute("listConservative", listConservative);
         model.addAttribute("listBalance", listBalance);
         model.addAttribute("listGrowth", listGrowth);

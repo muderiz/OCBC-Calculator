@@ -61,6 +61,7 @@
                         <input id="idchannel" type="hidden" th:value="${idchannel}"/>
                         <input id="investmenttype" type="hidden" th:value="${investmenttype}"/>
                         <input id="country" type="hidden" th:value="${country}"/>
+                        <input id="nama" type="hidden" th:value="${nama}"/>
                         <input id="riskprofileid" type="hidden" value="1"/>
                         <input id="firstriskprofileid" type="hidden" th:value="${risk_profile_id}"/>
                         <input id="namereksadana" type="hidden" value="1"/>
@@ -108,7 +109,7 @@
                                         <table class="detailTable">
                                             <tr>
                                                 <td colspan="5">
-                                                    <b> Kinerja</b>
+                                                    <b> Kinerja (%)</b>
                                                 </td>
                                                 <td class="right">
                                                     <b>Harga NAB/Unit</b>
@@ -142,7 +143,7 @@
                                                     <b class="val"><span th:text="${conservative.Performance_of_60_month}"></span></b>
                                                 </td>
                                                 <td>
-                                                    <b class="val"><span th:text="${conservative.Mutual_Fund_Nav}"></span></b></td>
+                                                    <b class="val">IDR <span th:text="${conservative.Mutual_Fund_Nav}"></span></b></td>
                                             </tr>
                                         </table>
 
@@ -191,7 +192,7 @@
                                         <table class="detailTable">
                                             <tr>
                                                 <td colspan="5">
-                                                    <b> Kinerja</b>
+                                                    <b> Kinerja (%)</b>
                                                 </td>
                                                 <td class="right">
                                                     <b>Harga NAB/Unit</b>
@@ -225,7 +226,7 @@
                                                     <b class="val"><span th:text="${balance.Performance_of_60_month}"></span></b>
                                                 </td>
                                                 <td>
-                                                    <b class="val"><span th:text="${balance.Mutual_Fund_Nav}"></span></b></td>
+                                                    <b class="val">IDR <span th:text="${balance.Mutual_Fund_Nav}"></span></b></td>
                                             </tr>
                                         </table>
 
@@ -275,7 +276,7 @@
                                         <table class="detailTable">
                                             <tr>
                                                 <td colspan="5">
-                                                    <b> Kinerja</b>
+                                                    <b> Kinerja (%)</b>
                                                 </td>
                                                 <td class="right">
                                                     <b>Harga NAB/Unit</b>
@@ -309,7 +310,7 @@
                                                     <b class="val"><span th:text="${growth.Performance_of_60_month}"></span></b>
                                                 </td>
                                                 <td>
-                                                    <b class="val"><span th:text="${growth.Mutual_Fund_Nav}"></span></b></td>
+                                                    <b class="val">IDR <span th:text="${growth.Mutual_Fund_Nav}"></span></b></td>
                                             </tr>
                                         </table>
 
@@ -328,8 +329,8 @@
 
 
                         <div id="riskNotif" class="riskNotif" th:style="${risk_profile_id==4}?'display: none':'display: block'">
-                            Menampilkan produk reksadana yang sesuai atau lebih rendah dari profile resiko Dewi :
-                            <b>BALANCE</b>
+                            Menampilkan produk reksadana yang sesuai atau lebih rendah dari profile resiko <span th:text="${nama}"></span> :
+                            <b><span th:text="${risk_profile_desc}"></span></b>
                             <br/> <br/>
                             <button id="showAllCat" class="onBtn">TAMPILKAN SEMUA</button>
                         </div>
@@ -369,7 +370,7 @@
                                         <table class="detailTable">
                                             <tr>
                                                 <td colspan="5">
-                                                    <b> Kinerja</b>
+                                                    <b> Kinerja (%)</b>
                                                 </td>
                                                 <td class="right">
                                                     <b>Harga NAB/Unit</b>
@@ -403,7 +404,7 @@
                                                     <b class="val"><span th:text="${aggresive.Performance_of_60_month}"></span></b>
                                                 </td>
                                                 <td>
-                                                    <b class="val"><span th:text="${aggresive.Mutual_Fund_Nav}"></span></b></td>
+                                                    <b class="val">IDR <span th:text="${aggresive.Mutual_Fund_Nav}"></span></b></td>
                                             </tr>
                                         </table>
 
@@ -426,10 +427,10 @@
                     <div id="highRiskConfirm" class="highRiskConfirm">
                         <div class="dialogBox">
                             <div>
-                                Profil resiko yang dipilih <b><span id='pilihanUser'>(AGGRESIVE)</span></b> lebih tinggi dari profile resiko Dewi
-                                : <b><span th:text="${risk_profile_desc}"></span></b>.
+                                Profil resiko yang dipilih <b><span id='pilihanUser'>(AGGRESIVE)</span></b> lebih tinggi dari profile resiko
+                                <span th:text="${nama}"></span> : <b><span th:text="${risk_profile_desc}"></span></b>.
 
-                                Apakah Dewi yakin ingin melanjutkan dengan produk terpilih?
+                                Apakah <span th:text="${nama}"></span> yakin ingin melanjutkan dengan produk terpilih?
                                 <br/><br/>
                                 <button id="highRiskConfirm_close" class="onBtn grey">KEMBALI</button>
                                 <button id="highRiskConfirm_next" class="onBtn">LANJUTKAN</button>

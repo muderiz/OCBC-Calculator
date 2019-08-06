@@ -37,7 +37,7 @@
 
                     <div class="selected_product_box">
                         <div><button id="gantiproduk" class="onBtn white bordered">&lsaquo;&nbsp; Ganti Pilihan Produk</button></div>
-                        <div class="subtitle">Produk reksadana :</div>
+                        <div class="subtitle">Produk reksadana:</div>
                         <div class="title"><span th:text="${namareksadana}"></span></div>
 
                     </div>
@@ -47,7 +47,7 @@
                         <div class="invest_type productList_scrollArea">
 
                             <div class="invest_selection_title">
-                                Kamu mau investasi dengan cara :
+                                Kamu mau investasi dengan cara:
                             </div>
 
                             <ul class="productList_container">
@@ -61,7 +61,8 @@
                                         </div>
                                         <div class="right">
                                             <div class="type"><span th:text="${typeDesc}"></div>
-                                            <div class="rate"><b class="price">Rp <span th:text="${resultamount}"></b></div>
+                                            <div class="subtitle">Pertumbuhan hingga</div>
+                                            <div class="rate"><b class="price">IDR <span th:text="${resultamount}"></b></div>
                                             <div class="estimate">Est. laba <b><span th:text="${rate}"></b> /thn</div>
                                             <div class="action"><button id="FinalGrowth" class="onBtn lg">Pilih Jenis Investasi</button></div>
                                         </div>

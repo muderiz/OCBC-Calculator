@@ -51,7 +51,7 @@
                         <input id="firsttenor" type="hidden" th:value="${tenor}"/>
                         <div class="formRow error">
                             <input id="amount" type="text" class="inputnum currency i1" th:value="${newamount}" inputmode="numeric" pattern="[0-9]*" required/>
-                                <div class="left">Rp</div>
+                                <div class="left">IDR</div>
                                 <div class="right"><span th:text="${typeDesc}"></div>
                         </div>
                         <div class="errorMsg" >Pastikan data yang kamu isi sudah benar</div>
@@ -68,18 +68,18 @@
                     </div>
                     <div class="calcResult">
                         <div class="text-center">
-                            <p th:inline="text">Dengan Rp. <b>[[${newamount}]]</b> [[${typeDesc}]]
+                            <p th:inline="text">Dengan IDR <b>[[${newamount}]]</b> [[${typeDesc}]]
                                 <br>
-                                    selama <b>[[${tenor}]]</b> tahun :
+                                    selama <b>[[${tenor}]]</b> tahun, dapatkan:
                             </p>
                         </div>  
 
                         <div class="resultGraph ">
                             <div class="infoCol left">
                                 <div class="row title"><span>Tabungan</span></div>
-                                <div class="row desc">Pertumbuhan Hingga</div>
+                                <div class="row desc">Pertumbuhan hingga</div>
                                 <div class="validRC">
-                                    <div class="row value">Rp. <span id="tabunganResult" th:text="${tabunganResult}"/></div>
+                                    <div class="row value">IDR <span id="tabunganResult" th:text="${tabunganResult}"/></div>
                                     <div class="row value"></div>
                                     <div class="row note">( <span id="tabunganRate" th:text="${tabunganRate}"/> laba per tahun )</div>
                                 </div>
@@ -89,9 +89,9 @@
 
                             <div class="infoCol right">
                                 <div class="row title"><span>Investasi</span></div>
-                                <div class="row desc">Pertumbuhan Hingga</div>
+                                <div class="row desc">Pertumbuhan hingga</div>
                                 <div class="validRC">
-                                    <div class="row value">Rp. <span id="investasiResult" th:text="${investasiResult}"/></div>
+                                    <div class="row value">IDR <span id="investasiResult" th:text="${investasiResult}"/></div>
                                     <div class="row value"></div>
                                     <div class="row note">( <span id="investasiRate" th:text="${investasiRate}"/> laba per tahun )</div>
                                 </div>  
