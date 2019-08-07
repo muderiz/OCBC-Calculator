@@ -104,9 +104,7 @@ public class GrowthCalculatorController {
         model.addAttribute("note", note);
         model.addAttribute("newamount", newamount);
         model.addAttribute("idchannel", appProp.IdLiveChat);
-//        model.addAttribute("rc", "0");
         model.addAttribute("rc", respInvestasi.RC);
-//        model.addAttribute("rcdesc", "Atribut <Investment_Amount> bernilai negatif.");
         model.addAttribute("rcdesc", respInvestasi.RC_Description);
         model.addAttribute("rcdescerror8", appProp.response8);
 
