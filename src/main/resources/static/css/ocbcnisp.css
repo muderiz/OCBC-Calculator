@@ -9,7 +9,8 @@
 
 .ocbc_webview{height:100%; width:100%; position:absolute; top:0; left:0; right:0; bottom:0; z-index:999; font-size:11px; font-family:'TheSans';}
 .ocbc_webview_overlay{height:100%; width:100%; position:absolute; top:0; left:0; right:0; bottom:0; background-color:rgba(0,0,0,.5); }
-.ocbc_webview_content{position:absolute; background:#eee; height:95%; bottom:0; left:0; right:0;}
+/*.ocbc_webview_content{position:absolute; background:#eee; height:95%; bottom:0; left:0; right:0;}*/
+.ocbc_webview_content{position:absolute; background:#eee; height:100%; bottom:0; left:0; right:0;}
 /*.ocbc_webview .onBtnHitung{background-color:#00A2A3; font-weight:bold; margin: 0 3px; font-size:11px; color:#fff; display:inline-block; text-align:center; border:0; border-radius:5px;  padding:6px 12px; vertical-align:middle}*/
 .ocbc_webview .onBtn{background-color:#00A2A3; font-weight:bold; margin: 0 3px; font-size:11px; color:#fff; display:inline-block; text-align:center; border:0; border-radius:5px;  padding:6px 12px; vertical-align:middle}
 .ocbc_webview .onBtn.grey{background-color:#eee; color:#555;} .ocbc_webview .onBtn.grey.bordered{border:1px solid #777;}
@@ -105,7 +106,8 @@
 .tnc .scrollContainer{padding:10px; background-color:#fff; overflow-y:auto; height:100%;  box-shadow:  inset 0 0 5px rgba(0,0,0,.2); border-radius:5px;text-align: justify;}
 .tnc .agreementBar{padding:10px;  position:absolute; bottom:0; width:100%; text-align:center;}
 
-.selected_product_box{ height:100px;  overflow:hidden; margin: 5px; background-color: #fff; padding: 10px ;     position: relative;  z-index: 99;}
+/*.selected_product_box{ height:100px;  overflow:hidden; margin: 5px; background-color: #fff; padding: 10px ;     position: relative;  z-index: 99;}*/
+.selected_product_box{ height:100px;  overflow:hidden; margin-right: 20px; background-color: #fff; padding: 10px ;     position: relative;  z-index: 99;}
 .selected_product_box .title{font-size:15px; color:#CB4335; height:20px; overflow:hidden; font-weight:bold;}
 .selected_product_box .subtitle{margin:10px 0 5px;}
 
