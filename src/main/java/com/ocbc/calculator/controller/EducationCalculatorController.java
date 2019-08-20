@@ -86,6 +86,10 @@ public class EducationCalculatorController {
             }
         }
 
+        if (Integer.parseInt(age) >= 18) {
+            age = "18";
+        }
+
         value = value.toLowerCase()
                 .replace(",-", "")
                 .replace(",", "")
@@ -139,6 +143,7 @@ public class EducationCalculatorController {
             @PathVariable String name,
             @PathVariable int risk_profile_id) throws IOException {
         String note;
+
         String risk_profile_desc = "";
         switch (risk_profile_id) {
             case 1:
@@ -175,6 +180,10 @@ public class EducationCalculatorController {
                 break;
 
             }
+        }
+
+        if (Integer.parseInt(age) >= 18) {
+            age = "18";
         }
 
         value = value.toLowerCase()
