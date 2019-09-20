@@ -16,7 +16,7 @@
 .ocbc_webview .onBtn.grey{background-color:#eee; color:#555;} .ocbc_webview .onBtn.grey.bordered{border:1px solid #777;}
 .ocbc_webview .onBtn.white{background-color:#fff; color:#555;} .ocbc_webview .onBtn.white.bordered{border:1px solid #555;}
 .ocbc_webview .onBtn.disabled{opacity:.5;}
-
+    
 .ocbc_webview .onBtn.lg{border-radius:5px;  padding:8px 13px; font-size:13px;}
 
 .ocbc_webview .text-center{text-align:center;}
@@ -94,7 +94,7 @@
 .calcResult .resultGraph .infoCol{width:50%;position:absolute; padding:10px 15px; top:0;}
 .calcResult .resultGraph .infoCol.left{left:0; text-align:right; color:#333;}
 .calcResult .resultGraph .infoCol.right{right:0; text-align:left; color:#fff;}
-.calcResult .resultGraph .infoCol .row{padding:2px 0;}
+.calcResult .resultGraph .infoCol .row{padding:2px 2px;}
 .calcResult .resultGraph .infoCol .title span{display:inline-block; border:2px solid #555; padding:1px 10px; font-size:11px; border-radius:5px; font-weight:bold;}
 .calcResult .resultGraph .infoCol.right .title span{border-color:#fff;}
 
