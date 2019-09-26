@@ -41,6 +41,7 @@
                     </div>
 
                     <div class="calcInput">
+                        <!--Field Hidden Untuk Penampung Data yang di lempar dari Controller, untuk Widget.js bisa get datanya-->
                         <input id="idchannel" type="hidden" th:value="${idchannel}"/>
                         <input id="type" type="hidden" th:value="${type}"/>
                         <input id="name" type="hidden" th:value="${name}"/>
@@ -49,10 +50,11 @@
                         <input id="refID" type="hidden" th:value="${refID}"/>
                         <input id="firstamount" type="hidden" th:value="${newamount}"/>
                         <input id="firsttenor" type="hidden" th:value="${tenor}"/>
+                        <!------------------------------------------------------------------------------------------------------>
                         <div class="formRow error">
                             <input id="amount" type="text" class="inputnum currency i1" th:value="${newamount}" inputmode="numeric" pattern="[0-9]*" required/>
-                                <div class="left">IDR</div>
-                                <div class="right"><span th:text="${typeDesc}"></div>
+                            <div class="left">IDR</div>
+                            <div class="right"><span th:text="${typeDesc}"></div>
                         </div>
                         <div class="errorMsg" >Pastikan data yang kamu isi sudah benar</div>
                         <div class="formRow">

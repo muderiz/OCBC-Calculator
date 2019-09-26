@@ -18,9 +18,11 @@
         <div class="ocbc_webview">
 
             <div class="ocbc_webview_overlay">
+                <!--Field Hidden Untuk Penampung Data yang di lempar dari Controller, untuk Widget.js bisa get datanya-->
                 <input id="rc" type="hidden" th:value="${rc}"/>
                 <input id="rcdesc" type="hidden" th:value="${rcdesc}"/>
                 <input id="goalsdesc" type="hidden" th:value="${goals}"/>
+                <!------------------------------------------------------------------------------------------------------>
                 <div id="highRiskConfirm" class="highRiskConfirm">
                     <div class="dialogBox">
                         <div>
@@ -43,7 +45,7 @@
                     </div>
 
                     <div class="calcInput">
-
+                        <!--Field Hidden Untuk Penampung Data yang di lempar dari Controller, untuk Widget.js bisa get datanya-->
                         <input id="lifegoal" type="hidden" value="etc"/>
                         <input id="idchannel" type="hidden" th:value="${idchannel}"/>
                         <input id="refID" type="hidden" th:value="${refID}"/>
@@ -51,6 +53,8 @@
                         <input id="firstamount" type="hidden" th:value="${target_dana}"/>
                         <input id="firsttenor" type="hidden" th:value="${jangka_waktu}"/>
                         <input id="secondamount" type="hidden" th:value="${dana_sekarang}"/>
+                        <!------------------------------------------------------------------------------------------------------>
+
                         <div class="formRow error">
                             <input id="target_dana" type="text" class="inputnum2 i6" th:value="${target_dana}" inputmode="numeric" pattern="[0-9]*" required/>
                             <div class="left">Target dana <b>IDR</b></div>

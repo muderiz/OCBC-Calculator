@@ -54,6 +54,7 @@
                                 </td>
                             </tr>
                         </table>
+                        <!--Field Hidden Untuk Penampung Data yang di lempar dari Controller, untuk Widget.js bisa get datanya-->
 
                         <input id="lifegoal" type="hidden" value="product"/>
                         <input id="refID" type="hidden" value="refID"/>
@@ -74,6 +75,7 @@
                         <input id="initial_amount" type="hidden" th:value="${initial_amount}"/>
                         <input id="tenor" type="hidden" th:value="${tenor}"/>
                         <input id="urlBack" type="hidden" th:value="${urlBack}"/>
+                        <!------------------------------------------------------------------------------------------------------>
                     </div>
 
                     <div class="productList_scrollArea">
@@ -85,12 +87,14 @@
 
                             <ul class="productList_container">
                                 <li class="productList type1" th:each="conservative: ${listConservative}" >
+                                    <!--Field Hidden Untuk Penampung Data yang di lempar dari Controller, untuk Widget.js bisa get datanya-->
                                     <input class="namareksa" type="hidden" th:value="${conservative.Product_Name}"/>
                                     <input class="averagerate" type="hidden" th:value="${conservative.Average_Rate}"/>
                                     <input class="badrate" type="hidden" th:value="${conservative.Bad_Rate}"/>
                                     <input class="goodrate" type="hidden" th:value="${conservative.Good_Rate}"/>
                                     <input class="productid" type="hidden" th:value="${conservative.Product_ID}"/>
                                     <input class="producttype" type="hidden" th:value="${conservative.Product_Type}"/>
+                                    <!------------------------------------------------------------------------------------------------------>
                                     <div class="productBar openTrigger clearfix">
                                         <div class="productBar_cell left">
                                             <span th:text="${conservative.Product_Name}"></span>

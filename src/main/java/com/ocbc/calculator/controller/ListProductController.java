@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- *
+ * Controller List Product Reksadana Vebwiew
  * @author cokkyturnip
  */
 @Controller
