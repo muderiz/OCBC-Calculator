@@ -1,121 +1,96 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-
-        <title></title>
-        <link rel="stylesheet" th:href="@{~/css/red.css?v=7}"/>
+        <link rel="stylesheet" th:href="@{~/css/font-awesome.css}" type="text/css"/>
         <link rel="stylesheet" th:href="@{~/css/ocbcnisp.css}"/>
-        <script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
-        <script th:src="@{/js/talk.js}" type="text/javascript"></script>
-        <script th:src="@{/js/webview.js}" type="text/javascript"></script>
     </head>
+    <body>
 
-    <body>  
-        <!-- INSERT CONTENT START -->
+        <body>  
 
-        <div class="ocbc_webview">
+            <div class="ocbc_webview">
 
-            <div class="ocbc_webview_overlay">
-                <input id="rc" type="hidden" th:value="${rc}"/>
-                <input id="rcdesc" type="hidden" th:value="${rcdesc}"/>
-                <div id="highRiskConfirm" class="highRiskConfirm">
-                    <div class="dialogBox">
-                        <div>
-                            <b><span id="textrcdesc" th:text="${rcdesc}"></span></b>.
-                            <br/>
-                            Harap periksa kembali input anda dan hitung ulang.
-                            <br/><br/>
-                            <button id="highRiskConfirm_close" class="onBtn">HITUNG KEMBALI</button>
-                        </div>
+                <div class="ocbc_webview_content">
+
+                    <div class="topBar">
+                        <a class="link" href="#"><i class="far fa-chevron-left icon"></i> Tujuan investasi</a>
                     </div>
-                </div>
-            </div>
-
-            <div class="ocbc_webview_content">
-                <div class="lifegoalCalculator">
 
                     <div class="titleBar">
-                        Tumbuhkan Uang
+                        <div class="titles">Menumbuhkan Uang</div>
+                        <div class="desc">Masukkan nominal dan jangka waktu yang berbeda untuk menghitung ulang simulasi</div>
                     </div>
 
-                    <div class="calcInput">
-                        <!--Field Hidden Untuk Penampung Data yang di lempar dari Controller, untuk Widget.js bisa get datanya-->
-                        <input id="idchannel" type="hidden" th:value="${idchannel}"/>
-                        <input id="type" type="hidden" th:value="${type}"/>
-                        <input id="name" type="hidden" th:value="${name}"/>
-                        <input id="risk_profile_id" type="hidden" th:value="${risk_profile_id}"/>
-                        <input id="lifegoal" type="hidden" value="growth"/>
-                        <input id="refID" type="hidden" th:value="${refID}"/>
-                        <input id="firstamount" type="hidden" th:value="${newamount}"/>
-                        <input id="firsttenor" type="hidden" th:value="${tenor}"/>
-                        <!------------------------------------------------------------------------------------------------------>
-                        <div class="formRow error">
-                            <input id="amount" type="text" class="inputnum currency i1" th:value="${newamount}" inputmode="numeric" pattern="[0-9]*" required/>
-                            <div class="left">IDR</div>
-                            <div class="right"><span th:text="${typeDesc}"></div>
-                        </div>
-                        <div class="errorMsg" >Pastikan data yang kamu isi sudah benar</div>
-                        <div class="formRow">
-                            <input id="tenor" type="text" class="inputnumtenor i2" th:value="${tenor}" inputmode="numeric" maxlength="2" min="0" max="50" pattern="[0-9]*" required/>
-                            <div class="left">Selama</div>
-                            <div class="right">tahun</div>
-                        </div>
-                        <div id="errorTenor" class="errorMsgTenor" >Maksimal Tenor 50 Tahun</div>
-                        <br>
-                            <div class="text-center">
-                                <button id="hitungUlang" class="onBtn">Hitung Ulang</button>
-                            </div>
-                    </div>
-                    <div class="calcResult">
-                        <div class="text-center">
-                            <p th:inline="text">Dengan IDR <b>[[${newamount}]]</b> [[${typeDesc}]]
-                                <br>
-                                    selama <b>[[${tenor}]]</b> tahun, dapatkan:
-                            </p>
-                        </div>  
 
-                        <div class="resultGraph ">
-                            <div class="infoCol left">
-                                <div class="row title"><span>Tabungan</span></div>
-                                <div class="row desc">Pertumbuhan hingga</div>
-                                <div class="validRC">
-                                    <div class="row value">IDR <span id="tabunganResult" th:text="${tabunganResult}"/></div>
-                                    <div class="row value"></div>
-                                    <div class="row note">( <span id="tabunganRate" th:text="${tabunganRate}"/> laba per tahun )</div>
-                                </div>
-                                <br>
-                                    <div id="errorRc" class="errorRc"><b><span th:text="${rcdescerror8}"/></b></div>
+                    <div class="lifegoalCalculator">
+
+
+
+                        <div class="recalc form_row">
+                            <div class="form-group">
+                                <label for="email" class="label">Dana diinvestasikan (IDR)</label>
+                                <input type="text" class="input" value="8.500.000"  style="width:130px;">
+                                    <div class="tips">/bulan</div>
+
                             </div>
 
-                            <div class="infoCol right">
-                                <div class="row title"><span>Investasi</span></div>
-                                <div class="row desc">Pertumbuhan hingga</div>
-                                <div class="validRC">
-                                    <div class="row value">IDR <span id="investasiResult" th:text="${investasiResult}"/></div>
-                                    <div class="row value"></div>
-                                    <div class="row note">( <span id="investasiRate" th:text="${investasiRate}"/> laba per tahun )</div>
-                                </div>  
-                                <br>
-                                    <div id="errorRc" class="errorRc"><b><span th:text="${rcdescerror8}"/></b></div>
-                            </div>
+                            <div class="form-group">
+                                <label for="email" class="label">Lama investasi</label>
+                                <input type="text" class="input" value="3" style="width:40px;">
+                                    <div class="tips">bulan</div>
+                                    <input type="text" class="input" value="3" style="width:40px;">
+                                        <div class="tips">tahun</div>
+                                        </div>
 
-                            <img class="graphBG" th:src="@{/images/graph1.png}" />
+                                        <div class="form-group for_btn">
+                                            <button class="btn green">Hitung ulang</button>
+                                        </div>
+                                        </div>
 
-                        </div>
+                                        <div class="info">Karena risk profile kamu <b>Conservative</b>, kau bisa berinvestasi di instrumen keuangan yang rata - rata returnnya bisa mencapai 3.25% setahun!</div>
 
-                        <div class="text-center">
-                            <i><span th:text="${note}">.</i>
-                            <br/> <br/>
+                                        <div class="calcResult">
 
-                            <button id="btnSubmitOthers" class="onBtn grey bordered">Ganti Life Goal</button>
-                            <button id="btnSubmit" class="onBtn"  >Goal Sudah Sesuai</button>
-                            <div id="alertHitung" class="errorMsgHitung" >Silahkan Lakukan Hitung Ulang Terlebih Dahulu</div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-        </div>
-    </body>
 
-</html>
+                                            <div class="circle">ATAU</div>
+
+                                            <div class="resultGraph ">
+                                                <div class="infoCol left">
+                                                    <div class="row title">Cuma nabung</div>
+                                                    <div class="row img"><img th:src="@{~/images/sim2.png}" /></div>
+                                                    <div class="row desc">Pertumbuhan Hingga</div>
+                                                    <div class="row value">Rp 210,040,000</div>
+                                                    <div class="row note">(laba 1% per tahun)</div>
+                                                </div>
+
+                                                <div class="infoCol right">
+                                                    <div class="row title">Dengan investasi</div>
+                                                    <div class="row img"><img th:src="@{~/images/sim1.png}" /></div>
+                                                    <div class="row desc">Cukup menyisihkan</div>
+                                                    <div class="row value">Rp 860,040,000</div>
+                                                    <div class="row note">(laba 3.25% per tahun)</div>
+
+                                                    <div class="row button">
+                                                        <button class="btn ricon red">Goal sudah sesuai <i class="far fa-arrow-right icon"></i></i></button>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+
+
+                                        </div>
+                                        </div>
+                                        </div>
+
+
+
+
+                                        </body>
+                                        </html>
