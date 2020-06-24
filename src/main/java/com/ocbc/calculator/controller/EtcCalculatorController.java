@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Controller Others Webview
+ *
  * @author cokkyturnip
  */
 @Controller
@@ -35,7 +36,7 @@ public class EtcCalculatorController {
     @Autowired
     private AppProperties appProp;
 
-    // >> /etc/refid/Beli%20Mobil%20Mewah/Bambang/23,210,000/20,231,230,000/12/0
+    // >> /etc/refid/Liburan%20ke%20Jepang/Bambang/23,210,000/20,231,230,000/12/1
     @GetMapping("/{refID}/{goals}/{name}/{present_value}/{future_value}/{tenor}/{risk_profile_id}")
     public String etc(Model model,
             @PathVariable String refID,
@@ -45,7 +46,8 @@ public class EtcCalculatorController {
             @PathVariable String future_value,
             @PathVariable String tenor,
             @PathVariable int risk_profile_id) throws IOException {
-
+        String tahun = "1";
+        String bulan = "3";
         String note;
         String risk_profile_desc = "";
         switch (risk_profile_id) {
@@ -98,6 +100,9 @@ public class EtcCalculatorController {
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
+        model.addAttribute("tahun", tahun);
+        model.addAttribute("bulan", bulan);
+        model.addAttribute("risk_profile_desc", risk_profile_desc);
         model.addAttribute("refID", refID);
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("investasiResult", investResult);

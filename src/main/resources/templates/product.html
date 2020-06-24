@@ -1,451 +1,439 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
+<html>
     <head>
-        <title></title>
-        <link rel="stylesheet" th:href="@{/css/red.css?v=7}" type="text/css"/>
-
-        <link rel="stylesheet" th:href="@{/css/ocbcnisp.css}" type="text/css"/>
-        <script th:src='@{/js/jquery-2.1.3.min.js}'></script>
+        <link rel="stylesheet" th:href="@{~/css/font-awesome.css}"/>
+        <link rel="stylesheet" th:href="@{~/css/ocbcnisp.css?v=2}"/>
+        <script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+        <script th:src="@{/js/jquery-2.1.3.min.js}" type="text/javascript"></script>
         <script th:src="@{/js/talk.js}" type="text/javascript"></script>
+        <script th:src="@{/js/newwebview.js}" type="text/javascript"></script>
 
-        <script th:src='@{/js/webview.js}'></script>
     </head>
-
+    <body>
     <body>
 
-
-
-        <!-- INSERT CONTENT START -->
-
         <div class="ocbc_webview">
-
-            <div class="ocbc_webview_overlay"></div>
-
             <div class="ocbc_webview_content">
 
+                <div class="topbar">
+                    <a class="link" href="#"><i class="far fa-chevron-left icon"></i> Pilih produk</a>
+                </div>
+
+                <div class="titleBar">
+                    <div class="titles">Pilihan Produk Reksadana</div>
+                    <div class="desc">Klik pada masing-masing produk untuk detail</div>
+                </div>
+
                 <div class="product_selection">
-
-                    <div class="product_selection_headerbar">
-
-                        <table width="100%" cellspacing="0">
-                            <tr>
-                                <td class="left" width="50%">
-                                    <b>PILIH PRODUK REKSADANA</b>
-
-
-                                </td>
-
-                                <td class="right" colspan="2" width="50%">
-                                    Est. Laba/Tahun (%)
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="left">
-                                    Tap untuk melihat detail
-                                </td>
-                                <td class="right">
-                                    Rata-rata
-                                </td>
-
-                                <td class="right">
-                                    Range
-                                </td>
-                            </tr>
-                        </table>
-                        <!--Field Hidden Untuk Penampung Data yang di lempar dari Controller, untuk Widget.js bisa get datanya-->
-
-                        <input id="lifegoal" type="hidden" value="product"/>
-                        <input id="refID" type="hidden" value="refID"/>
-                        <input id="lifegoalid" type="hidden" th:value="${lifegoalid}"/>
-                        <input id="idchannel" type="hidden" th:value="${idchannel}"/>
-                        <input id="investmenttype" type="hidden" th:value="${investmenttype}"/>
-                        <input id="country" type="hidden" th:value="${country}"/>
-                        <input id="nama" type="hidden" th:value="${nama}"/>
-                        <input id="riskprofileid" type="hidden" value="1"/>
-                        <input id="firstriskprofileid" type="hidden" th:value="${risk_profile_id}"/>
-                        <input id="namereksadana" type="hidden" value="1"/>
-                        <input id="averagerate" type="hidden" value="1"/>
-                        <input id="badrate" type="hidden" value="1"/>
-                        <input id="goodrate" type="hidden" value="1"/>
-                        <input id="productid" type="hidden" value="1"/>
-                        <input id="producttype" type="hidden" value="1"/>
-                        <input id="amount" type="hidden" th:value="${amount}"/>
-                        <input id="initial_amount" type="hidden" th:value="${initial_amount}"/>
-                        <input id="tenor" type="hidden" th:value="${tenor}"/>
-                        <input id="urlBack" type="hidden" th:value="${urlBack}"/>
-                        <!------------------------------------------------------------------------------------------------------>
-                    </div>
-
                     <div class="productList_scrollArea">
+                        <div class="rowInfo">
+
+                        </div>
+                        <!--
+                                                <?php 
+                                                for($o=1;$o<=4;$o++) { 
+                        
+                                                $cat_content = array(
+                                                1 => array('REKSADANA PASAR UANG','Reksa Dana Pasar Uang (RDPU) menyebar investasinya pada instrumen pasar uang dalam negri dan obligasi. Investasi ini cocok untuk jangka pendek (<1 tahun), dengan risk profile Conservative.'),
+                                                2 => array('REKSA DANA PENDAPATAN TETAP','Reksa Dana Pendapatan Tetap (RDPT) menyebar investasinya pada surat utang/obligasi (80%) dan sisanya ke produk pasar uang. Investasi ini cocok untuk jangka waktu 1 – 3 tahun, dengan risk profile Balance. '),
+                                                3 => array('REKSA DANA CAMPURAN','Reksa Dana Pendapatan Campuran menyebar investasinya pada pasar saham, obligasi, dan pasar uang. Investasi ini cocok untuk jangka waktu 3 – 5 tahun, dengan risk profile Growth. '),
+                                                4 => array('REKSA DANA SAHAM','Reksa Dana Saham menyebar minimal 80% investasinya pada pasar saham. Investasi ini cocok untuk jangka waktu > 5 tahun, dengan risk profile aggressive.  '),
+                                                );
+                                                ?>-->
+                        <input id="risk_profile_id" type="hidden" th:value="${risk_profile_id}"/>
+                        <section class="product_category">
+
+                            <div class="product_selection_catTitle">
+                                <div class="title">REKSADANA PASAR UANG</div>
+                                <div class="desc">Reksa Dana Pasar Uang (RDPU) menyebar investasinya pada instrumen pasar uang dalam negri dan obligasi. Investasi ini cocok untuk jangka pendek (<1 tahun), dengan risk profile Conservative.</div>
+
+                                <div class="rateinfo">Rata-rata est. laba/thn</div>
+
+                            </div>
+
+                            <ul class="productList_container">
+                                <li class="productList" th:each="pasaruang: ${listPasarUang}">
+                                    <input class="namareksa" type="hidden" th:value="${pasaruang.Product_Name}"/>
+                                    <input class="averagerate" type="hidden" th:value="${pasaruang.Average_Rate}"/>
+                                    <input class="badrate" type="hidden" th:value="${pasaruang.Bad_Rate}"/>
+                                    <input class="goodrate" type="hidden" th:value="${pasaruang.Good_Rate}"/>
+                                    <input class="productid" type="hidden" th:value="${pasaruang.Product_ID}"/>
+                                    <input class="producttype" type="hidden" th:value="${pasaruang.Product_Type}"/>
+                                    <div class="productBar openTrigger">
+                                        <div class="riskprofileid" type="hidden" th:value="${pasaruang.Mutual_Fund_Risk_Profile_ID}"></div>
+                                        <div class="prodType" th:classappend="${pasaruang.Mutual_Fund_Risk_Profile_ID}==1 ? 'type1'"><span th:text="${pasaruang.Mutual_Fund_Risk_Profile_Desc}"/></div>
+                                        <div class="riskDesc" th:classappend="${pasaruang.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'green' : 'red'"><span th:text="${pasaruang.Mutual_Fund_Risk_Profile_ID}<${risk_profile_id} ? 'Profile resiko sesuai' : 'Resiko lebih tinggi'"/></div>
+
+                                        <div class="prodName"><span th:text="${pasaruang.Product_Name}"/></div>
+
+                                        <div class="rate">
+                                            <span th:text="${pasaruang.Average_Rate}"/><small>%</small>
+                                        </div>
+                                    </div>
+                                    <div class="productDetail clearfix">
+                                        <table class="descTable">
+                                            <tr>
+                                                <td>Tanggal peluncuran produk</td>
+                                                <td><b>02/2020</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total AUM</td>
+                                                <td><b>Rp 320 milyar/tahun</b></td>
+                                            </tr>
+                                        </table>
+
+                                        <table class="detailTable">
+                                            <tr>
+                                                <td colspan="5">
+                                                    Kinerja (%)
+                                                </td>
+                                                <td  class="right">
+                                                    Harga NAB/Unit
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    1 Bln
+                                                    <br>
+                                                    <b class="val"><span th:text="${pasaruang.Performance_of_1_month}"></span></b>
+                                                </td>
+                                                <td>
+                                                    6 Bln
+                                                    <br>
+                                                    <b class="val"><span th:text="${pasaruang.Performance_of_6_month}"></span></b>
+                                                </td>
+                                                <td>
+                                                    YTD
+                                                    <br>
+                                                    <b class="val"><span th:text="${pasaruang.YTD}"></span></b>
+                                                </td>
+                                                <td>
+                                                    1 Thn
+                                                    <br>
+                                                    <b class="val"><span th:text="${pasaruang.Performance_of_12_month}"></span></b>
+                                                </td>
+                                                <td>
+                                                    5 Thn
+                                                    <br>
+                                                    <b class="val"><span th:text="${pasaruang.Performance_of_60_month}"></span></b>
+                                                </td>
+                                                <td>
+                                                    <b class="val">Rp <span th:text="${pasaruang.Mutual_Fund_Nav}"></span></b></td>
+                                            </tr>
+                                        </table>
+
+                                        <div class="botOption clearfix">
+                                            <a class="btn download" href="#"><i class="far fa-file icon"></i>&nbsp;&nbsp;Fund fact sheet</a>
+                                            <a class="btn download" href="#"><i class="far fa-file icon"></i>&nbsp;&nbsp;Prospektus</a>
+
+                                            <a class="btn select red" href="#">Pilih produk&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-right icon"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php } ?>
+                            </ul>
+
+                        </section>
+                        <?php } ?>
 
                         <section class="product_category">
 
-                            <div class="product_selection_catTitle type1">
-                                CONSERVATIVE </div>
+                            <div class="product_selection_catTitle">
+                                <div class="title">REKSA DANA PENDAPATAN TETAP</div>
+                                <div class="desc">Reksa Dana Pendapatan Tetap(RDPT) menyebar investasinya pada surat utang/obligasi (80%) dan sisanya ke produk pasar uang. Investasi ini cocok untuk jangka waktu 1 – 3 tahun, dengan risk profile Balance.</div>
+
+                                <div class="rateinfo">Rata-rata est. laba/thn</div>
+                            </div>
 
                             <ul class="productList_container">
-                                <li class="productList type1" th:each="conservative: ${listConservative}" >
-                                    <!--Field Hidden Untuk Penampung Data yang di lempar dari Controller, untuk Widget.js bisa get datanya-->
-                                    <input class="namareksa" type="hidden" th:value="${conservative.Product_Name}"/>
-                                    <input class="averagerate" type="hidden" th:value="${conservative.Average_Rate}"/>
-                                    <input class="badrate" type="hidden" th:value="${conservative.Bad_Rate}"/>
-                                    <input class="goodrate" type="hidden" th:value="${conservative.Good_Rate}"/>
-                                    <input class="productid" type="hidden" th:value="${conservative.Product_ID}"/>
-                                    <input class="producttype" type="hidden" th:value="${conservative.Product_Type}"/>
-                                    <!------------------------------------------------------------------------------------------------------>
-                                    <div class="productBar openTrigger clearfix">
-                                        <div class="productBar_cell left">
-                                            <span th:text="${conservative.Product_Name}"></span>
+                                <li class="productList" th:each="pendapatantetap: ${listPendapatanTetap}">
+                                    <input class="namareksa" type="hidden" th:value="${pendapatantetap.Product_Name}"/>
+                                    <input class="averagerate" type="hidden" th:value="${pendapatantetap.Average_Rate}"/>
+                                    <input class="badrate" type="hidden" th:value="${pendapatantetap.Bad_Rate}"/>
+                                    <input class="goodrate" type="hidden" th:value="${pendapatantetap.Good_Rate}"/>
+                                    <input class="productid" type="hidden" th:value="${pendapatantetap.Product_ID}"/>
+                                    <input class="producttype" type="hidden" th:value="${pendapatantetap.Product_Type}"/>
+                                    <div class="productBar openTrigger">
+
+                                        <div class="prodType type"><span th:text="${pendapatantetap.Product_Type}"/></div>
+                                        <div class="riskDesc"></div>
+
+                                        <div class="prodName"><span th:text="${pendapatantetap.Product_Name}"/></div>
+
+                                        <div class="rate">
+                                            <span th:text="${pendapatantetap.Average_Rate}"/><small>%</small>
                                         </div>
 
-                                        <div class="productBar_cell right">
-                                            <b class="val"><span th:text="${conservative.Average_Rate}"></span></b>
-                                        </div>
-                                        <div class="productBar_cell right">
-                                            <b class="val"><span th:inline="text">[[${conservative.Bad_Rate}]] - [[${conservative.Good_Rate}]]</span></b>
-                                        </div>
+
                                     </div>
 
                                     <div class="productDetail clearfix">
+                                        <table class="descTable">
+                                            <tr>
+                                                <td>Tanggal peluncuran produk</td>
+                                                <td><b>02/2020</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total AUM</td>
+                                                <td><b>Rp 320 milyar/tahun</b></td>
+                                            </tr>
+                                        </table>
 
                                         <table class="detailTable">
                                             <tr>
                                                 <td colspan="5">
-                                                    <b> Kinerja (%)</b>
+                                                    Kinerja (%)
                                                 </td>
-                                                <td class="right">
-                                                    <b>Harga NAB/Unit</b>
+                                                <td  class="right">
+                                                    Harga NAB/Unit
 
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     1 Bln
-                                                    <br/>
-                                                    <b class="val"><span th:text="${conservative.Performance_of_1_month}"></span></b>
+                                                    <br>
+                                                    <b class="val"><span th:text="${pendapatantetap.Performance_of_1_month}"></span></b>
                                                 </td>
                                                 <td>
                                                     6 Bln
-                                                    <br/>
-                                                    <b class="val"><span th:text="${conservative.Performance_of_6_month}"></span></b>
+                                                    <br>
+                                                    <b class="val"><span th:text="${pendapatantetap.Performance_of_6_month}"></span></b>
                                                 </td>
                                                 <td>
                                                     YTD
-                                                    <br/>
-                                                    <b class="val"><span th:text="${conservative.YTD}"></span></b>
+                                                    <br>
+                                                    <b class="val"><span th:text="${pendapatantetap.YTD}"></span></b>
                                                 </td>
                                                 <td>
                                                     1 Thn
-                                                    <br/>
-                                                    <b class="val"><span th:text="${conservative.Performance_of_12_month}"></span></b>
+                                                    <br>
+                                                    <b class="val"><span th:text="${pendapatantetap.Performance_of_12_month}"></span></b>
                                                 </td>
                                                 <td>
                                                     5 Thn
-                                                    <br/>
-                                                    <b class="val"><span th:text="${conservative.Performance_of_60_month}"></span></b>
+                                                    <br>
+                                                    <b class="val"><span th:text="${pendapatantetap.Performance_of_60_month}"></span></b>
                                                 </td>
                                                 <td>
-                                                    <b class="val">IDR <span th:text="${conservative.Mutual_Fund_Nav}"></span></b></td>
+                                                    <b class="val">Rp <span th:text="${pendapatantetap.Mutual_Fund_Nav}"></span></b></td>
                                             </tr>
                                         </table>
 
                                         <div class="botOption clearfix">
-                                            Jenis Reksadana
-                                            <b th:text="${conservative.Mutual_Fund_Type_Desc}"></b>
+                                            <a class="btn download" href="#"><i class="far fa-file icon"></i>&nbsp;&nbsp;Fund fact sheet</a>
+                                            <a class="btn download" href="#"><i class="far fa-file icon"></i>&nbsp;&nbsp;Prospektus</a>
 
-                                            <button class="onBtn btnConservative" th:classappend="'testfinal'">PILIH</button>
+                                            <a class="btn select red" href="#">Pilih produk&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-right icon"></i></a>
                                         </div>
-
                                     </div>
                                 </li>
+                                <!--<?php } ?>-->
                             </ul>
 
                         </section>
+                        <section class="product_category">
 
-                        <section class="product_category" th:style="${risk_profile_id<2}?'display: none':'display: block'" >
+                            <div class="product_selection_catTitle">
+                                <div class="title">REKSA DANA CAMPURAN</div>
+                                <div class="desc">Reksa Dana Pendapatan Campuran menyebar investasinya pada pasar saham, obligasi, dan pasar uang. Investasi ini cocok untuk jangka waktu 3 – 5 tahun, dengan risk profile Growth.</div>
 
-                            <div class="product_selection_catTitle type2">
-                                BALANCE </div>
+                                <div class="rateinfo">Rata-rata est. laba/thn</div>
 
-                            <ul class="productList_container" >
-
-                                <li class="productList type2" th:each="balance: ${listBalance}">
-                                    <input class="namareksa" type="hidden" th:value="${balance.Product_Name}"/>
-                                    <input class="averagerate" type="hidden" th:value="${balance.Average_Rate}"/>
-                                    <input class="badrate" type="hidden" th:value="${balance.Bad_Rate}"/>
-                                    <input class="goodrate" type="hidden" th:value="${balance.Good_Rate}"/>
-                                    <input class="productid" type="hidden" th:value="${balance.Product_ID}"/>
-                                    <input class="producttype" type="hidden" th:value="${balance.Product_Type}"/>
-                                    <div class="productBar openTrigger clearfix">
-                                        <div class="productBar_cell left">
-                                            <span th:text="${balance.Product_Name}"></span>
-                                        </div>
-
-                                        <div class="productBar_cell right">
-                                            <b class="val"><span th:text="${balance.Average_Rate}"></span></b>
-                                        </div>
-                                        <div class="productBar_cell right">
-                                            <b class="val"><span th:inline="text">[[${balance.Bad_Rate}]] - [[${balance.Good_Rate}]]</span></b>
-                                        </div>
-                                    </div>
-
-                                    <div class="productDetail clearfix">
-
-                                        <table class="detailTable">
-                                            <tr>
-                                                <td colspan="5">
-                                                    <b> Kinerja (%)</b>
-                                                </td>
-                                                <td class="right">
-                                                    <b>Harga NAB/Unit</b>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    1 Bln
-                                                    <br/>
-                                                    <b class="val"><span th:text="${balance.Performance_of_1_month}"></span></b>
-                                                </td>
-                                                <td>
-                                                    6 Bln
-                                                    <br/>
-                                                    <b class="val"><span th:text="${balance.Performance_of_6_month}"></span></b>
-                                                </td>
-                                                <td>
-                                                    YTD
-                                                    <br/>
-                                                    <b class="val"><span th:text="${balance.YTD}"></span></b>
-                                                </td>
-                                                <td>
-                                                    1 Thn
-                                                    <br/>
-                                                    <b class="val"><span th:text="${balance.Performance_of_12_month}"></span></b>
-                                                </td>
-                                                <td>
-                                                    5 Thn
-                                                    <br/>
-                                                    <b class="val"><span th:text="${balance.Performance_of_60_month}"></span></b>
-                                                </td>
-                                                <td>
-                                                    <b class="val">IDR <span th:text="${balance.Mutual_Fund_Nav}"></span></b></td>
-                                            </tr>
-                                        </table>
-
-                                        <div class="botOption clearfix">
-                                            Jenis Reksadana
-                                            <b th:text="${balance.Mutual_Fund_Type_Desc}"></b>
-
-                                            <button class="onBtn btnBalance" th:classappend="${risk_profile_id<2} ? 'higherRisk_selection' : 'testfinal'">PILIH</button>
-                                        </div>
-
-                                    </div>
-                                </li>
-                            </ul>
-
-                        </section>
-
-                        <section class="product_category" th:style="${risk_profile_id<3}?'display: none':'display: block'" >
-
-                            <div class="product_selection_catTitle type3">
-                                GROWTH </div>
-
-                            <ul class="productList_container" >
-
-                                <li class="productList type3" th:each="growth: ${listGrowth}">
-                                    <input class="namareksa" type="hidden" th:value="${growth.Product_Name}"/>
-                                    <input class="averagerate" type="hidden" th:value="${growth.Average_Rate}"/>
-                                    <input class="badrate" type="hidden" th:value="${growth.Bad_Rate}"/>
-                                    <input class="goodrate" type="hidden" th:value="${growth.Good_Rate}"/>
-                                    <input class="productid" type="hidden" th:value="${growth.Product_ID}"/>
-                                    <input class="producttype" type="hidden" th:value="${growth.Product_Type}"/>
-                                    <div class="productBar openTrigger clearfix">
-                                        <div class="productBar_cell left">
-                                            <span th:text="${growth.Product_Name}"></span>
-                                            <!--Aberdeen Standar Ind Money Market Lorem Ipsum dolor Sit Amet-->
-                                        </div>
-
-                                        <div class="productBar_cell right">
-                                            <b class="val"><span th:text="${growth.Average_Rate}"></span></b>
-                                        </div>
-                                        <div class="productBar_cell right">
-                                            <b class="val"><span th:inline="text">[[${growth.Bad_Rate}]] - [[${growth.Good_Rate}]]</span></b>
-                                        </div>
-                                    </div>
-
-                                    <div class="productDetail clearfix">
-
-                                        <table class="detailTable">
-                                            <tr>
-                                                <td colspan="5">
-                                                    <b> Kinerja (%)</b>
-                                                </td>
-                                                <td class="right">
-                                                    <b>Harga NAB/Unit</b>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    1 Bln
-                                                    <br/>
-                                                    <b class="val"><span th:text="${growth.Performance_of_1_month}"></span></b>
-                                                </td>
-                                                <td>
-                                                    6 Bln
-                                                    <br/>
-                                                    <b class="val"><span th:text="${growth.Performance_of_6_month}"></span></b>
-                                                </td>
-                                                <td>
-                                                    YTD
-                                                    <br/>
-                                                    <b class="val"><span th:text="${growth.YTD}"></span></b>
-                                                </td>
-                                                <td>
-                                                    1 Thn
-                                                    <br/>
-                                                    <b class="val"><span th:text="${growth.Performance_of_12_month}"></span></b>
-                                                </td>
-                                                <td>
-                                                    5 Thn
-                                                    <br/>
-                                                    <b class="val"><span th:text="${growth.Performance_of_60_month}"></span></b>
-                                                </td>
-                                                <td>
-                                                    <b class="val">IDR <span th:text="${growth.Mutual_Fund_Nav}"></span></b></td>
-                                            </tr>
-                                        </table>
-
-                                        <div class="botOption clearfix">
-                                            Jenis Reksadana
-                                            <b th:text="${growth.Mutual_Fund_Type_Desc}"></b>
-
-                                            <button class="onBtn btnGrowth" th:classappend="${risk_profile_id<3} ? 'higherRisk_selection' : 'testfinal'">PILIH</button>
-                                        </div>
-
-                                    </div>
-                                </li>
-                            </ul>
-
-                        </section>
-
-
-                        <div id="riskNotif" class="riskNotif" th:style="${risk_profile_id==4}?'display: none':'display: block'">
-                            Menampilkan produk reksadana yang sesuai atau lebih rendah dari profile resiko <span th:text="${nama}"></span> :
-                            <b><span th:text="${risk_profile_desc}"></span></b>
-                            <br/> <br/>
-                            <button id="showAllCat" class="onBtn">TAMPILKAN SEMUA</button>
-                        </div>
-
-                        <section class="product_category" th:style="${risk_profile_id<4}?'display: none':'display: block'" >
-
-
-                            <div class="product_selection_catTitle type4">
-                                AGGRESSIVE
                             </div>
 
-                            <ul class="productList_container" >
+                            <ul class="productList_container">
+                                <li class="productList" th:each="campuran: ${listCampuran}">
+                                    <input class="namareksa" type="hidden" th:value="${campuran.Product_Name}"/>
+                                    <input class="averagerate" type="hidden" th:value="${campuran.Average_Rate}"/>
+                                    <input class="badrate" type="hidden" th:value="${campuran.Bad_Rate}"/>
+                                    <input class="goodrate" type="hidden" th:value="${campuran.Good_Rate}"/>
+                                    <input class="productid" type="hidden" th:value="${campuran.Product_ID}"/>
+                                    <input class="producttype" type="hidden" th:value="${campuran.Product_Type}"/>
+                                    <div class="productBar openTrigger">
 
-                                <li class="productList type4" th:each="aggresive: ${listAggresive}" >
-                                    <input class="namareksa" type="hidden" th:value="${aggresive.Product_Name}"/>
-                                    <input class="averagerate" type="hidden" th:value="${aggresive.Average_Rate}"/>
-                                    <input class="badrate" type="hidden" th:value="${aggresive.Bad_Rate}"/>
-                                    <input class="goodrate" type="hidden" th:value="${aggresive.Good_Rate}"/>
-                                    <input class="productid" type="hidden" th:value="${aggresive.Product_ID}"/>
-                                    <input class="producttype" type="hidden" th:value="${aggresive.Product_Type}"/>
-                                    <div class="productBar openTrigger clearfix">
-                                        <div class="productBar_cell left">
-                                            <span th:text="${aggresive.Product_Name}"></span>
-                                            <!--Aberdeen Standar Ind Money Market Lorem Ipsum dolor Sit Amet-->
+                                        <div class="prodType type"><span th:text="${campuran.Product_Type}"/></div>
+                                        <div class="riskDesc"></div>
+
+                                        <div class="prodName"><span th:text="${campuran.Product_Name}"/></div>
+
+                                        <div class="rate">
+                                            <span th:text="${campuran.Average_Rate}"/><small>%</small>
                                         </div>
 
-                                        <div class="productBar_cell right">
-                                            <b class="val"><span th:text="${aggresive.Average_Rate}"></span></b>
-                                        </div>
-                                        <div class="productBar_cell right">
-                                            <b class="val"><span th:inline="text">[[${aggresive.Bad_Rate}]] - [[${aggresive.Good_Rate}]]</span></b>
-                                        </div>
+
                                     </div>
 
                                     <div class="productDetail clearfix">
+                                        <table class="descTable">
+                                            <tr>
+                                                <td>Tanggal peluncuran produk</td>
+                                                <td><b>02/2020</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total AUM</td>
+                                                <td><b>Rp 320 milyar/tahun</b></td>
+                                            </tr>
+                                        </table>
 
                                         <table class="detailTable">
                                             <tr>
                                                 <td colspan="5">
-                                                    <b> Kinerja (%)</b>
+                                                    Kinerja (%)
                                                 </td>
-                                                <td class="right">
-                                                    <b>Harga NAB/Unit</b>
+                                                <td  class="right">
+                                                    Harga NAB/Unit
 
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     1 Bln
-                                                    <br/>
-                                                    <b class="val"><span th:text="${aggresive.Performance_of_1_month}"></span></b>
+                                                    <br>
+                                                    <b class="val"><span th:text="${campuran.Performance_of_1_month}"></span></b>
                                                 </td>
                                                 <td>
                                                     6 Bln
-                                                    <br/>
-                                                    <b class="val"><span th:text="${aggresive.Performance_of_6_month}"></span></b>
+                                                    <br>
+                                                    <b class="val"><span th:text="${campuran.Performance_of_6_month}"></span></b>
                                                 </td>
                                                 <td>
                                                     YTD
-                                                    <br/>
-                                                    <b class="val"><span th:text="${aggresive.YTD}"></span></b>
+                                                    <br>
+                                                    <b class="val"><span th:text="${campuran.YTD}"></span></b>
                                                 </td>
                                                 <td>
                                                     1 Thn
-                                                    <br/>
-                                                    <b class="val"><span th:text="${aggresive.Performance_of_12_month}"></span></b>
+                                                    <br>
+                                                    <b class="val"><span th:text="${campuran.Performance_of_12_month}"></span></b>
                                                 </td>
                                                 <td>
                                                     5 Thn
-                                                    <br/>
-                                                    <b class="val"><span th:text="${aggresive.Performance_of_60_month}"></span></b>
+                                                    <br>
+                                                    <b class="val"><span th:text="${campuran.Performance_of_60_month}"></span></b>
                                                 </td>
                                                 <td>
-                                                    <b class="val">IDR <span th:text="${aggresive.Mutual_Fund_Nav}"></span></b></td>
+                                                    <b class="val">Rp <span th:text="${campuran.Mutual_Fund_Nav}"></span></b></td>
                                             </tr>
                                         </table>
 
                                         <div class="botOption clearfix">
-                                            Jenis Reksadana
-                                            <b th:text="${aggresive.Mutual_Fund_Type_Desc}"></b>
+                                            <a class="btn download" href="#"><i class="far fa-file icon"></i>&nbsp;&nbsp;Fund fact sheet</a>
+                                            <a class="btn download" href="#"><i class="far fa-file icon"></i>&nbsp;&nbsp;Prospektus</a>
 
-                                            <button class="onBtn btnAggresive" th:classappend="${risk_profile_id<4} ? 'higherRisk_selection' : 'testfinal'">PILIH</button>
+                                            <a class="btn select red" href="#">Pilih produk&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-right icon"></i></a>
                                         </div>
-
                                     </div>
                                 </li>
+                                <?php } ?>
                             </ul>
 
                         </section>
+                        <section class="product_category">
 
+                            <div class="product_selection_catTitle">
+                                <div class="title">REKSA DANA SAHAM</div>
+                                <div class="desc">Reksa Dana Saham menyebar minimal 80% investasinya pada pasar saham. Investasi ini cocok untuk jangka waktu > 5 tahun, dengan risk profile Aggressive.</div>
 
-                    </div>
+                                <div class="rateinfo">Rata-rata est. laba/thn</div>
 
-                    <div id="highRiskConfirm" class="highRiskConfirm">
-                        <div class="dialogBox">
-                            <div>
-                                Profil resiko yang dipilih <b><span id='pilihanUser'>(AGGRESIVE)</span></b> lebih tinggi dari profile resiko
-                                <span th:text="${nama}"></span> : <b><span th:text="${risk_profile_desc}"></span></b>.
-
-                                Apakah <span th:text="${nama}"></span> yakin ingin melanjutkan dengan produk terpilih?
-                                <br/><br/>
-                                <button id="highRiskConfirm_close" class="onBtn grey">KEMBALI</button>
-                                <button id="highRiskConfirm_next" class="onBtn">LANJUTKAN</button>
                             </div>
-                        </div>
+
+                            <ul class="productList_container">
+                                <li class="productList" th:each="saham: ${listSaham}">
+                                    <input class="namareksa" type="hidden" th:value="${saham.Product_Name}"/>
+                                    <input class="averagerate" type="hidden" th:value="${saham.Average_Rate}"/>
+                                    <input class="badrate" type="hidden" th:value="${saham.Bad_Rate}"/>
+                                    <input class="goodrate" type="hidden" th:value="${saham.Good_Rate}"/>
+                                    <input class="productid" type="hidden" th:value="${saham.Product_ID}"/>
+                                    <input class="producttype" type="hidden" th:value="${saham.Product_Type}"/>
+                                    <div class="productBar openTrigger">
+
+                                        <div class="prodType type"><span th:text="${saham.Product_Type}"/></div>
+                                        <div class="riskDesc"></div>
+
+                                        <div class="prodName"><span th:text="${saham.Product_Name}"/></div>
+
+                                        <div class="rate">
+                                            <span th:text="${saham.Average_Rate}"/><small>%</small>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="productDetail clearfix">
+                                        <table class="descTable">
+                                            <tr>
+                                                <td>Tanggal peluncuran produk</td>
+                                                <td><b>02/2020</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total AUM</td>
+                                                <td><b>Rp 320 milyar/tahun</b></td>
+                                            </tr>
+                                        </table>
+
+                                        <table class="detailTable">
+                                            <tr>
+                                                <td colspan="5">
+                                                    Kinerja (%)
+                                                </td>
+                                                <td  class="right">
+                                                    Harga NAB/Unit
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    1 Bln
+                                                    <br>
+                                                    <b class="val"><span th:text="${saham.Performance_of_1_month}"></span></b>
+                                                </td>
+                                                <td>
+                                                    6 Bln
+                                                    <br>
+                                                    <b class="val"><span th:text="${saham.Performance_of_6_month}"></span></b>
+                                                </td>
+                                                <td>
+                                                    YTD
+                                                    <br>
+                                                    <b class="val"><span th:text="${saham.YTD}"></span></b>
+                                                </td>
+                                                <td>
+                                                    1 Thn
+                                                    <br>
+                                                    <b class="val"><span th:text="${saham.Performance_of_12_month}"></span></b>
+                                                </td>
+                                                <td>
+                                                    5 Thn
+                                                    <br>
+                                                    <b class="val"><span th:text="${saham.Performance_of_60_month}"></span></b>
+                                                </td>
+                                                <td>
+                                                    <b class="val">Rp <span th:text="${saham.Mutual_Fund_Nav}"></span></b></td>
+                                            </tr>
+                                        </table>
+
+                                        <div class="botOption clearfix">
+                                            <a class="btn download" href="#"><i class="far fa-file icon"></i>&nbsp;&nbsp;Fund fact sheet</a>
+                                            <a class="btn download" href="#"><i class="far fa-file icon"></i>&nbsp;&nbsp;Prospektus</a>
+
+                                            <a class="btn select red" href="#">Pilih produk&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-right icon"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php } ?>
+                            </ul>
+
+                        </section>
                     </div>
 
                 </div>
-
             </div>
-        </div>
-    </body>
 
+
+
+
+    </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
 
@@ -10,19 +10,24 @@
         <script th:src="@{/js/webview.js}" type="text/javascript"></script>
     </head>
 
-    <body>  
+    <body>
+
+
         <!-- INSERT CONTENT START -->
 
         <div class="ocbc_webview">
 
             <div class="ocbc_webview_overlay">
+                <!--Field Hidden Untuk Penampung Data yang di lempar dari Controller, untuk Widget.js bisa get datanya-->
                 <input id="rc" type="hidden" th:value="${rc}"/>
                 <input id="rcdesc" type="hidden" th:value="${rcdesc}"/>
+                <input id="goalsdesc" type="hidden" th:value="${goals}"/>
+                <!------------------------------------------------------------------------------------------------------>
                 <div id="highRiskConfirm" class="highRiskConfirm">
                     <div class="dialogBox">
                         <div>
                             <b><span id="textrcdesc" th:text="${rcdesc}"></span></b>.
-                            <br/>
+                            <br />
                             Harap periksa kembali input anda dan hitung ulang.
                             <br/><br/>
                             <button id="highRiskConfirm_close" class="onBtn">HITUNG KEMBALI</button>
@@ -32,75 +37,82 @@
             </div>
 
             <div class="ocbc_webview_content">
+
                 <div class="lifegoalCalculator">
 
                     <div class="titleBar">
-                        Tumbuhkan Uang
+                        <span id="goals" th:text="${goals}"></span>
                     </div>
 
                     <div class="calcInput">
                         <!--Field Hidden Untuk Penampung Data yang di lempar dari Controller, untuk Widget.js bisa get datanya-->
-                        <input id="lifegoal" type="hidden" value="growth"/>
-
+                        <input id="lifegoal" type="hidden" value="etc"/>
                         <input id="idchannel" type="hidden" th:value="${idchannel}"/>
-                        <input id="type" type="hidden" th:value="${type}"/>
-                        <input id="name" type="hidden" th:value="${name}"/>
-                        <input id="risk_profile_id" type="hidden" th:value="${risk_profile_id}"/>
                         <input id="refID" type="hidden" th:value="${refID}"/>
-                        <input id="firstamount" type="hidden" th:value="${newamount}"/>
-                        <input id="firsttenor" type="hidden" th:value="${tenor}"/>
+                        <input id="risk_profile_id" type="hidden" th:value="${risk_profile_id}"/>
+                        <input id="firstamount" type="hidden" th:value="${target_dana}"/>
+                        <input id="firsttenor" type="hidden" th:value="${jangka_waktu}"/>
+                        <input id="secondamount" type="hidden" th:value="${dana_sekarang}"/>
                         <!------------------------------------------------------------------------------------------------------>
+
                         <div class="formRow error">
-                            <input id="amount" type="text" class="inputnum currency i1" th:value="${newamount}" inputmode="numeric" pattern="[0-9]*" required/>
-                            <div class="left">IDR</div>
-                            <div class="right"><span th:text="${typeDesc}"></div>
+                            <input id="target_dana" type="text" class="inputnum2 i6" th:value="${target_dana}" inputmode="numeric" pattern="[0-9]*" required/>
+                            <div class="left">Target dana <b>IDR</b></div>
                         </div>
-                        <div class="errorMsg" >Pastikan data yang kamu isi sudah benar</div>
+                        <div class="errorMsg">Pastikan data yang kamu isi sudah benar</div>
+
+                        <div class="formRow error2">
+                            <input id="dana_sekarang" type="text" class="inputnum3 i6" th:value="${dana_sekarang}" inputmode="numeric" pattern="[0-9]*" required/>
+                            <div class="left">Dana Terkumpul <b>IDR</b></div>
+                        </div>
+                        <div class="errorMsg2">Pastikan data yang kamu isi sudah benar</div>
                         <div class="formRow">
-                            <input id="tenor" type="text" class="inputnumtenor i2" th:value="${tenor}" inputmode="numeric" maxlength="2" min="0" max="50" pattern="[0-9]*" required/>
-                            <div class="left">Selama</div>
+                            <input id="jangka_waktu" type="text" class="inputnumtenorEtc i2" th:value="${jangka_waktu}" inputmode="numeric" maxlength="2" pattern="[0-9]*" required/>
+                            <div class="left">Jangka Waktu</div>
                             <div class="right">tahun</div>
                         </div>
-                        <div id="errorTenor" class="errorMsgTenor" >Maksimal Tenor 50 Tahun</div>
+                        <div id="errorTenor" class="errorMsgTenor" >Maksimal Jangka Waktu 50 Tahun</div>
                         <br>
                             <div class="text-center">
                                 <button id="hitungUlang" class="onBtn">Hitung Ulang</button>
                             </div>
+
                     </div>
+
                     <div class="calcResult">
                         <div class="text-center">
-                            <p th:inline="text">Dengan IDR <b>[[${newamount}]]</b> [[${typeDesc}]]
-                                <br>
-                                    selama <b>[[${tenor}]]</b> tahun, dapatkan:
-                            </p>
-                        </div>  
+                            <span id="name" th:text="${name}"/> membutuhkan dana hingga IDR 
+                            <b><span th:text="${target_dana}"></span></b> wujudkan dengan:
+
+                        </div>
 
                         <div class="resultGraph ">
                             <div class="infoCol left">
                                 <div class="row title"><span>Tabungan</span></div>
-                                <div class="row desc">Pertumbuhan hingga</div>
                                 <div class="validRC">
-                                    <div class="row value">IDR <span id="tabunganResult" th:text="${tabunganResult}"/></div>
-                                    <div class="row value"></div>
-                                    <div class="row note">( <span id="tabunganRate" th:text="${tabunganRate}"/> laba per tahun )</div>
+                                    <div class="row desc">Menyisihkan hingga</div>
+                                    <div class="row value">IDR <span id="tabunganResult" th:text="${tabunganResult}"></span></div>
+                                    <div class="row desc">per bulan</div>
+                                    <div class="row note">( <span id="tabunganRate" th:text="${tabungan.Rate}"></span> laba per tahun )</div>
                                 </div>
                                 <br>
-                                    <div id="errorRc" class="errorRc"><b><span th:text="${rcdescerror8}"/></b></div>
+                                    <div id="errorRc" class="errorRc"><b>Uang <span th:text="${name}"/> <span th:text="${rcdescerror10}"/></b></div>
                             </div>
 
                             <div class="infoCol right">
                                 <div class="row title"><span>Investasi</span></div>
-                                <div class="row desc">Pertumbuhan hingga</div>
                                 <div class="validRC">
-                                    <div class="row value">IDR <span id="investasiResult" th:text="${investasiResult}"/></div>
-                                    <div class="row value"></div>
-                                    <div class="row note">( <span id="investasiRate" th:text="${investasiRate}"/> laba per tahun )</div>
-                                </div>  
+                                    <div class="row desc">Menyisihkan hingga</div>
+                                    <div class="row value">IDR <span id="investasiResult" th:text="${investasiResult}"></span></div>
+                                    <div class="row desc">per bulan</div>
+                                    <div class="row note">( <span id="investasiRate" th:text="${investasi.Rate}"></span> laba per tahun )</div>
+                                </div>
                                 <br>
-                                    <div id="errorRc" class="errorRc"><b><span th:text="${rcdescerror8}"/></b></div>
+                                    <div id="errorRc" class="errorRc"><b>Uang <span th:text="${name}"/> <span th:text="${rcdescerror10}"/></b></div>
+
                             </div>
 
-                            <img class="graphBG" th:src="@{~/images/graph1.png}" />
+                            <img class="graphBG" th:src="@{/images/graph3.png}" />
 
                         </div>
 
@@ -109,13 +121,13 @@
                             <br/> <br/>
 
                             <button id="btnSubmitOthers" class="onBtn grey bordered">Ganti Life Goal</button>
-                            <button id="btnSubmit" class="onBtn"  >Goal Sudah Sesuai</button>
+                            <button id="btnSubmit" class="onBtn">Goal Sudah Sesuai</button>
                             <div id="alertHitung" class="errorMsgHitung" >Silahkan Lakukan Hitung Ulang Terlebih Dahulu</div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </body>
-
 </html>

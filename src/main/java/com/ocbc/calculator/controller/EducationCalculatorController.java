@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Controller Pendidikan Lainnya
+ *
  * @author cokkyturnip
  */
 @Controller
@@ -37,7 +38,7 @@ public class EducationCalculatorController {
     @Autowired
     private AppProperties appProp;
 
-    // >> /education/refID/1/Indonesia/10,020,000,013/Dewi/0
+    // >> /education/refID/1/Indonesia/10,020,000,013/Dewi/1
     @GetMapping("/{refID}/{age}/{country}/{value}/{name}/{risk_profile_id}")
     public String education(Model model,
             @PathVariable String refID,
@@ -47,7 +48,8 @@ public class EducationCalculatorController {
             @PathVariable String name,
             @PathVariable int risk_profile_id) throws IOException {
         String note;
-
+        String tahun = "1";
+        String bulan = "3";
         String risk_profile_desc = "";
         switch (risk_profile_id) {
             case 1:
@@ -89,7 +91,8 @@ public class EducationCalculatorController {
         if (Integer.parseInt(age) >= 18) {
             age = "18";
         }
-
+        int intAge = Integer.parseInt(age);
+        int intTenor = 18 - intAge <= 1 ? 1 : 18 - intAge;
         value = value.toLowerCase()
                 .replace(",-", "")
                 .replace(",", "")
@@ -109,6 +112,10 @@ public class EducationCalculatorController {
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
+        model.addAttribute("tenor", intTenor);
+        model.addAttribute("tahun", tahun);
+        model.addAttribute("bulan", bulan);
+        model.addAttribute("risk_profile_desc", risk_profile_desc);
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("targetamount", respInvestasi.Target_Amount);
         model.addAttribute("investasiFinalValue", newfuturevalue);

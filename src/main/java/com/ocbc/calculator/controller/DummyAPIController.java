@@ -69,7 +69,7 @@ public class DummyAPIController {
         objProduct.Average_Rate = "7.24";
         objProduct.Bad_Rate = "6.3";
         objProduct.Good_Rate = "8.5";
-        objProduct.Performance_of_1_month = "-0.02";
+        objProduct.Performance_of_1_month = "1.02";
         objProduct.Performance_of_6_month = "3.98";
         objProduct.Performance_of_12_month = "4.90";
         objProduct.Performance_of_60_month = "41.65";
@@ -90,13 +90,13 @@ public class DummyAPIController {
         objProduct.Average_Rate = "7.24";
         objProduct.Bad_Rate = "6.3";
         objProduct.Good_Rate = "8.5";
-        objProduct.Performance_of_1_month = "-0.02";
+        objProduct.Performance_of_1_month = "2.02";
         objProduct.Performance_of_6_month = "3.98";
         objProduct.Performance_of_12_month = "4.90";
         objProduct.Performance_of_60_month = "41.65";
         objProduct.YTD = 0.035;
         objProduct.Mutual_Fund_Nav = "2127.19";
-        objProduct.Mutual_Fund_Risk_Profile_ID = 1;
+        objProduct.Mutual_Fund_Risk_Profile_ID = 2;
         objProduct.Mutual_Fund_Type = 1;
 
         response.List_Product.add(objProduct);
@@ -111,13 +111,13 @@ public class DummyAPIController {
         objProduct.Average_Rate = "7.24";
         objProduct.Bad_Rate = "6.3";
         objProduct.Good_Rate = "8.5";
-        objProduct.Performance_of_1_month = "-0.02";
+        objProduct.Performance_of_1_month = "14.02";
         objProduct.Performance_of_6_month = "3.98";
         objProduct.Performance_of_12_month = "4.90";
         objProduct.Performance_of_60_month = "41.65";
         objProduct.YTD = 0.035;
         objProduct.Mutual_Fund_Nav = "2127.19";
-        objProduct.Mutual_Fund_Risk_Profile_ID = 1;
+        objProduct.Mutual_Fund_Risk_Profile_ID = 4;
         objProduct.Mutual_Fund_Type = 1;
 
         response.List_Product.add(objProduct);
@@ -132,7 +132,7 @@ public class DummyAPIController {
         objProduct.Average_Rate = "7.24";
         objProduct.Bad_Rate = "6.3";
         objProduct.Good_Rate = "8.5";
-        objProduct.Performance_of_1_month = "-0.02";
+        objProduct.Performance_of_1_month = "8.02";
         objProduct.Performance_of_6_month = "3.98";
         objProduct.Performance_of_12_month = "4.90";
         objProduct.Performance_of_60_month = "41.65";
@@ -153,7 +153,7 @@ public class DummyAPIController {
         objProduct.Average_Rate = "7.24";
         objProduct.Bad_Rate = "6.3";
         objProduct.Good_Rate = "8.5";
-        objProduct.Performance_of_1_month = "-0.02";
+        objProduct.Performance_of_1_month = "6.02";
         objProduct.Performance_of_6_month = "3.98";
         objProduct.Performance_of_12_month = "4.90";
         objProduct.Performance_of_60_month = "41.65";
@@ -174,7 +174,7 @@ public class DummyAPIController {
         objProduct.Average_Rate = "7.24";
         objProduct.Bad_Rate = "6.3";
         objProduct.Good_Rate = "8.5";
-        objProduct.Performance_of_1_month = "-0.02";
+        objProduct.Performance_of_1_month = "9.02";
         objProduct.Performance_of_6_month = "3.98";
         objProduct.Performance_of_12_month = "4.90";
         objProduct.Performance_of_60_month = "41.65";

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Controller Tumbuhkan Uang Webview
+ *
  * @author cokkyturnip
  */
 @Controller
@@ -32,8 +33,8 @@ public class GrowthCalculatorController {
     @Autowired
     private AppProperties appProp;
 
-//     >> /growth/refID/100,100,022/0/15/deka/0
-    // >> /growth/refID/100,100,022/1/15/deka/0
+//     >> /growth/refID/100,100,022/0/15/deka/1
+    // >> /growth/refID/100,100,022/1/15/deka/1
     @GetMapping("/{refID}/{amount}/{type}/{tenor}/{name}/{risk_profile_id}")
     public String growth(Model model,
             @PathVariable String refID,
@@ -42,6 +43,8 @@ public class GrowthCalculatorController {
             @PathVariable String tenor,
             @PathVariable String name,
             @PathVariable int risk_profile_id) throws IOException {
+        String tahun = "1";
+        String bulan = "3";
 
         String typeDesc;
         String note;
@@ -94,6 +97,8 @@ public class GrowthCalculatorController {
         String investResult = decimalFormat.format(Double.parseDouble(respInvestasi.Result));
         String tabungResult = decimalFormat.format(Double.parseDouble(respTabungan.Result));
 
+        model.addAttribute("tahun", tahun);
+        model.addAttribute("bulan", bulan);
         model.addAttribute("investasi", respInvestasi);
         model.addAttribute("investasiResult", investResult);
         model.addAttribute("investasiRate", respInvestasi.Rate);
@@ -102,6 +107,7 @@ public class GrowthCalculatorController {
         model.addAttribute("tabunganRate", respTabungan.Rate);
         model.addAttribute("typeDesc", typeDesc);
         model.addAttribute("note", note);
+        model.addAttribute("risk_profile_desc", risk_profile_desc);
         model.addAttribute("newamount", newamount);
         model.addAttribute("idchannel", appProp.IdLiveChat);
         model.addAttribute("rc", respInvestasi.RC);
@@ -148,7 +154,7 @@ public class GrowthCalculatorController {
             default:
                 break;
         }
-        
+
         if (risk_profile_id == 0) {
             note = "Angka hanya estimasi. Untuk angka sesuai dengan profil " + name + ", silahkan melengkapi profil risiko " + name + " selanjutnya";
         } else {

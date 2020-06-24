@@ -222,6 +222,7 @@ public class CalculatorServices {
         ListProductResponse listProductResponse = gson.fromJson(response.body().string(), ListProductResponse.class);
         for (Product product : listProductResponse.List_Product) {
             product.setMutual_Fund_Type_Desc();
+            product.setMutual_Fund_Risk_Profile_Desc();
         }
         return listProductResponse;
     }

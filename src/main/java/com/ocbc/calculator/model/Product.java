@@ -34,6 +34,26 @@ public class Product {
                 break;
         }
     }
+    public int Mutual_Fund_Risk_Profile_ID;
+
+    public String Mutual_Fund_Risk_Profile_Desc;
+
+    public void setMutual_Fund_Risk_Profile_Desc() {
+        switch (this.Mutual_Fund_Risk_Profile_ID) {
+            case 1:
+                this.Mutual_Fund_Risk_Profile_Desc = "CONSERVATIVE";
+                break;
+            case 2:
+                this.Mutual_Fund_Risk_Profile_Desc = "BALANCE";
+                break;
+            case 3:
+                this.Mutual_Fund_Risk_Profile_Desc = "GROWTH";
+                break;
+            case 4:
+                this.Mutual_Fund_Risk_Profile_Desc = "AGGRESSIVE";
+                break;
+        }
+    }
 
     public String Product_Rate;
 
@@ -66,8 +86,6 @@ public class Product {
     public String Product_Type;
 
     public String Mutual_Fund_Code;
-
-    public int Mutual_Fund_Risk_Profile_ID;
 
     @Override
     public String toString() {

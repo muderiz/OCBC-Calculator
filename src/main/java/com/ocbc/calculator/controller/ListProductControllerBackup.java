@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- *
- * @author Deka
+ * Controller List Product Reksadana Vebwiew
+ * @author cokkyturnip
  */
-@Controller
-@RequestMapping("/product")
-public class ListProductController {
+//@Controller
+//@RequestMapping("/product")
+public class ListProductControllerBackup {
 
     @Autowired
     private CalculatorServices calculatorServices;
@@ -65,23 +65,37 @@ public class ListProductController {
             product.Mutual_Fund_Nav = decimalFormat.format(Double.parseDouble(product.Mutual_Fund_Nav));
         }
 
-        List<Product> listPasarUang = listProduct.stream()
-                .filter(product -> product.Mutual_Fund_Type == 1)
+        List<Product> listConservative = listProduct.stream()
+                .filter(product -> product.Mutual_Fund_Risk_Profile_ID == 1)
                 .collect(Collectors.toList());
 
-        List<Product> listPendapatanTetap = listProduct.stream()
-                .filter(product -> product.Mutual_Fund_Type == 2)
+        List<Product> listBalance = listProduct.stream()
+                .filter(product -> product.Mutual_Fund_Risk_Profile_ID == 2)
                 .collect(Collectors.toList());
 
-        List<Product> listCampuran = listProduct.stream()
-                .filter(product -> product.Mutual_Fund_Type == 3)
+        List<Product> listGrowth = listProduct.stream()
+                .filter(product -> product.Mutual_Fund_Risk_Profile_ID == 3)
                 .collect(Collectors.toList());
 
-        List<Product> listSaham = listProduct.stream()
-                .filter(product -> product.Mutual_Fund_Type == 4)
+        List<Product> listAggresive = listProduct.stream()
+                .filter(product -> product.Mutual_Fund_Risk_Profile_ID == 4)
                 .collect(Collectors.toList());
 
         String risk_profile_desc = "";
+//        switch (risk_profile_id) {
+//            case 1:
+//                risk_profile_desc = "CONSERVATIVE";
+//                break;
+//            case 2:
+//                risk_profile_desc = "BALANCE";
+//                break;
+//            case 3:
+//                risk_profile_desc = "GROWTH";
+//                break;
+//            case 4:
+//                risk_profile_desc = "AGGRESIVE";
+//                break;
+//        }
         switch (risk_profile_id) {
             case 1:
                 risk_profile_desc = "CONSERVATIVE";
@@ -110,10 +124,10 @@ public class ListProductController {
         model.addAttribute("initial_amount", initial_amount);
         model.addAttribute("country", country);
         model.addAttribute("nama", nama);
-        model.addAttribute("listPasarUang", listPasarUang);
-        model.addAttribute("listPendapatanTetap", listPendapatanTetap);
-        model.addAttribute("listCampuran", listCampuran);
-        model.addAttribute("listSaham", listSaham);
+        model.addAttribute("listConservative", listConservative);
+        model.addAttribute("listBalance", listBalance);
+        model.addAttribute("listGrowth", listGrowth);
+        model.addAttribute("listAggresive", listAggresive);
         model.addAttribute("investmenttype", investment_type);
         model.addAttribute("risk_profile_id", risk_profile_id);
         model.addAttribute("risk_profile_desc", risk_profile_desc);
