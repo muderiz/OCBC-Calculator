@@ -87,6 +87,14 @@ public class Product {
 
     public String Mutual_Fund_Code;
 
+    public String Launch_Date;
+
+    public double Total_AUM;
+
+    public String Url_Fund_Fact_Sheet;
+
+    public String Url_Prospectus;
+
     @Override
     public String toString() {
         return "ClassPojo [Mutual_Fund_Risk_Profile_ID = " + Mutual_Fund_Risk_Profile_ID + ", Mutual_Fund_Type = " + Mutual_Fund_Type + ", Product_Rate = " + Product_Rate + ", Performance_of_6_month  = " + Performance_of_6_month + ", Product_ID = " + Product_ID + ", Average_Rate = " + Average_Rate + ", Performance_of_60_month  = " + Performance_of_60_month + ", YTD = " + YTD + ", Product_Name = " + Product_Name + ", Bad_Rate = " + Bad_Rate + ", Performance_of_1_month = " + Performance_of_1_month + ", Performance_of_12_month  = " + Performance_of_12_month + ", Risk_Profile_Type = " + Risk_Profile_Type + ", Good_Rate = " + Good_Rate + ", Standard_Deviation = " + Standard_Deviation + ", Mutual_Fund_Nav = " + Mutual_Fund_Nav + ", Product_Type = " + Product_Type + ", Mutual_Fund_Code = " + Mutual_Fund_Code + "]";

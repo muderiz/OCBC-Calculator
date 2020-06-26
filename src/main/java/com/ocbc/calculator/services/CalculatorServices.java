@@ -92,7 +92,8 @@ public class CalculatorServices {
     public TargetValueResponse calculateEducation(String refID, String age, String country, String value, int risk_profile_id, String product_type) throws IOException {
         int intAge = Integer.parseInt(age);
         int intTenor = 18 - intAge <= 1 ? 1 : 18 - intAge;
-
+        intTenor = intTenor * 12;
+        
         TargetValueRequest targetValueRequest = new TargetValueRequest();
         targetValueRequest.Channel_ID = appProp.Channel_ID;
         targetValueRequest.Children_Age = age;

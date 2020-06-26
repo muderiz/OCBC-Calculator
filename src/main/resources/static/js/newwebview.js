@@ -14,6 +14,16 @@ function hitungUlang(_lifegoal) {
             var type = $("#type").val();
             var tenor = $("#tenor").val();
             var name = $("#name").val();
+            var tahun = $("#tahun").val();
+            var bulan = $("#bulan").val();
+
+            if (tahun == 0) {
+                tenor = bulan;
+            } else {
+                tahun = parseInt(tahun) * 12;
+                tenor = parseInt(tahun) + parseInt(bulan);
+            }
+
             var risk_profile_id = $("#risk_profile_id").val();
             window.location.href = "/growth/" + refID + "/" + amount + "/" + type + "/" + tenor + "/" + name + "/" + risk_profile_id;
             break;
@@ -28,11 +38,20 @@ function hitungUlang(_lifegoal) {
             break;
         case "etc":
             var goalsetc = $("#goalsdesc").val();
-            var name = $("#name").text();
+            var name = $("#name").val();
             var dana_sekarang = $("#dana_sekarang").val();
             var target_dana = $("#target_dana").val();
             var tenor = $("#jangka_waktu").val();
             var risk_profile_id = $("#risk_profile_id").val();
+            var tahun = $("#tahun").val();
+            var bulan = $("#bulan").val();
+
+            if (tahun == 0) {
+                tenor = bulan;
+            } else {
+                tahun = parseInt(tahun) * 12;
+                tenor = parseInt(tahun) + parseInt(bulan);
+            }
 
             window.location.href = "/etc/" + refID + "/" + goalsetc + "/" + name + "/" + dana_sekarang + "/" + target_dana + "/" + tenor + "/" + risk_profile_id;
             break;
@@ -193,6 +212,7 @@ $(function () {
     $('.ocbc_webview .ocbc_webview_overlay .highRiskConfirm').hide();
     $('#imagelumpsum').hide();
     $('#imageannual').hide();
+    $('#hitungUlang').hide();
 
     if ($('.riskprofileid').val() == 1) {
         $('#prodType').addClass('type1');
@@ -274,9 +294,11 @@ $(function () {
         if ($('option:selected').val() == firstcountry && $('#dana').val() == firstamount && $('#age').val() == firstage) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
+            $('#hitungUlang').hide();
         } else {
             $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
+            $('#hitungUlang').show();
         }
     });
 
@@ -349,14 +371,16 @@ $(function () {
         } else {
             $('#amount').css('border', '');
             $('.recalc.form_row .errorMsg').hide();
-            $('#hitungUlang').attr('disabled', false).css('opacity', '1');
+            $('#hitungUlang').attr('disabled', false).css('opacity', '1').show();
         }
         if ($(this).val() == firstamount && $('#tahun').val() == tahun && $('#bulan').val() == bulan) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
+            $('#hitungUlang').hide();
         } else {
             $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
+            $('#hitungUlang').show();
         }
 
     });
@@ -376,12 +400,14 @@ $(function () {
         } else if ($(this).val() == 0) {
             $(this).val(0);
         }
-        if ($(this).val() == tahun && $('#amount').val() == firstamount && $('#bulan').val() == bulan) {
+        if ($(this).val() == tahun && $('#amount').val() == firstamount && $('#bulan').val() == bulan || $(this).val() == tahun && $('#bulan').val() == bulan && $('#dana_sekarang').val() == secondamount && $('#target_dana').val() == firstamount) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
+            $('#hitungUlang').hide();
         } else {
             $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
+            $('#hitungUlang').show();
 
         }
         if (parseInt($(this).val()) == 0 && $('#bulan').val() >= 12) {
@@ -413,12 +439,14 @@ $(function () {
         if ($(this).val() == 0 && $('#tahun').val() == 0) {
             $(this).val(1);
         }
-        if ($(this).val() == bulan && $('#amount').val() == firstamount && $('#tahun').val() == tahun) {
+        if ($(this).val() == bulan && $('#amount').val() == firstamount && $('#tahun').val() == tahun || $(this).val() == bulan && $('#tahun').val() == tahun && $('#dana_sekarang').val() == secondamount && $('#target_dana').val() == firstamount) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
+            $('#hitungUlang').hide();
         } else {
             $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
+            $('#hitungUlang').show();
 
         }
 
@@ -446,7 +474,7 @@ $(function () {
         if ($(this).val() == 0) {
             $('#hitungUlang').attr('disabled', true).css('opacity', '.5');
         } else {
-            $('#hitungUlang').attr('disabled', false).css('opacity', '1');
+            $('#hitungUlang').attr('disabled', false).css('opacity', '1').show();
         }
         if ($(this).val() == firsttenor && $('#dana_sekarang').val() == secondamount && $('#target_dana').val() == firstamount) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
@@ -499,14 +527,16 @@ $(function () {
             $('#hitungUlang').attr('disabled', true).css('opacity', '.5');
             $(this).val(0);
         } else {
-            $('#hitungUlang').attr('disabled', false).css('opacity', '1');
+            $('#hitungUlang').attr('disabled', false).css('opacity', '1').show();
         }
         if ($(this).val() == firstage && $('#dana').val() == firstamount && $('#countrySelect').val() == firstcountry) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
+            $('#hitungUlang').hide();
         } else {
             $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
+            $('#hitungUlang').show();
         }
 
 
@@ -545,14 +575,16 @@ $(function () {
         } else {
             $('#target_dana').css('border', '');
             $('.recalc.form_row .errorMsg').hide();
-            $('#hitungUlang').attr('disabled', false).css('opacity', '1');
+            $('#hitungUlang').attr('disabled', false).css('opacity', '1').show();
         }
         if ($(this).val() == firstamount && $('#dana_sekarang').val() == secondamount && $('#tahun').val() == tahun && $('#bulan').val() == bulan) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
+            $('#hitungUlang').hide();
         } else {
             $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
+            $('#hitungUlang').show();
         }
 
 
@@ -583,9 +615,11 @@ $(function () {
         if ($(this).val() == secondamount && $('#target_dana').val() == firstamount && $('#tahun').val() == tahun && $('#bulan').val() == bulan) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
+            $('#hitungUlang').hide();
         } else {
             $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
+            $('#hitungUlang').show();
         }
 
 
@@ -620,9 +654,11 @@ $(function () {
         if ($(this).val() == firstamount && $('#age').val() == firstage && $('#countrySelect').val() == firstcountry) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
+            $('#hitungUlang').hide();
         } else {
             $('#btnSubmit').attr('disabled', true).css('opacity', '.5');
             $('.calcResult .errorMsgHitung').show().css('color', 'red');
+            $('#hitungUlang').show();
         }
 
     });

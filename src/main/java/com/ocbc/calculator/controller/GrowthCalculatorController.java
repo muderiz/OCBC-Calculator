@@ -43,8 +43,31 @@ public class GrowthCalculatorController {
             @PathVariable String tenor,
             @PathVariable String name,
             @PathVariable int risk_profile_id) throws IOException {
-        String tahun = "1";
-        String bulan = "3";
+
+        String tahun = "0";
+        String bulan = "0";
+        double bulandouble = 0;
+        double hasilpembagiantenor = 0;
+        double tenordouble = Double.parseDouble(tenor);
+        if (tenordouble > 12) {
+            hasilpembagiantenor = tenordouble / 12;
+            String hasil = Double.toString(hasilpembagiantenor);
+            String[] splithasil = hasil.split("\\.");
+            String splithasil1 = splithasil[0];
+            String splithasil2 = "0." + splithasil[1];
+            double roundedsplithasil2 = (double) Math.round(Double.parseDouble(splithasil2) * 100) / 100;
+            tahun = splithasil1;
+            bulandouble = roundedsplithasil2 * 12;
+            bulandouble = (double) Math.round(bulandouble);
+            int bulanint = (int) bulandouble;
+            bulan = Integer.toString(bulanint);
+        } else if (tenordouble == 12) {
+            hasilpembagiantenor = tenordouble / 12;
+            int tahunint = (int) hasilpembagiantenor;
+            tahun = Integer.toString(tahunint);
+        } else {
+            bulan = tenor;
+        }
 
         String typeDesc;
         String note;
