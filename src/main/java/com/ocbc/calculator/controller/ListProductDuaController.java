@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Controller Confirmation List Product Reksadana Webview
+ *
  * @author Deka
  */
 @Controller
@@ -61,12 +62,15 @@ public class ListProductDuaController {
 
         String typeDesc;
         String newinvestipe;
+        String buttontype;
         if (invest_type.equalsIgnoreCase("0")) {
             typeDesc = "Bulanan";
             newinvestipe = "false";
+            buttontype = "bulanan";
         } else {
             typeDesc = "Sekali di awal";
             newinvestipe = "true";
+            buttontype = "lumpsum";
         }
         FutureValueResponse respReksadanaGrowth = calculatorServices.reksadanaGrowth(refID, amount, newinvestipe, tenor, risk_profile_id, producttype, productid);
         String rate = averagerate + "% (" + badrate + "% - " + goodrate + "%)";
@@ -79,6 +83,7 @@ public class ListProductDuaController {
         model.addAttribute("typeDesc", typeDesc);
         model.addAttribute("rate", rate);
         model.addAttribute("resultamount", result);
+        model.addAttribute("buttontype", buttontype);
         model.addAttribute("idchannel", appProp.IdLiveChat);
         model.addAttribute("urlBack", refID + "/" + lifegoalid + "/" + amount + "/" + tenor + "/" + firstriskprofile + "/" + tipe + "/" + invest_type + "/" + initial_amount + "/" + country + "/" + nama);
 

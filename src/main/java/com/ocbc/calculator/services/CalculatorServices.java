@@ -93,7 +93,7 @@ public class CalculatorServices {
         int intAge = Integer.parseInt(age);
         int intTenor = 18 - intAge <= 1 ? 1 : 18 - intAge;
         intTenor = intTenor * 12;
-        
+
         TargetValueRequest targetValueRequest = new TargetValueRequest();
         targetValueRequest.Channel_ID = appProp.Channel_ID;
         targetValueRequest.Children_Age = age;

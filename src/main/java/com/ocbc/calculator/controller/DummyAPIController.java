@@ -66,7 +66,7 @@ public class DummyAPIController {
         objProduct.Product_Rate = "0.00";
         objProduct.Mutual_Fund_Code = "NISDAT2  ";
         objProduct.Standard_Deviation = 0.0121;
-        objProduct.Average_Rate = "7.24";
+        objProduct.Average_Rate = "8.20";
         objProduct.Bad_Rate = "6.3";
         objProduct.Good_Rate = "8.5";
         objProduct.Performance_of_1_month = "1.02";
@@ -77,6 +77,10 @@ public class DummyAPIController {
         objProduct.Mutual_Fund_Nav = "2127.19";
         objProduct.Mutual_Fund_Risk_Profile_ID = 1;
         objProduct.Mutual_Fund_Type = 1;
+        objProduct.Launch_Date = "02/02/2020";
+        objProduct.Total_AUM = 230;
+        objProduct.Url_Fund_Fact_Sheet = "https://www.detik.com/";
+        objProduct.Url_Prospectus = "https://www.detik.com/";
 
         response.List_Product.add(objProduct);
 
@@ -98,6 +102,10 @@ public class DummyAPIController {
         objProduct.Mutual_Fund_Nav = "2127.19";
         objProduct.Mutual_Fund_Risk_Profile_ID = 2;
         objProduct.Mutual_Fund_Type = 1;
+        objProduct.Launch_Date = "02/02/2020";
+        objProduct.Total_AUM = 230;
+        objProduct.Url_Fund_Fact_Sheet = "https://www.detik.com/";
+        objProduct.Url_Prospectus = "https://www.detik.com/";
 
         response.List_Product.add(objProduct);
 
@@ -119,6 +127,10 @@ public class DummyAPIController {
         objProduct.Mutual_Fund_Nav = "2127.19";
         objProduct.Mutual_Fund_Risk_Profile_ID = 4;
         objProduct.Mutual_Fund_Type = 1;
+        objProduct.Launch_Date = "02/02/2020";
+        objProduct.Total_AUM = 230;
+        objProduct.Url_Fund_Fact_Sheet = "https://www.detik.com/";
+        objProduct.Url_Prospectus = "https://www.detik.com/";
 
         response.List_Product.add(objProduct);
 
@@ -140,6 +152,10 @@ public class DummyAPIController {
         objProduct.Mutual_Fund_Nav = "2127.19";
         objProduct.Mutual_Fund_Risk_Profile_ID = 2;
         objProduct.Mutual_Fund_Type = 2;
+        objProduct.Launch_Date = "02/02/2020";
+        objProduct.Total_AUM = 230;
+        objProduct.Url_Fund_Fact_Sheet = "https://www.detik.com/";
+        objProduct.Url_Prospectus = "https://www.detik.com/";
 
         response.List_Product.add(objProduct);
 
@@ -161,6 +177,10 @@ public class DummyAPIController {
         objProduct.Mutual_Fund_Nav = "2127.19";
         objProduct.Mutual_Fund_Risk_Profile_ID = 3;
         objProduct.Mutual_Fund_Type = 3;
+        objProduct.Launch_Date = "02/02/2020";
+        objProduct.Total_AUM = 230;
+        objProduct.Url_Fund_Fact_Sheet = "https://www.detik.com/";
+        objProduct.Url_Prospectus = "https://www.detik.com/";
 
         response.List_Product.add(objProduct);
 
@@ -182,6 +202,10 @@ public class DummyAPIController {
         objProduct.Mutual_Fund_Nav = "2127.19";
         objProduct.Mutual_Fund_Risk_Profile_ID = 4;
         objProduct.Mutual_Fund_Type = 4;
+        objProduct.Launch_Date = "02/02/2020";
+        objProduct.Total_AUM = 230;
+        objProduct.Url_Fund_Fact_Sheet = "https://www.detik.com/";
+        objProduct.Url_Prospectus = "https://www.detik.com/";
 
         response.List_Product.add(objProduct);
 
