@@ -11,6 +11,7 @@ import com.ocbc.calculator.model.Product;
 import com.ocbc.calculator.services.CalculatorServices;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,18 +68,22 @@ public class ListProductController {
 
         List<Product> listPasarUang = listProduct.stream()
                 .filter(product -> product.Mutual_Fund_Type == 1)
+                .sorted(Comparator.comparing(Product::getMutual_Fund_Risk_Profile_ID))
                 .collect(Collectors.toList());
 
         List<Product> listPendapatanTetap = listProduct.stream()
                 .filter(product -> product.Mutual_Fund_Type == 2)
+                .sorted(Comparator.comparing(Product::getMutual_Fund_Risk_Profile_ID))
                 .collect(Collectors.toList());
 
         List<Product> listCampuran = listProduct.stream()
                 .filter(product -> product.Mutual_Fund_Type == 3)
+                .sorted(Comparator.comparing(Product::getMutual_Fund_Risk_Profile_ID))
                 .collect(Collectors.toList());
 
         List<Product> listSaham = listProduct.stream()
                 .filter(product -> product.Mutual_Fund_Type == 4)
+                .sorted(Comparator.comparing(Product::getMutual_Fund_Risk_Profile_ID))
                 .collect(Collectors.toList());
 
         String risk_profile_desc = "";

@@ -186,6 +186,13 @@ function tnc() {
 
     talk(IdChannel, message_in, "Setuju");
 }
+function tncKembali() {
+    var message_in;
+    var IdChannel = $("#idchannel").val();
+    message_in = "batal";
+
+    talk(IdChannel, message_in, "Kembali");
+}
 
 
 
@@ -291,6 +298,8 @@ $(function () {
     });
 
     $('#countrySelect').change(function () {
+        var cvalue = $('option:selected').val();
+        $('#countryValue').val(cvalue);
         if ($('option:selected').val() == firstcountry && $('#dana').val() == firstamount && $('#age').val() == firstage) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
             $('.calcResult .errorMsgHitung').hide();
@@ -336,6 +345,10 @@ $(function () {
 
     $('#proceed_tnc').on('click', function () {
         tnc();
+    });
+
+    $('#proceed_tnckembali').on('click', function () {
+        tncKembali()();
     });
 
     $('#checklist1').on('click', function () {

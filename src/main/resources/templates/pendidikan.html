@@ -27,7 +27,7 @@
                 <input id="tenor" type="hidden" th:value="${tenor}"/>
 
                 <div class="topbar">
-                    <a class="link" href="#"><i class="far fa-chevron-left icon"></i> Tujuan investasi</a>
+                    <!--<a class="link" href="#"><i class="far fa-chevron-left icon"></i> Tujuan investasi</a>-->
                 </div>
 
                 <div class="titleBar">
@@ -40,6 +40,7 @@
                     <div class="recalc form_row">
                         <div class="form-group">
                             <label for="email" class="label">Negara tujuan</label>
+                            <input id="countryValue" type="text" class="i5" th:value="${country}" disabled />
                             <select id="countrySelect" class="input countrySelect" style="width:130px;">
                                 <option th:each="negara: ${listCountry}" th:value="${negara.text}" th:label="${negara.text}"
                                         th:selected="${negara.text==country}"><span th:text="${negara.text}"/></option>

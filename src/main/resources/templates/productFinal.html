@@ -48,6 +48,10 @@ and open the template in the editor.
 
                 <div class="productList_container">
                     <div class="productList">
+                        <input id="modeinvestlumpsum" type="hidden" th:value="${typeDescLumpsum}"/>
+                        <input id="resultPresentlumpsum" type="hidden" th:value="${resultPresent}"/>
+                        <input id="urlBack" type="hidden" th:value="${urlBack}"/>
+                        <input id="ratelumpsum" type="hidden" th:value="${rate}"/>
                         <div class="investType clearfix">
                             <img th:src="@{~/images/12.png}" class="img"/>
                             <!--<img th:src="@{~/images/12.png}" class="img"/>-->
@@ -55,19 +59,22 @@ and open the template in the editor.
 
                             <p class="rate"><span class="red">Rp <span th:text="${resultPresent}"/></span></p>
                             <p class="estimate">Est. Laba <b><span th:text="${rate}"/></b> /thn</p>
-                            <button id="FinalEtcLumpsum" class="action btn red">Pilih lumpsum&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-right icon"></i></button>
+                            <button id="FinalEtcLumpsum" class="action btn red">Pilih&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-right icon"></i></button>
                         </div>
 
                     </div>
 
                     <div class="productList">
                         <div class="investType clearfix">
+                            <input id="modeinvestannual" type="hidden" th:value="${typeDescAnnual}"/>
+                            <input id="resultTargetannual" type="hidden" th:value="${resultTarget}"/>
+                            <input id="rateannual" type="hidden" th:value="${rate}"/>
                             <img th:src="@{~/images/16.png}" class="img"/>
                             <p class="type"><span th:text="${typeDescAnnual}"/></p>
 
                             <p class="rate"><span class="yellow">Rp <span th:text="${resultTarget}"/></span> <small>/bulan</small></p>
                             <p class="estimate">Est. Laba <b><span th:text="${rate}"></b> /thn</p>
-                            <button id="FinalEtcAnnual" class="action btn red">Pilih annual&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-right icon"></i></button>
+                            <button id="FinalEtcAnnual" class="action btn red">Pilih&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-right icon"></i></button>
                         </div>
                     </div>
                 </div>
