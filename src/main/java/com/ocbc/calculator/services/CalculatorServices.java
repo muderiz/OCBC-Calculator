@@ -120,7 +120,6 @@ public class CalculatorServices {
             if (product_type.equalsIgnoreCase("investasi")) {
                 targetValueRequest.Yearly_Return_Code = "B";
                 targetValueRequest.Payment_Type = "CE";
-
             } else {
                 targetValueRequest.Payment_Type = "SV";
                 targetValueRequest.Yearly_Return_Code = "E";
@@ -140,7 +139,8 @@ public class CalculatorServices {
         Response response = call.execute();
 
         TargetValueResponse targetValueResponse = gson.fromJson(response.body().string(), TargetValueResponse.class);
-
+        System.out.println(jsonTargetValue);
+        System.out.println(targetValueResponse);
         return targetValueResponse;
     }
 

@@ -96,6 +96,7 @@ function submit(_lifegoal) {
     var message_in;
     var refID = $("#refID").val();
     var IdChannel = $("#idchannel").val();
+    var firsttenor = $("#firsttenor").val();
     var tabunganResult = $("#tabunganResult").text();
     var investasiResult = $("#investasiResult").text();
     var tabunganRate = $("#tabunganRate").text();
@@ -104,9 +105,10 @@ function submit(_lifegoal) {
     switch (_lifegoal) {
         case "growth":
             var amount = $("#amount").val();
-            var tenor = $("#tenor").val();
-            message_in = amount + "&" + tenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
+//            var firsttenor = $("#tenor").text();
+            message_in = amount + "&" + firsttenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
             break;
+
         case "education":
             var age = $("#age").val();
             var country = $("#firstvaluecountry").val();
@@ -120,7 +122,7 @@ function submit(_lifegoal) {
             var dana_sekarang = $("#dana_sekarang").val();
 
             var tenor = $("#jangka_waktu").val();
-            message_in = target_dana + "&" + dana_sekarang + "&" + tenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
+            message_in = target_dana + "&" + dana_sekarang + "&" + firsttenor + "&" + investasiResult + "&" + tabunganResult + "&" + investasiRate + "&" + tabunganRate;
 
             break;
 
@@ -195,6 +197,11 @@ function tncKembali() {
 }
 
 
+//$('#download').click(function (e) {
+//    var url = $("#url").val();
+//    e.preventDefault();  //stop the browser from following
+//    window.location.href = url;
+//});
 
 $(function () {
     var lifegoal = $("#lifegoal").val();
@@ -214,6 +221,7 @@ $(function () {
     $('.recalc.form_row .errorMsgTenor').hide();
     $('.recalc.form_row .errorMsgTahun').hide();
     $('.recalc.form_row .errorMsgBulan').hide();
+    $('.recalc.form_row .errorMsgTahunBulan').hide();
     $('.calcResult .errorMsgHitung').hide();
     $('.errorRc').hide();
     $('.ocbc_webview .highRiskConfirm').hide();
@@ -409,9 +417,11 @@ $(function () {
         });
 
         if ($(this).val() == 0 && $('#bulan').val() == 0) {
-            $('#bulan').val(1);
-        } else if ($(this).val() == 0) {
-            $(this).val(0);
+            $('.recalc.form_row .errorMsgTahunBulan').show().css('color', 'red');
+            $('#hitungUlang').hide();
+        } else {
+            $('.recalc.form_row .errorMsgTahunBulan').hide();
+            $('#hitungUlang').show();
         }
         if ($(this).val() == tahun && $('#amount').val() == firstamount && $('#bulan').val() == bulan || $(this).val() == tahun && $('#bulan').val() == bulan && $('#dana_sekarang').val() == secondamount && $('#target_dana').val() == firstamount) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
@@ -433,11 +443,10 @@ $(function () {
             $(this).val(50);
             $('.recalc.form_row .errorMsgTahun').show().css('color', 'red');
 
+        } else if (($(this).val()) <= 0) {
+            $(this).val(0);
+
         }
-//        else if (($(this).val()) <= 0) {
-//            $(this).val($(this).data("old"));
-//            $('.recalc.form_row .errorMsgTahun').hide();
-//        }
 
     });
 
@@ -450,7 +459,12 @@ $(function () {
                     .replace(/^0+/, '');
         });
         if ($(this).val() == 0 && $('#tahun').val() == 0) {
-            $(this).val(1);
+            $('.recalc.form_row .errorMsgTahunBulan').show().css('color', 'red');
+            ;
+            $('#hitungUlang').hide();
+        } else {
+            $('.recalc.form_row .errorMsgTahunBulan').hide();
+            $('#hitungUlang').show();
         }
         if ($(this).val() == bulan && $('#amount').val() == firstamount && $('#tahun').val() == tahun || $(this).val() == bulan && $('#tahun').val() == tahun && $('#dana_sekarang').val() == secondamount && $('#target_dana').val() == firstamount) {
             $('#btnSubmit').attr('disabled', false).css('opacity', '1');
@@ -706,16 +720,32 @@ $(function () {
         $('#riskNotif').hide();
     });
 
+    $('.pilih_produk_btn').on('click', function () {
+        $('#risk_confirm').show();
+        $('body').addClass('noScroll');
+    });
+
+    $('.popup_overlay , .popup_close').on('click', function () {
+        $('#risk_confirm').hide();
+        $('body').removeClass('noScroll');
+    });
+
     $('.ocbc_webview .higherRisk_selection').on('click', function () {
         if ($(this).hasClass('balance')) {
-            $('.ocbc_webview #pilihanUser').text('(BALANCE)');
+            $('.ocbc_webview #pilihanUser').text('BALANCE');
             $('.ocbc_webview .highRiskConfirm').show();
+            $('#risk_confirm').show();
+            $('body').addClass('noScroll');
         } else if (($(this).hasClass('growth'))) {
-            $('.ocbc_webview #pilihanUser').text('(GROWTH)');
+            $('.ocbc_webview #pilihanUser').text('GROWTH');
             $('.ocbc_webview .highRiskConfirm').show();
+            $('#risk_confirm').show();
+            $('body').addClass('noScroll');
         } else if (($(this).hasClass('aggressive'))) {
-            $('.ocbc_webview #pilihanUser').text('(AGGRESSIVE)');
+            $('.ocbc_webview #pilihanUser').text('AGGRESSIVE');
             $('.ocbc_webview .highRiskConfirm').show();
+            $('#risk_confirm').show();
+            $('body').addClass('noScroll');
 
         }
     });

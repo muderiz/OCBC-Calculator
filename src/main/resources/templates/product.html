@@ -9,7 +9,7 @@
         <script th:src="@{/js/jquery-2.1.3.min.js}" type="text/javascript"></script>
         <script th:src="@{/js/talk.js}" type="text/javascript"></script>
         <script th:src="@{/js/newwebview.js}" type="text/javascript"></script>
-
+        <title></title>
     </head>
     <body>
         <div class="ocbc_webview">
@@ -63,9 +63,9 @@
 
                             <div class="product_selection_catTitle">
                                 <div class="title">REKSADANA PASAR UANG</div>
-                                <div class="desc">Reksa Dana Pasar Uang (RDPU) menyebar investasinya pada instrumen pasar uang dalam negri dan obligasi. Investasi ini cocok untuk jangka pendek (<1 tahun), dengan risk profile Conservative.</div>
+                                <div class="desc">Reksa Dana Pasar Uang (RDPU) menyebar investasinya pada instrumen pasar uang dalam negeri dan obligasi. Investasi ini cocok untuk jangka pendek (<1 tahun), dengan risk profile Conservative.</div>
 
-                                <div class="rateinfo">Rata-rata est. laba/thn</div>
+                                <div class="rateinfo">Rata-rata estimasi return/thn</div>
 
                             </div>
 
@@ -87,7 +87,7 @@
                                             <div th:case="3" class="prodType type3"><span th:text="${pasaruang.Mutual_Fund_Risk_Profile_Desc}"/></div>
                                             <div th:case="4" class="prodType type4"><span th:text="${pasaruang.Mutual_Fund_Risk_Profile_Desc}"/></div>
                                         </div>
-                                        <div class="riskDesc" th:classappend="${pasaruang.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'green' : 'red'"><span th:text="${pasaruang.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'Profile resiko sesuai' : 'Resiko lebih tinggi'"/></div>
+                                        <div class="riskDesc" th:classappend="${pasaruang.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'green' : 'red'"><span th:text="${pasaruang.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'Profil resiko sesuai' : 'Resiko lebih tinggi'"/></div>
 
                                         <div class="prodName"><span th:text="${pasaruang.Product_Name}"/></div>
 
@@ -98,22 +98,22 @@
                                     <div class="productDetail clearfix">
                                         <table class="descTable">
                                             <tr>
-                                                <td>Tanggal peluncuran produk</td>
+                                                <td>Tanggal peluncuran </td>
                                                 <td><b><span th:text="${pasaruang.Launch_Date}"/></b></td>
                                             </tr>
                                             <tr>
-                                                <td>Total AUM</td>
-                                                <td><b>Rp <span th:text="${pasaruang.Total_AUM}"/> milyar/tahun</b></td>
+                                                <td>Total Dana Kelolaan (AUM)</td>
+                                                <td><b>IDR <span th:text="${pasaruang.Total_AUM}"/> milyar/tahun</b></td>
                                             </tr>
                                         </table>
 
                                         <table class="detailTable">
                                             <tr>
                                                 <td colspan="5">
-                                                    Kinerja (%)
+                                                    Kinerja - Return (%)
                                                 </td>
                                                 <td  class="right">
-                                                    Harga NAB/Unit
+                                                    Harga Nilai Aktiva Bersih/Unit
 
                                                 </td>
                                             </tr>
@@ -144,7 +144,7 @@
                                                         <b class="val"><span th:text="${pasaruang.Performance_of_60_month}"></span></b>
                                                 </td>
                                                 <td>
-                                                    <b class="val">Rp <span th:text="${pasaruang.Mutual_Fund_Nav}"></span></b></td>
+                                                    <b class="val">IDR <span th:text="${pasaruang.Mutual_Fund_Nav}"></span></b></td>
                                             </tr>
                                         </table>
 
@@ -175,7 +175,7 @@
                                 <div class="title">REKSA DANA PENDAPATAN TETAP</div>
                                 <div class="desc">Reksa Dana Pendapatan Tetap(RDPT) menyebar investasinya pada surat utang/obligasi (80%) dan sisanya ke produk pasar uang. Investasi ini cocok untuk jangka waktu 1 – 3 tahun, dengan risk profile Balance.</div>
 
-                                <div class="rateinfo">Rata-rata est. laba/thn</div>
+                                <div class="rateinfo">Rata-rata estimasi return/thn</div>
                             </div>
 
                             <ul class="productList_container">
@@ -196,7 +196,7 @@
                                             <div th:case="3" class="prodType type3"><span th:text="${pendapatantetap.Mutual_Fund_Risk_Profile_Desc}"/></div>
                                             <div th:case="4" class="prodType type4"><span th:text="${pendapatantetap.Mutual_Fund_Risk_Profile_Desc}"/></div>
                                         </div>
-                                        <div class="riskDesc" th:classappend="${pendapatantetap.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'green' : 'red'"><span th:text="${pendapatantetap.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'Profile resiko sesuai' : 'Resiko lebih tinggi'"/></div>
+                                        <div class="riskDesc" th:classappend="${pendapatantetap.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'green' : 'red'"><span th:text="${pendapatantetap.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'Profil resiko sesuai' : 'Resiko lebih tinggi'"/></div>
 
 
                                         <div class="prodName"><span th:text="${pendapatantetap.Product_Name}"/></div>
@@ -211,22 +211,22 @@
                                     <div class="productDetail clearfix">
                                         <table class="descTable">
                                             <tr>
-                                                <td>Tanggal peluncuran produk</td>
+                                                <td>Tanggal peluncuran </td>
                                                 <td><b><span th:text="${pendapatantetap.Launch_Date}"/></b></td>
                                             </tr>
                                             <tr>
-                                                <td>Total AUM</td>
-                                                <td><b>Rp <span th:text="${pendapatantetap.Total_AUM}"/> milyar/tahun</b></td>
+                                                <td>Total Dana Kelolaan (AUM)</td>
+                                                <td><b>IDR <span th:text="${pendapatantetap.Total_AUM}"/> milyar/tahun</b></td>
                                             </tr>
                                         </table>
 
                                         <table class="detailTable">
                                             <tr>
                                                 <td colspan="5">
-                                                    Kinerja (%)
+                                                    Kinerja - Return (%)
                                                 </td>
                                                 <td  class="right">
-                                                    Harga NAB/Unit
+                                                    Harga Nilai Aktiva Bersih/Unit
 
                                                 </td>
                                             </tr>
@@ -257,7 +257,7 @@
                                                         <b class="val"><span th:text="${pendapatantetap.Performance_of_60_month}"></span></b>
                                                 </td>
                                                 <td>
-                                                    <b class="val">Rp <span th:text="${pendapatantetap.Mutual_Fund_Nav}"></span></b></td>
+                                                    <b class="val">IDR <span th:text="${pendapatantetap.Mutual_Fund_Nav}"></span></b></td>
                                             </tr>
                                         </table>
 
@@ -286,7 +286,7 @@
                                 <div class="title">REKSA DANA CAMPURAN</div>
                                 <div class="desc">Reksa Dana Pendapatan Campuran menyebar investasinya pada pasar saham, obligasi, dan pasar uang. Investasi ini cocok untuk jangka waktu 3 – 5 tahun, dengan risk profile Growth.</div>
 
-                                <div class="rateinfo">Rata-rata est. laba/thn</div>
+                                <div class="rateinfo">Rata-rata estimasi return/thn</div>
 
                             </div>
 
@@ -308,7 +308,7 @@
                                             <div th:case="3" class="prodType type3"><span th:text="${campuran.Mutual_Fund_Risk_Profile_Desc}"/></div>
                                             <div th:case="4" class="prodType type4"><span th:text="${campuran.Mutual_Fund_Risk_Profile_Desc}"/></div>
                                         </div>
-                                        <div class="riskDesc" th:classappend="${campuran.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'green' : 'red'"><span th:text="${campuran.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'Profile resiko sesuai' : 'Resiko lebih tinggi'"/></div>
+                                        <div class="riskDesc" th:classappend="${campuran.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'green' : 'red'"><span th:text="${campuran.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'Profil resiko sesuai' : 'Resiko lebih tinggi'"/></div>
 
 
                                         <div class="prodName"><span th:text="${campuran.Product_Name}"/></div>
@@ -323,22 +323,22 @@
                                     <div class="productDetail clearfix">
                                         <table class="descTable">
                                             <tr>
-                                                <td>Tanggal peluncuran produk</td>
+                                                <td>Tanggal peluncuran </td>
                                                 <td><b><span th:text="${campuran.Launch_Date}"/></b></td>
                                             </tr>
                                             <tr>
-                                                <td>Total AUM</td>
-                                                <td><b>Rp <span th:text="${campuran.Total_AUM}"/> milyar/tahun</b></td>
+                                                <td>Total Dana Kelolaan (AUM)</td>
+                                                <td><b>IDR <span th:text="${campuran.Total_AUM}"/> milyar/tahun</b></td>
                                             </tr>
                                         </table>
 
                                         <table class="detailTable">
                                             <tr>
                                                 <td colspan="5">
-                                                    Kinerja (%)
+                                                    Kinerja - Return (%)
                                                 </td>
                                                 <td  class="right">
-                                                    Harga NAB/Unit
+                                                    Harga Nilai Aktiva Bersih/Unit
 
                                                 </td>
                                             </tr>
@@ -369,7 +369,7 @@
                                                         <b class="val"><span th:text="${campuran.Performance_of_60_month}"></span></b>
                                                 </td>
                                                 <td>
-                                                    <b class="val">Rp <span th:text="${campuran.Mutual_Fund_Nav}"></span></b></td>
+                                                    <b class="val">IDR <span th:text="${campuran.Mutual_Fund_Nav}"></span></b></td>
                                             </tr>
                                         </table>
 
@@ -398,7 +398,7 @@
                                 <div class="title">REKSA DANA SAHAM</div>
                                 <div class="desc">Reksa Dana Saham menyebar minimal 80% investasinya pada pasar saham. Investasi ini cocok untuk jangka waktu > 5 tahun, dengan risk profile Aggressive.</div>
 
-                                <div class="rateinfo">Rata-rata est. laba/thn</div>
+                                <div class="rateinfo">Rata-rata estimasi return/thn</div>
 
                             </div>
 
@@ -420,7 +420,7 @@
                                             <div th:case="3" class="prodType type3"><span th:text="${saham.Mutual_Fund_Risk_Profile_Desc}"/></div>
                                             <div th:case="4" class="prodType type4"><span th:text="${saham.Mutual_Fund_Risk_Profile_Desc}"/></div>
                                         </div>
-                                        <div class="riskDesc" th:classappend="${saham.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'green' : 'red'"><span th:text="${saham.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'Profile resiko sesuai' : 'Resiko lebih tinggi'"/></div>
+                                        <div class="riskDesc" th:classappend="${saham.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'green' : 'red'"><span th:text="${saham.Mutual_Fund_Risk_Profile_ID}<=${risk_profile_id} ? 'Profil resiko sesuai' : 'Resiko lebih tinggi'"/></div>
 
 
                                         <div class="prodName"><span th:text="${saham.Product_Name}"/></div>
@@ -435,22 +435,22 @@
                                     <div class="productDetail clearfix">
                                         <table class="descTable">
                                             <tr>
-                                                <td>Tanggal peluncuran produk</td>
+                                                <td>Tanggal peluncuran </td>
                                                 <td><b><span th:text="${saham.Launch_Date}"/></b></td>
                                             </tr>
                                             <tr>
-                                                <td>Total AUM</td>
-                                                <td><b>Rp <span th:text="${saham.Total_AUM}"/> milyar/tahun</b></td>
+                                                <td>Total Dana Kelolaan (AUM)</td>
+                                                <td><b>IDR <span th:text="${saham.Total_AUM}"/> milyar/tahun</b></td>
                                             </tr>
                                         </table>
 
                                         <table class="detailTable">
                                             <tr>
                                                 <td colspan="5">
-                                                    Kinerja (%)
+                                                    Kinerja - Return (%)
                                                 </td>
                                                 <td  class="right">
-                                                    Harga NAB/Unit
+                                                    Harga Nilai Aktiva Bersih/Unit
 
                                                 </td>
                                             </tr>
@@ -481,7 +481,7 @@
                                                         <b class="val"><span th:text="${saham.Performance_of_60_month}"></span></b>
                                                 </td>
                                                 <td>
-                                                    <b class="val">Rp <span th:text="${saham.Mutual_Fund_Nav}"></span></b></td>
+                                                    <b class="val">IDR <span th:text="${saham.Mutual_Fund_Nav}"></span></b></td>
                                             </tr>
                                         </table>
 
@@ -505,18 +505,33 @@
 
                         </section>
                     </div>
-                    <div id="highRiskConfirm" class="highRiskConfirm">
-                        <div class="dialogBox">
-                            <div>
-                                Profil resiko yang dipilih <b><span id='pilihanUser'>(AGGRESIVE)</span></b> lebih tinggi dari profile resiko
-                                Kamu : <b><span th:text="${risk_profile_desc}"></span></b>.
+                    <!--                    <div id="highRiskConfirm" class="highRiskConfirm">
+                                            <div class="dialogBox">
+                                                <div>
+                                                    Profil resiko yang dipilih <b><span id='pilihanUser'>(AGGRESIVE)</span></b> lebih tinggi dari profile resiko
+                                                    Kamu : <b><span th:text="${risk_profile_desc}"></span></b>.
+                    
+                                                    Apakah kamu</span> yakin ingin melanjutkan dengan produk terpilih?
+                                                    <br/><br/>
+                                                    <button id="highRiskConfirm_close" class="onBtn grey">KEMBALI</button>
+                                                    <button id="highRiskConfirm_next" class="onBtn">LANJUTKAN</button>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                    <div id="risk_confirm" class="popup_confirm">
+                        <div class="popup_overlay"></div>
+                        <div class="popup_box">
 
-                                Apakah kamu</span> yakin ingin melanjutkan dengan produk terpilih?
-                                <br/><br/>
-                                <button id="highRiskConfirm_close" class="onBtn grey">KEMBALI</button>
-                                <button id="highRiskConfirm_next" class="onBtn">LANJUTKAN</button>
+                            <div>
+                                Produk yang kamu pilih memiliki resiko yang lebih tinggi <b class="cred"><span id='pilihanUser'>AGGRESIVE</span></b> dari profil resiko kamu <b class="cred"><span th:text="${risk_profile_desc}"></span></b>. Apakah kamu ingin melanjutkan pilih produk tersebut?
+                            </div>
+
+                            <div class="popup_option">
+                                <a id="highRiskConfirm_close" class="btn grey popup_close" href="javascript:void(0);">Pilih ulang</i></a>
+                                <a id="highRiskConfirm_next" class="btn red" href="#">Lanjutkan&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-right icon"></i></a>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

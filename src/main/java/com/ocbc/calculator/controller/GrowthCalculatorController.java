@@ -73,10 +73,10 @@ public class GrowthCalculatorController {
         String note;
 
         if (type.equalsIgnoreCase("0")) {
-            typeDesc = "per bulan";
+            typeDesc = "bulan";
             type = "false";
         } else {
-            typeDesc = "per lumpsum";
+            typeDesc = "lumpsum";
             type = "true";
         }
         String risk_profile_desc = "";
@@ -132,6 +132,7 @@ public class GrowthCalculatorController {
         model.addAttribute("note", note);
         model.addAttribute("risk_profile_desc", risk_profile_desc);
         model.addAttribute("newamount", newamount);
+        model.addAttribute("tenor", tenor);
         model.addAttribute("idchannel", appProp.IdLiveChat);
         model.addAttribute("rc", respInvestasi.RC);
         model.addAttribute("rcdesc", respInvestasi.RC_Description);

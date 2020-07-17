@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <link rel="stylesheet" th:href="@{~/css/font-awesome.css}"/>
         <link rel="stylesheet" th:href="@{~/css/ocbcnisp.css?v=2}"/>
         <script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
         <script th:src="@{/js/talk.js}" type="text/javascript"></script>
         <script th:src="@{/js/newwebview.js}" type="text/javascript"></script>
+        <title></title>
     </head>
     <body>
 
-    <body>
 
         <div class="ocbc_webview">
 
@@ -25,6 +25,7 @@
                 <input id="firstvaluecountry" type="hidden" th:value="${valuecountry}"/>
                 <input id="targetamount" type="hidden" th:value="${investasiFinalValue}"/>
                 <input id="tenor" type="hidden" th:value="${tenor}"/>
+                <input id="firsttenor" type="hidden" th:value="${tenor}"/>
 
                 <div class="topbar">
                     <!--<a class="link" href="#"><i class="far fa-chevron-left icon"></i> Tujuan investasi</a>-->
@@ -40,7 +41,7 @@
                     <div class="recalc form_row">
                         <div class="form-group">
                             <label for="email" class="label">Negara tujuan</label>
-                            <input id="countryValue" type="text" class="i5" th:value="${country}" disabled />
+                            <input id="countryValue" type="hidden" class="i5" th:value="${country}" disabled />
                             <select id="countrySelect" class="input countrySelect" style="width:130px;">
                                 <option th:each="negara: ${listCountry}" th:value="${negara.text}" th:label="${negara.text}"
                                         th:selected="${negara.text==country}"><span th:text="${negara.text}"/></option>
@@ -69,49 +70,49 @@
                     <div class="info">
                         Kamu butuh dana <b th:text="${investasiFinalValue}"/> dalam <b th:text="${tenor}"/> tahun ke depan.
                         <br><br>
-                        Karena risk profile kamu <b>[[${risk_profile_desc}]]</b>, kau bisa berinvestasi di instrumen keuangan yang rata - rata returnnya bisa mencapai <span id="investasiRate" th:text="${investasiRate}"/>% setahun!</div>
+                                Karena risk profile kamu <b>[[${risk_profile_desc}]]</b>, kamu bisa berinvestasi di instrumen keuangan yang rata - rata returnnya bisa mencapai <span id="investasiRate" th:text="${investasiRate}"/> setahun!</div>
 
-                    <div class="calcResult">
-                        <div class="circle">ATAU</div>
-                        <div class="resultGraph ">
-                            <div class="infoCol left">
-                                <div class="row title">Cuma nabung</div>
-                                <div class="row img"><img th:src="@{~/images/sim3.png}" /></div>
-                                <div class="row desc">Menyisihkan hingga</div>
-                                <div class="row value">Rp <span id="tabunganResult" th:text="${tabunganResult}"/></div>
-                                <div>per bulan</div>
-                                <div class="row note">(laba <span id="tabunganRate" th:text="${tabungan.Rate}"/>% per tahun)</div>
-                            </div>
+                                <div class="calcResult">
+                                    <div class="circle">ATAU</div>
+                                    <div class="resultGraph ">
+                                        <div class="infoCol left">
+                                            <div class="row title">Cuma nabung</div>
+                                            <div class="row img"><img th:src="@{~/images/sim3.png}" /></div>
+                                            <div class="row desc">Menyisihkan hingga</div>
+                                            <div class="row value">IDR <span id="tabunganResult" th:text="${tabunganResult}"/></div>
+                                            <div>per bulan</div>
+                                            <div class="row note">(return <span id="tabunganRate" th:text="${tabungan.Rate}"/> per tahun)</div>
+                                        </div>
 
-                            <div class="infoCol right">
-                                <div class="row title">Dengan investasi</div>
-                                <div class="row img"><img th:src="@{~/images/sim4.png}" /></div>
-                                <div class="row desc">Cukup menyisihkan</div>
-                                <div class="row value">Rp <span id="investasiResult" th:text="${investasiResult}"/></div>
-                                <div>per bulan</div>
-                                <div class="row note">(laba <span id="investasiRate" th:text="${investasi.Rate}"/>% per tahun)</div>
+                                        <div class="infoCol right">
+                                            <div class="row title">Dengan investasi</div>
+                                            <div class="row img"><img th:src="@{~/images/sim4.png}" /></div>
+                                            <div class="row desc">Cukup menyisihkan</div>
+                                            <div class="row value">IDR <span id="investasiResult" th:text="${investasiResult}"/></div>
+                                            <div>per bulan</div>
+                                            <div class="row note">(return <span id="investasiRate" th:text="${investasi.Rate}"/> per tahun)</div>
 
-                                <div class="row button">
-                                    <button id="btnSubmit" class="btn ricon red">Goal sudah sesuai <i class="far fa-arrow-right icon"></i></button>
-                                    <div id="alertHitung" class="errorMsgHitung" >Silahkan Lakukan Hitung Ulang Terlebih Dahulu</div>
+                                            <div class="row button">
+                                                <button id="btnSubmit" class="btn ricon red">Goal sudah sesuai <i class="far fa-arrow-right icon"></i></button>
+                                                <div id="alertHitung" class="errorMsgHitung" >Klik button ‘Hitung Ulang’ dahulu</div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
                                 </div>
-                            </div>
-
-
-                        </div>
-
-
-                    </div>
 
 
 
 
-                </div>
-            </div>
-        </div>
+                                </div>
+                                </div>
+                                </div>
 
 
 
 
-    </body>
-</html>
+                                </body>
+                                </html>

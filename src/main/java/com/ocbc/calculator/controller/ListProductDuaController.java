@@ -73,7 +73,8 @@ public class ListProductDuaController {
             buttontype = "lumpsum";
         }
         FutureValueResponse respReksadanaGrowth = calculatorServices.reksadanaGrowth(refID, amount, newinvestipe, tenor, risk_profile_id, producttype, productid);
-        String rate = averagerate + "% (" + badrate + "% - " + goodrate + "%)";
+//        String rate = averagerate + "% (" + badrate + "% - " + goodrate + "%)";
+        String rate = averagerate + "%";
 
         DecimalFormat decimalFormat = new DecimalFormat("");
         String result = decimalFormat.format(Double.parseDouble(respReksadanaGrowth.Result));
@@ -122,7 +123,8 @@ public class ListProductDuaController {
         TargetValueResponse respReksadanaEtcTarget = calculatorServices.reksadanaEtcTarget(refID, age, tenor, country, amount, target_amount, risk_profile_id, producttype, lifegoalId, productid);
         PresentValueResponse respReksadanaEtcPresent = calculatorServices.reksadanaEtcPresent(refID, age, lifegoalId, productid, tenor, newamount + "", producttype);
 
-        String rate = averagerate + "% (" + badrate + "% - " + goodrate + "%)";
+//        String rate = averagerate + "% (" + badrate + "% - " + goodrate + "%)";
+        String rate = averagerate + "%";
 
         DecimalFormat decimalFormat = new DecimalFormat("");
         String resultTarget = decimalFormat.format(Double.parseDouble(respReksadanaEtcTarget.Result));

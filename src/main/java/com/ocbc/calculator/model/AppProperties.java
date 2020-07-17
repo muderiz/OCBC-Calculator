@@ -56,8 +56,11 @@ public class AppProperties {
     @Value("${sdk.dolphin.graph.contacts.update}")
     String sdkDolphinGraphContactsUpdate;
 
-    @Value("${ocbc.pictures.quotes}")
-    String ocbc_pictures_quotes;
+    @Value("${ocbc.pictures.quotes.show}")
+    String ocbc_pictures_quotes_show;
+
+    @Value("${ocbc.pictures.quotes.download}")
+    String ocbc_pictures_quotes_download;
 
     public String getServicePort() {
         return servicePort;
@@ -255,14 +258,6 @@ public class AppProperties {
     @Value("${ocbc.nisp.error.response.10}")
     public String response10;
 
-    public String getOcbc_pictures_quotes() {
-        return ocbc_pictures_quotes;
-    }
-
-    public void setOcbc_pictures_quotes(String ocbc_pictures_quotes) {
-        this.ocbc_pictures_quotes = ocbc_pictures_quotes;
-    }
-
     public String getBASE_URL() {
         return BASE_URL;
     }
@@ -333,6 +328,22 @@ public class AppProperties {
 
     public void setResponse10(String response10) {
         this.response10 = response10;
+    }
+
+    public String getOcbc_pictures_quotes_show() {
+        return ocbc_pictures_quotes_show;
+    }
+
+    public void setOcbc_pictures_quotes_show(String ocbc_pictures_quotes_show) {
+        this.ocbc_pictures_quotes_show = ocbc_pictures_quotes_show;
+    }
+
+    public String getOcbc_pictures_quotes_download() {
+        return ocbc_pictures_quotes_download;
+    }
+
+    public void setOcbc_pictures_quotes_download(String ocbc_pictures_quotes_download) {
+        this.ocbc_pictures_quotes_download = ocbc_pictures_quotes_download;
     }
 
 }

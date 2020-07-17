@@ -23,20 +23,23 @@
                 <input id="refID" type="hidden" th:value="${refID}"/>
                 <input id="firstamount" type="hidden" th:value="${newamount}"/>
                 <input id="firsttenor" type="hidden" th:value="${tenor}"/>
+
                 <div class="topbar">
                     <!--<a class="link" href="#"><i class="far fa-chevron-left icon"></i> Tujuan investasi</a>-->
                 </div>
 
                 <div class="titleBar">
                     <div class="titles">Menumbuhkan Uang</div>
-                    <div class="desc">Masukkan nominal dan jangka waktu yang berbeda untuk menghitung ulang simulasi</div>
+                    <div class="desc">Kamu cukup mengganti nominal dan waktu investasi untuk menghitung ulang simulasi</div>
                 </div>
                 <div class="lifegoalCalculator">
+
                     <div class="recalc form_row">
                         <div class="form-group">
                             <label for="email" class="label">Dana diinvestasikan (IDR)</label>
                             <input id="amount" type="text" class="input inputamount" th:value="${newamount}" style="width:130px;" inputmode="numeric" pattern="[0-9]*" required/>
-                            <div class="tips">/bulan</div>
+                            <div class="tips">/[[${typeDesc}]]</div>
+
                         </div>
                         <div class="form-group">
                             <label for="email" class="label">Lama investasi</label>
@@ -53,9 +56,10 @@
                         <div class="errorMsg" >Pastikan data yang kamu isi sudah benar</div>
                         <div id="errorTenor" class="errorMsgTahun" >Maksimal Tenor 50 Tahun</div>
                         <div id="errorTenor" class="errorMsgBulan" >Maksimal Tenor 12 Bulan</div>
+                        <div id="errorTenor" class="errorMsgTahunBulan" >Kamu belum menginput lama investasi</div>
                     </div>
 
-                    <div class="info">Karena risk profile kamu <b>[[${risk_profile_desc}]]</b>, kamu bisa berinvestasi di instrumen keuangan yang rata - rata returnnya bisa mencapai <span id="investasiRate" th:text="${investasiRate}"/>% setahun!</div>
+                    <div class="info">Karena risk profile kamu <b>[[${risk_profile_desc}]]</b>, kamu bisa berinvestasi di instrumen keuangan yang rata - rata returnnya bisa mencapai <span id="investasiRate" th:text="${investasiRate}"/> setahun!</div>
 
                     <div class="calcResult">
                         <div class="circle">ATAU</div>
@@ -64,20 +68,20 @@
                                 <div class="row title">Cuma nabung</div>
                                 <div class="row img"><img th:src="@{~/images/sim2.png}" /></div>
                                 <div class="row desc">Pertumbuhan Hingga</div>
-                                <div class="row value">Rp <span id="tabunganResult" th:text="${tabunganResult}"/></div>
-                                <div class="row note">(laba <span id="tabunganRate" th:text="${tabunganRate}"/>% per tahun)</div>
+                                <div class="row value">IDR <span id="tabunganResult" th:text="${tabunganResult}"/></div>
+                                <div class="row note">(return <span id="tabunganRate" th:text="${tabunganRate}"/> per tahun)</div>
                             </div>
 
                             <div class="infoCol right">
                                 <div class="row title">Dengan investasi</div>
                                 <div class="row img"><img th:src="@{~/images/sim1.png}" /></div>
                                 <div class="row desc">Cukup menyisihkan</div>
-                                <div class="row value">Rp <span id="investasiResult" th:text="${investasiResult}"/></div>
-                                <div class="row note">(laba <span id="investasiRate" th:text="${investasiRate}"/>% per tahun)</div>
+                                <div class="row value">IDR <span id="investasiResult" th:text="${investasiResult}"/></div>
+                                <div class="row note">(return <span id="investasiRate" th:text="${investasiRate}"/> per tahun)</div>
 
                                 <div class="row button">
                                     <button id="btnSubmit" class="btn ricon red">Goal sudah sesuai <i class="far fa-arrow-right icon"></i></i></button>
-                                    <div id="alertHitung" class="errorMsgHitung" >Silahkan Lakukan Hitung Ulang Terlebih Dahulu</div>
+                                    <div id="alertHitung" class="errorMsgHitung">Klik button ‘Hitung Ulang’ dahulu</div>
                                 </div>
                             </div>
                         </div>
